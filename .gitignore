@@ -1,0 +1,6 @@
+/tmp
+/modules
+/lib
+/test-result
+/logs
+.DS_Store
