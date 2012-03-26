@@ -15,7 +15,10 @@ public class RestaurantController extends Controller {
         Application.index();
     }
     
-    public static void edit() {
+    public static void edit(Long id) {
+        Restaurant restaurant = Restaurant.findById(id);
+        //restaurant.edit(null, null);
+        Application.index();
     }
     
     public static void destroy(Long id) {
