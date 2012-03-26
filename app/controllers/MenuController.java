@@ -2,7 +2,7 @@ package controllers;
 
 import play.mvc.Controller;
 
-public class Menu extends Controller {
+public class MenuController extends Controller {
     
     public static void index() {
     }

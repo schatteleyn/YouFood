@@ -2,6 +2,6 @@ package controllers;
 
 import play.mvc.Controller;
 
-public class Order extends Controller {
+public class TableController extends Controller {
     
 }

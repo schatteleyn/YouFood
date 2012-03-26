@@ -2,6 +2,6 @@ package controllers;
 
 import play.mvc.Controller;
 
-public class Waiter extends Controller {
+public class WaiterController extends Controller {
 
 }

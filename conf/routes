@@ -5,6 +5,22 @@
 # Home page
 GET     /                                       Application.index
 
+# Restaurant
+
+GET     /restaurant/{id}                        Restaurant.show
+POST    /restaurant/create                      Restaurant.create
+PUT     /restaurant/{id}                        Restaurant.edit
+DELETE  /restaurant/{id}                        Restaurant.destroy 
+
+# Item
+
+GET     /restaurant/{id}/item                   Item.show
+POST    /restaurant/{id}/item/create            Item.create
+PUT     /restaurant/{id}/item/{id}              Item.edit
+DELETE  /restaurant/{id}/item/{id}              Item.destroy
+
+
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
