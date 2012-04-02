@@ -1,5 +1,6 @@
 package models;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import play.db.jpa.Model;
@@ -8,9 +9,9 @@ import play.db.jpa.Model;
 public class Waiter extends Model {
     
     @OneToMany
-    public Table listTables;
+    public List<Table> listTables;
 
-    public Waiter(Table listTables) {
+    public Waiter(List<Table> listTables) {
         this.listTables = listTables;
     }
     

@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -16,9 +17,9 @@ public class Order extends Model {
     public Table table;
 
     @OneToMany
-    public Item listItems;
+    public List<Item> listItems;
     
-    public Order(Item listItems, Date date, Float totalPrice, Table table) {
+    public Order(List<Item> listItems, Date date, Float totalPrice, Table table) {
         this.listItems = listItems;
         this.date = new Date();
         this.totalPrice = totalPrice;
