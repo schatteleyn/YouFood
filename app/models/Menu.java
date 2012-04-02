@@ -19,6 +19,4 @@ public class Menu extends Model {
         this.listItems = listItems;
         this.creationDate = new Date();
     }
-    
-    
 }
