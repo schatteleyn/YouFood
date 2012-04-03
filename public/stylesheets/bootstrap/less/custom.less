@@ -1,0 +1,33 @@
+body {
+    padding-top: 60px;
+    background: #f5f6f7 url(@backgroundPath) repeat-x;
+}
+
+img.imgalign {
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.thumbnail.little > img {
+    width: 50%;
+    background-color: transparent;
+}
+
+th.min, td.min {
+    width: 1px;
+    white-space: nowrap;
+}
+
+.centered {
+    text-align: center !important;
+}
+
+.fullWidth {
+    width: (@gridRowWidth  - 8);
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .fullWidth {
+        width: @gridRowWidth;
+    }
+}

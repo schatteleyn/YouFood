@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import play.db.jpa.Model;
@@ -12,13 +13,11 @@ public class Menu extends Model {
     public Date creationDate;
     
     @OneToMany
-    public Item listItems;
+    public List<Item> listItems;
 
-    public Menu(String name, Item listItems, Date creationDate) {
+    public Menu(String name, List<Item> listItems, Date creationDate) {
         this.name = name;
         this.listItems = listItems;
         this.creationDate = new Date();
     }
-    
-    
 }

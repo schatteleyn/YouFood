@@ -1,5 +1,6 @@
 package models;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import play.db.jpa.Model;
@@ -11,9 +12,9 @@ public class Table extends Model {
     public boolean needHelp;
     
     @OneToMany
-    public Order order;
+    public List<Order> order;
 
-    public Table(boolean isAvailable, boolean needHelp, Order order) {
+    public Table(boolean isAvailable, boolean needHelp, List<Order> order) {
         this.isAvailable = isAvailable;
         this.needHelp = needHelp;
         this.order = order;
