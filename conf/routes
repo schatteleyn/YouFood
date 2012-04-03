@@ -3,23 +3,49 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                                         Application.index
 
 # Restaurant
 
-GET     /restaurant/{id}                        Restaurant.show
-POST    /restaurant/create                      Restaurant.create
-PUT     /restaurant/{id}                        Restaurant.edit
-DELETE  /restaurant/{id}                        Restaurant.destroy 
+GET     /restaurant/{id}                          Restaurant.show
+POST    /restaurant/create                        Restaurant.create
+PUT     /restaurant/{id}                          Restaurant.edit
+DELETE  /restaurant/{id}                          Restaurant.destroy 
 
 # Item
 
-GET     /restaurant/{id}/item                   Item.show
-POST    /restaurant/{id}/item/create            Item.create
-PUT     /restaurant/{id_resto}/item/{id_item}   Item.edit
-DELETE  /restaurant/{id_resto}/item/{id_item}   Item.destroy
+GET     /restaurant/{id}/item                     Item.index
+POST    /restaurant/{id}/item/create              Item.create
+PUT     /restaurant/{id_resto}/item/{id_item}     Item.edit
+DELETE  /restaurant/{id_resto}/item/{id_item}     Item.destroy
 
+# Menu
 
+GET     /restaurant/{id}/menu                     Menu.index
+POST    /restaurant/{id}/menu/create              Menu.create
+PUT     /restaurant/{id_resto}/menu/{id_menu}     Menu.edit
+DELETE  /restaurant/{id_resto}/menu/{id_menu}     Menu.destroy
+
+# Order
+
+GET     /restaurant/{id}/order                    Order.index
+POST    /restaurant/{id}/order/create             Order.create
+PUT     /restaurant/{id_resto}/order/{id_order    Order.edit
+DELETE  /restaurant/{id_resto}/order/{id_order}   Order.destroy
+
+# Table
+
+GET     /restaurant/{id}/table                    Table.index
+POST    /restaurant/{id}/table/create             Table.create
+PUT     /restaurant/{id_resto}/table/{id_table}   Table.edit
+DELETE  /restaurant/{id_resto}/table/{id_table}   Table.destroy
+
+# Waiter
+
+GET     /restaurant/{id}/waiter                   Waiter.index
+POST    /restaurant/{id}/waiter/create            Waiter.create
+PUT     /restaurant/{id_resto}/waiter/{id_table}  Waiter.edit
+DELETE  /restaurant/{id_resto}/waiter/{id_table}  Waiter.destroy
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
