@@ -9,7 +9,7 @@ public class Table extends Model {
     
     public boolean isAvailable;
     public boolean needHelp;
-    //public Area area;
+    
     @OneToMany
     public Order order;
 
