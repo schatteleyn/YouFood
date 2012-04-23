@@ -16,7 +16,13 @@ public class ItemController extends Controller {
     
     public static void edit(Long id) {
         Item item = Item.findById(id);
-        //item.edit(null, null);
+        item.edit("item", params.all());
+        validation.valid(item);
+        if(validation.hasErrors()) {
+          // Message errors to test in views
+        } else {
+          item.save();
+        }
         index();
     }
     

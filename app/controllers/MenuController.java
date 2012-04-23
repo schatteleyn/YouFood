@@ -21,12 +21,19 @@ public class MenuController extends Controller {
     
     public static void edit(Long id) {
         Menu menu = Menu.findById(id);
-        //menu.edit(null,null)
-        menu.save();
+        menu.edit("menu", params.all());
+        validation.valid(menu);
+        if(validation.hasErrors()) {
+          // Message errors to test in views
+        } else {
+          menu.save();
+        }
+        index();
     }
     
     public static void destroy(Long id) {
         Menu menu = Menu.findById(id);
         menu.delete();
+        index();
     }
 }

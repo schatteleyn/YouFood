@@ -21,12 +21,19 @@ public class WaiterController extends Controller {
     
     public static void edit(Long id) {
         Waiter waiter = Waiter.findById(id);
-        //waiter.edit(null,null)
-        waiter.save();
+        waiter.edit("waiter", params.all());
+        validation.valid(waiter);
+        if(validation.hasErrors()) {
+          // Message errors to test in views
+        } else {
+          waiter.save();
+        }
+        index();
     }
     
     public static void destroy(Long id) {
         Waiter waiter = Waiter.findById(id);
         waiter.delete();
+        index();
     }
 }   

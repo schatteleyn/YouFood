@@ -17,7 +17,13 @@ public class RestaurantController extends Controller {
     
     public static void edit(Long id) {
         Restaurant restaurant = Restaurant.findById(id);
-        //restaurant.edit(null, null);
+        restaurant.edit("restaurant", params.all());
+        validation.valid(restaurant);
+        if(validation.hasErrors()) {
+          // Message errors to test in views
+        } else {
+          restaurant.save();
+        }
         Application.index();
     }
     

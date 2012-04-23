@@ -21,13 +21,20 @@ public class TableController extends Controller {
     
     public static void edit(Long id) {
         Table table = Table.findById(id);
-        //table.edit(null,null)
-        table.save();
+        table.edit("table", params.all());
+        validation.valid(table);
+        if(validation.hasErrors()) {
+          // Message errors to test in views
+        } else {
+          table.save();
+        }
+        index();
     }
     
     public static void destroy(Long id) {
         Table table = Table.findById(id);
         table.delete();
+        index();
     }
     
 }
