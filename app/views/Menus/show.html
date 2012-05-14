@@ -1,0 +1,34 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Menu</h1>
+
+Name : ${menu.name}</br>
+Creation Date : ${menu.creationDate}</br>
+#{a @edit(menu.id)}Edit#{/a}</br>
+#{a @destroy(menu.id)}Delete#{/a}
+</br></br>
+
+ITEMS
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list items, as:'item'}
+            <tr>
+                <td>#{a @show(item.id)}${item.name}#{/a}</td>
+                <td>${item.price}</td>
+                <td>${item.type}</td>
+                <td>#{a @destroy(restaurant.id)}Delete#{/a}<td>
+            </tr>
+        #{/list}
+    </tbody>
+</table>
+
+
+

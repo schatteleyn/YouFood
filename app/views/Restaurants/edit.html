@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Restaurant Edit</h1>
+
+#{form @saveEdit(restaurant.id)}
+    #{field 'country'}
+        <p>
+            <label>Country</label>
+            <input type="text" name="country" id="Country" value=${restaurant.country}/>
+        </p>
+    #{/field}
+    #{field 'city'}
+        <p>
+            <label>City</label>
+            <input type="text" name="city" id="city" value=${restaurant.city} />
+        </p>
+    #{/field}
+    #{field 'address'}
+        <p>
+            <label>Address</label>
+            <input type="text" name="address" id="Address" value=${restaurant.address}/>
+        </p>
+    #{/field}
+    -- select menu --    
+    <p class="buttons">
+        <input type="submit" value="Save"> <a href="@{show(restaurant.id)}">Cancel</a>    
+    </p>
+#{/form}

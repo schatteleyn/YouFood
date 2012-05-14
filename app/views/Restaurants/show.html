@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Restaurant</h1>
+
+City : ${restaurant.city}</br>
+Address : ${restaurant.address}</br>
+Country : ${restaurant.country}</br>
+#{a @edit(restaurant.id)}Edit#{/a}</br>
+#{a @destroy(restaurant.id)}Delete#{/a}
+</br></br>
+Current Menu : #{if restaurant.currentMenu != null }
+                   #{a @Menus.show(restaurant.currentMenu.id)}${restaurant.currentMenu.name}#{/a}
+               #{/if}
+               #{else}
+                   No current menu
+               #{/else}
+</br></br>
+
+#{a @Menus.index()}Menu List#{/a}
+
+
+

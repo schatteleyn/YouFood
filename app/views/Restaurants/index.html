@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Restaurant list</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>City</th>
+            <th>Address</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list restaurants, as:'restaurant'}
+            <tr>
+                <td>#{a @show(restaurant.id)}${restaurant.city}#{/a}</td>
+                <td>${restaurant.address}</td>
+                <td>${restaurant.country}</td>
+                <td>#{a @destroy(restaurant.id)}Delete#{/a}<td>
+            </tr>
+        #{/list}
+    </tbody>
+</table> 
+
+<h2>Add :</h2>
+
+<form id="post" action="@{Restaurants.create}" method="POST">
+    <p>
+        <label>Country</label>
+        <input type="text" name="country" id="Country" />
+    </p>
+    <p>
+        <label>City</label>
+        <input type="text" name="city" id="city" />
+    </p>
+    <p>
+        <label>Address</label>
+        <input type="text" name="address" id="Address" />
+    </p>
+    -- select menu --  
+    <p>
+        <input type="submit" value="Create" id="postRestaurant" />
+    </p>
+</form>

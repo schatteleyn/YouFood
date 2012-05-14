@@ -1,0 +1,34 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Menu list</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Creation Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list menus, as:'menu'}
+            <tr>
+                <td>#{a @show(menu.id)}${menu.name}#{/a}</td>
+                <td>${menu.name}</td>
+                <td>${menu.creationDate}</td>
+            </tr>
+        #{/list}
+    </tbody>
+</table> 
+
+<h2>Add menu:</h2>
+
+<form id="post" action="@{Menus.create}" method="POST">
+    <p>
+        <label>Name</label>
+        <input type="text" name="name" id="Name" />
+    </p>
+    <p>
+        <input type="submit" value="Create" id="postRestaurant" />
+    </p>
+</form>

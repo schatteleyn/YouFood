@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Menu Edit</h1>
+
+#{form @saveEdit(menu.id)}
+    #{field 'name'}
+        <p>
+            <label>Name</label>
+            <input type="text" name="country" id="Name" value=${menu.name}/>
+        </p> 
+    #{/field}
+    <p class="buttons">
+        <input type="submit" value="Save"> <a href="@{show(menu.id)}">Cancel</a>    
+    </p>
+#{/form}
