@@ -16,10 +16,11 @@ DELETE  /restaurant/{id}                          Restaurants.destroy
 
 # Item
 
-GET     /restaurant/{id}/item                     Item.index
-POST    /restaurant/{id}/item/create              Item.create
-PUT     /restaurant/{id}/item/{id_item}           Item.edit
-DELETE  /restaurant/{id}/item/{id_item}           Item.destroy
+GET     /restaurant/{id}/item                     Items.index
+POST    /restaurant/{id}/item/create              Items.create
+GET     /restaurant/{id}/item/{id_item}/edit      Items.edit
+POST    /restaurant/{id}/item/{id_item}           Items.saveEdit
+DELETE  /restaurant/{id}/item/{id_item}           Items.destroy
 
 # Menu
 
@@ -34,22 +35,23 @@ DELETE  /restaurant/{id}/menu/{id_menu}           Menu.destroy
 
 GET     /restaurant/{id}/order                    Order.index
 POST    /restaurant/{id}/order/create             Order.create
-PUT     /restaurant/{id}/order/{id_order}   Order.edit
-DELETE  /restaurant/{id}/order/{id_order}   Order.destroy
+GET     /restaurant/{id}/order/{id_order}/edit    Order.edit
+POST    /restaurant/{id}/order/{id_order}         Order.saveEdit
+DELETE  /restaurant/{id}/order/{id_order}         Order.destroy
 
 # Table
 
 GET     /restaurant/{id}/table                    Table.index
 POST    /restaurant/{id}/table/create             Table.create
-PUT     /restaurant/{id}/table/{id_table}   Table.edit
-DELETE  /restaurant/{id}/table/{id_table}   Table.destroy
+DELETE  /restaurant/{id}/table/{id_table}         Table.destroy
 
 # Waiter
 
 GET     /restaurant/{id}/waiter                   Waiter.index
 POST    /restaurant/{id}/waiter/create            Waiter.create
-PUT     /restaurant/{id}/waiter/{id_table}  Waiter.edit
-DELETE  /restaurant/{id}/waiter/{id_table}  Waiter.destroy
+GET     /restaurant/{id}/waiter/{id_table}/edit   Waiter.edit
+POST    /restaurant/{id}/waiter/{id_table}        Waiter.saveEdit
+DELETE  /restaurant/{id}/waiter/{id_table}        Waiter.destroy
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
