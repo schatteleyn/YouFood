@@ -7,7 +7,7 @@ import models.Waiter;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
-public class WaiterController extends Controller {
+public class Waiters extends Controller {
 
     public static void index() {
         Waiter.findAll();

@@ -8,16 +8,13 @@ import play.db.jpa.Model;
 @Entity
 public class Table extends Model {
     
-    public boolean isAvailable;
-    public boolean needHelp;
+    public boolean isAvailable; //default => false
+    public boolean needHelp; //default => false
     
     @OneToMany
     public List<Order> order;
 
-    public Table(boolean isAvailable, boolean needHelp, List<Order> order) {
-        this.isAvailable = isAvailable;
-        this.needHelp = needHelp;
-        this.order = order;
+    public Table() {
     }
     
     

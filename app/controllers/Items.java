@@ -6,7 +6,7 @@ import models.Menu;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
-public class ItemController extends Controller {
+public class Items extends Controller {
 
     public static void index() {
         List<Item> items = Item.findAll();

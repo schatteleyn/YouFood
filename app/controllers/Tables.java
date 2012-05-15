@@ -1,9 +1,13 @@
 package controllers;
 
+import java.util.List;
+import models.Item;
+import models.Order;
 import models.Table;
+import play.data.validation.Required;
 import play.mvc.Controller;
 
-public class TableController extends Controller {
+public class Tables extends Controller {
     
     public static void index() {
         Table.findAll();
@@ -14,22 +18,18 @@ public class TableController extends Controller {
         render(table);
     }
     
-    public static void create(Table table) {
+    public static void create() {
+        if (validation.hasErrors()) {
+            validation.keep();
+            params.flash();
+            flash.error("Please correct these errors !");
+            index();
+        }
+        Table table = new Table();
         table.save();
         index();
     }
-    
-    public static void edit(Long id) {
-        Table table = Table.findById(id);
-        table.edit("table", params.all());
-        validation.valid(table);
-        if(validation.hasErrors()) {
-          // Message errors to test in views
-        } else {
-          table.save();
-        }
-        index();
-    }
+
     
     public static void destroy(Long id) {
         Table table = Table.findById(id);
