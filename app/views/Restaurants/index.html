@@ -6,7 +6,7 @@
 </br></br>
 
 #{if !restaurants.isEmpty() }
-    <table>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>City</th>
@@ -54,5 +54,5 @@
     #{/form}
 #{/if}
 #{else}
-    No menu create
+    No menu create : #{a @Menus.index()}Menus list#{/a}
 #{/else}

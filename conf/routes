@@ -9,8 +9,8 @@ GET     /                                         Restaurants.index
 
 GET     /restaurants                              Restaurants.index
 GET     /restaurant/{id}                          Restaurants.show
-GET     /restaurant/create                        Restaurants.create
-POST    /restaurant/create                        Restaurants.saveCreate
+GET     /restaurants/create                       Restaurants.create
+POST    /restaurants/create                       Restaurants.saveCreate
 GET     /restaurant/{id}/edit                     Restaurants.edit
 POST    /restaurant/{id}                          Restaurants.saveEdit
 DELETE  /restaurant/{id}                          Restaurants.destroy 

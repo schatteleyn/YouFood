@@ -2,15 +2,15 @@
 #{set title:'Restaurant' /}
 
 <h1>Restaurant</h1>
-
+#{a @edit(restaurant.id)}Edit#{/a}</br>
+#{a @destroy(restaurant.id)}Delete#{/a}
+</br></br>
 City : ${restaurant.city}</br>
 Address : ${restaurant.address}</br>
 Country : ${restaurant.country}</br>
+
+
 </br>
-#{a @edit(restaurant.id)}Edit#{/a}</br>
-#{a @destroy(restaurant.id)}Delete#{/a}
-               
-</br></br>
 
 -- STATISTIQUE --
 

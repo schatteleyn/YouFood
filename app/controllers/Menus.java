@@ -36,10 +36,9 @@ public class Menus extends Controller {
         render(menu);
     }
 
-    public static void saveEdit(@Required Long id, @Required String name, @Required List<Item> items) {
+    public static void saveEdit(@Required Long id, @Required String name) {
         Menu menu = Menu.findById(id);
         menu.name = name;
-        menu.listItems = items;
         validation.valid(menu);
         if(validation.hasErrors()) {
             // Message errors to test in views

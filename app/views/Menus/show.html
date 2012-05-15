@@ -2,15 +2,16 @@
 #{set title:'Restaurant' /}
 
 <h1>Menu</h1>
-
-Name : ${menu.name}</br>
-Creation Date : ${menu.creationDate}</br></br>
 #{a @edit(menu.id)}Edit#{/a}</br>
 #{a @destroy(menu.id)}Delete#{/a}
 </br></br>
+Name : ${menu.name}</br>
+Creation Date : ${menu.creationDate}
+
+</br></br>
 
 #{a @editListItem(menu.id)}Edit List Item#{/a}
-</br></br>
+</br>
 
 #{if !items.isEmpty()}
     ITEMS

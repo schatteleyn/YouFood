@@ -35,12 +35,12 @@ public class Items extends Controller {
         render(item);
     }
 
-    public static void saveEdit(@Required Long id, @Required String name, @Required Float price, @Required Enum type, @Required List<Menu> listMenus) {
+    public static void saveEdit(@Required Long id, @Required String name, @Required Float price, @Required Enum type, @Required Menu menu) {
         Item item = Item.findById(id);
         item.name = name;
         item.price = price;
         item.type = type;
-        item.listMenus = listMenus;
+        item.menu = menu;
         validation.valid(item);
         if(validation.hasErrors()) {
             // Message errors to test in views

@@ -1,8 +1,7 @@
 package models;
 
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import play.db.jpa.Model;
 
 @Entity
@@ -12,12 +11,12 @@ public class Item extends Model {
     public Float price;
     public Enum type;
     
-    @OneToMany
-    public List<Menu> listMenus;
+    @ManyToOne
+    public Menu menu;
     
-    public Item(String name, Float price, Enum type, List<Menu> listMenus){
+    public Item(String name, Float price, Enum type, Menu menu){
         this.name = name;
-        this.listMenus = listMenus;
+        this.menu = menu;
         this.price = price;
         this.type = type;
     }
