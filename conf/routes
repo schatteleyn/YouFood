@@ -3,13 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                                         Application.index
+GET     /                                         Restaurants.index
 
 # Restaurant
 
 GET     /restaurants                              Restaurants.index
 GET     /restaurant/{id}                          Restaurants.show
-POST    /restaurants/create                       Restaurants.create
+GET     /restaurants/create                       Restaurants.create
+POST    /restaurants/create                       Restaurants.saveCreate
 GET     /restaurant/{id}/edit                     Restaurants.edit
 POST    /restaurant/{id}                          Restaurants.saveEdit
 DELETE  /restaurant/{id}                          Restaurants.destroy 
@@ -23,7 +24,7 @@ DELETE  /restaurant/{id}/item/{id_item}           Item.destroy
 
 # Menu
 
-GET     /restaurant/{id}/menus                    Menu.index
+GET     /restaurants/menus                        Menu.index
 GET     /restaurant/{id}/menu/{id_menu}           Menu.show
 POST    /restaurant/{id}/menu/create              Menu.create
 GET     /restaurant/{id}/menu/{id_menu}/edit      Menu.edit

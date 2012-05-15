@@ -2,7 +2,8 @@
 #{set title:'Restaurant' /}
 
 <h1>Restaurant list</h1>
-
+    #{a @create()}Add Restaurant#{/a}
+</br></br>
 <table>
     <thead>
         <tr>
@@ -17,29 +18,38 @@
                 <td>#{a @show(restaurant.id)}${restaurant.city}#{/a}</td>
                 <td>${restaurant.address}</td>
                 <td>${restaurant.country}</td>
-                <td>#{a @destroy(restaurant.id)}Delete#{/a}<td>
             </tr>
         #{/list}
     </tbody>
 </table> 
 
-<h2>Add :</h2>
-
-<form id="post" action="@{Restaurants.create}" method="POST">
-    <p>
-        <label>Country</label>
-        <input type="text" name="country" id="Country" />
-    </p>
-    <p>
-        <label>City</label>
-        <input type="text" name="city" id="city" />
-    </p>
-    <p>
-        <label>Address</label>
-        <input type="text" name="address" id="Address" />
-    </p>
-    -- select menu --  
-    <p>
-        <input type="submit" value="Create" id="postRestaurant" />
-    </p>
-</form>
+</br></br>
+Current Menu for each Resto : #{if restaurant.currentMenu != null }
+                   #{a @Menus.show(restaurant.currentMenu.id)}${restaurant.currentMenu.name}#{/a}
+               #{/if}
+               #{else}
+                   No current menu
+               #{/else}
+               
+#{form @saveEditMenu()}
+    #{field 'menu_id'}
+        <p>
+            <label>Menu</label>
+                <select name="menu_id">
+                    #{list menus, as:'menu'}
+                        #{if restaurant.currentMenu.name == menu.name}
+                            <option selected="selected "value=${menu.id}>
+                                ${menu.name}
+                            </option>
+                        #{/if}
+                        #{else}
+                            <option value=${menu.id}>
+                                ${menu.name}
+                            </option>
+                        #{/else}
+                    #{/list}
+                </select>
+            <input type="submit" value="Change" id="postRestaurant" />
+        </p> 
+    #{/field}
+#{/form}

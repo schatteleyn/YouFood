@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.List;
+import models.Menu;
 import models.Restaurant;
 import play.data.validation.Required;
 import play.mvc.Controller;
@@ -9,15 +10,20 @@ public class Restaurants extends Controller {
     
     public static void index(){
         List<Restaurant> restaurants = Restaurant.findAll();
-        render(restaurants);
+        List<Menu> menus = Menu.findAll();
+        render(restaurants,menus);
     }
     
     public static void show(Long id) {
         Restaurant restaurant = Restaurant.findById(id);
         render(restaurant);
     }
+        
+    public static void create(){
+        render();
+    }
     
-    public static void create(@Required String country, @Required String city, @Required String address){
+    public static void saveCreate(@Required String country, @Required String city, @Required String address){
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
@@ -46,6 +52,22 @@ public class Restaurants extends Controller {
           restaurant.save();
         }
         show(id);
+    }
+    
+    public static void saveEditMenu(@Required Long menu_id) {
+        List<Restaurant> restaurants = Restaurant.findAll();
+        Menu menu = Menu.findById(menu_id);
+        
+        for(int i=0; i<restaurants.size(); i++){
+           restaurants.get(i).currentMenu = menu; 
+            validation.valid(restaurants.get(i));
+            if(validation.hasErrors()) {
+            // Message errors to test in views
+            } else {
+            restaurants.get(i).save();
+            }
+        }
+        index();
     }
     
     public static void destroy(Long id) {
