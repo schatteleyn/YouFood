@@ -1,26 +1,43 @@
 package controllers;
 
+import java.util.List;
 import models.Item;
+import models.Menu;
+import play.data.validation.Required;
 import play.mvc.Controller;
 
 public class ItemController extends Controller {
 
     public static void index() {
-        Item.findAll();
+        List<Item> items = Item.findAll();
+        render(items);
     }
-    
-    public static void create(Item item) {
+
+    public static void create(@Required String name, Float price, Enum type, Menu menu) {
+        if (validation.hasErrors()) {
+            validation.keep();
+            params.flash();
+            flash.error("Please correct these errors !");
+            index();
+        }
+        Item item = new Item(name, price, type, menu);
         item.save();
         index();
     }
     
     public static void edit(Long id) {
         Item item = Item.findById(id);
-        item.edit("item", params.all());
+        render(item);
+    }
+    
+    public static void saveEdit(@Required Long id, @Required String name) {
+        Item item = Item.findById(id);
+        item.name = name;
         validation.valid(item);
         if(validation.hasErrors()) {
           // Message errors to test in views
         } else {
+           flash.success("The item has been updated !");
           item.save();
         }
         index();
