@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Item list</h1>
+#{a @create()}Add Item#{/a}
+</br>
+</br>
+#{if !items.isEmpty()}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list items, as:'item'}
+                <tr>
+                    <td>#{a @edit(item.id)}${item.name}#{/a}</td>
+                    <td>${item.price}</td>
+                    <td>${menu.type}</td>
+                </tr>
+            #{/list}
+        </tbody>
+    </table> 
+#{/if}
+#{else}
+    No item create</br>
+#{/else}
+

@@ -12,15 +12,19 @@ public class Items extends Controller {
         List<Item> items = Item.findAll();
         render(items);
     }
+    
+    public static void create() {
+        render();
+    }
 
-    public static void create(@Required String name, Float price, Enum type, Menu menu) {
+    public static void saveCreate(@Required String name, @Required Float price, @Required Enum type, List<Menu> listMenu) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
             index();
         }
-        Item item = new Item(name, price, type, menu);
+        Item item = new Item(name, price, type, null);
         item.save();
         index();
     }
@@ -29,13 +33,13 @@ public class Items extends Controller {
         Item item = Item.findById(id);
         render(item);
     }
-    
-    public static void saveEdit(@Required Long id, @Required String name, @Required Float price, @Required Enum type, @Required Menu menu) {
+
+    public static void saveEdit(@Required Long id, @Required String name, @Required Float price, @Required Enum type, @Required List<Menu> listMenus) {
         Item item = Item.findById(id);
         item.name = name;
         item.price = price;
         item.type = type;
-        item.menu = menu;
+        item.listMenus = listMenus;
         validation.valid(item);
         if(validation.hasErrors()) {
           // Message errors to test in views

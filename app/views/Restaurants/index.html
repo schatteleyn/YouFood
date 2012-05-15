@@ -2,54 +2,57 @@
 #{set title:'Restaurant' /}
 
 <h1>Restaurant list</h1>
-    #{a @create()}Add Restaurant#{/a}
+#{a @create()}Add Restaurant#{/a}
 </br></br>
-<table>
-    <thead>
-        <tr>
-            <th>City</th>
-            <th>Address</th>
-            <th>Country</th>
-        </tr>
-    </thead>
-    <tbody>
-        #{list restaurants, as:'restaurant'}
-            <tr>
-                <td>#{a @show(restaurant.id)}${restaurant.city}#{/a}</td>
-                <td>${restaurant.address}</td>
-                <td>${restaurant.country}</td>
-            </tr>
-        #{/list}
-    </tbody>
-</table> 
 
-</br></br>
-Current Menu for each Resto : #{if restaurant.currentMenu != null }
-                   #{a @Menus.show(restaurant.currentMenu.id)}${restaurant.currentMenu.name}#{/a}
-               #{/if}
-               #{else}
-                   No current menu
-               #{/else}
-               
-#{form @saveEditMenu()}
-    #{field 'menu_id'}
-        <p>
-            <label>Menu</label>
-                <select name="menu_id">
-                    #{list menus, as:'menu'}
-                        #{if restaurant.currentMenu.name == menu.name}
-                            <option selected="selected "value=${menu.id}>
-                                ${menu.name}
-                            </option>
-                        #{/if}
-                        #{else}
-                            <option value=${menu.id}>
-                                ${menu.name}
-                            </option>
-                        #{/else}
-                    #{/list}
-                </select>
-            <input type="submit" value="Change" id="postRestaurant" />
-        </p> 
-    #{/field}
-#{/form}
+#{if !restaurants.isEmpty() }
+    <table>
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Address</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list restaurants, as:'restaurant'}
+                <tr>
+                    <td>#{a @show(restaurant.id)}${restaurant.city}#{/a}</td>
+                    <td>${restaurant.address}</td>
+                    <td>${restaurant.country}</td>
+                </tr>
+            #{/list}
+        </tbody>
+    </table> 
+#{/if}
+#{else}
+    No restaurant create</br>
+#{/else}
+</br>
+#{if !menus.isEmpty()}
+    #{form @saveEditMenu()}
+        #{field 'menu_id'}
+            <p>
+                <label>Current Menu</label>
+                    <select name="menu_id">
+                        #{list menus, as:'menu'}
+                            #{if menu.currentMenu == true}
+                                <option selected="selected" value=${menu.id}>
+                                    ${menu.name}
+                                </option>
+                            #{/if}
+                            #{else}
+                                <option value=${menu.id}>
+                                    ${menu.name}
+                                </option>
+                            #{/else}
+                        #{/list}
+                    </select>
+                <input type="submit" value="Change" id="postCurrentMenu" />
+            </p> 
+        #{/field}
+    #{/form}
+#{/if}
+#{else}
+    No menu create
+#{/else}

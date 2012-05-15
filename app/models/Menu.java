@@ -11,6 +11,7 @@ public class Menu extends Model {
     
     public String name;
     public Date creationDate = new Date();
+    public Boolean currentMenu = false;
     
     @OneToMany
     public List<Item> listItems;

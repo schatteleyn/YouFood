@@ -17,8 +17,9 @@ DELETE  /restaurant/{id}                          Restaurants.destroy
 
 # Item
 
-GET     /restaurant/{id}/item                     Items.index
-POST    /restaurant/{id}/item/create              Items.create
+GET     /restaurants/items                        Items.index
+POST    /restaurant/item/create                   Items.create
+POST    /restaurant/item/create              Items.saveCreate
 GET     /restaurant/{id}/item/{id_item}/edit      Items.edit
 POST    /restaurant/{id}/item/{id_item}           Items.saveEdit
 DELETE  /restaurant/{id}/item/{id_item}           Items.destroy

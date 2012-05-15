@@ -1,11 +1,9 @@
 package controllers;
 import java.util.List;
-import javax.persistence.Query;
 import models.Item;
 import models.Menu;
 import models.Restaurant;
 import play.data.validation.Required;
-import play.db.jpa.JPA;
 import play.mvc.Controller;
 
 public class Menus extends Controller {
@@ -44,14 +42,26 @@ public class Menus extends Controller {
         menu.listItems = items;
         validation.valid(menu);
         if(validation.hasErrors()) {
-          // Message errors to test in views
+            // Message errors to test in views
         } else {
-          menu.save();
+            menu.save();
         }
         show(id);
     }
     
     public static void destroy(Long id) {
+        List<Restaurant> restaurants = Restaurant.find("byCurrentMenu_id", id).fetch();
+
+        for(int i=0; i<restaurants.size(); i++){
+            restaurants.get(i).currentMenu = null;
+            validation.valid(restaurants.get(i));
+            if(validation.hasErrors()) {
+                // Message errors to test in views
+            } else {
+                restaurants.get(i).save();
+            }
+        }
+        
         Menu menu = Menu.findById(id);
         menu.delete();
         index();

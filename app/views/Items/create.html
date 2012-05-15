@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Add Item</h1>
+
+<form id="post" action="@{Items.saveCreate}" method="POST">
+        <p>
+            <label>Name</label>
+            <input type="text" name="name" id="name" />
+        </p>
+        <p>
+            <label>Price</label>
+            <input type="text" name="price" id="price" />
+        </p>
+        <p>
+            <label>Type</label>
+            <input type="text" name="type" id="type" />
+        </p>
+        <p>
+            <input type="submit" value="Create" id="postItem" />
+        </p>
+</form>
+
+
+
+
