@@ -9,29 +9,29 @@ GET     /                                         Restaurants.index
 
 GET     /restaurants                              Restaurants.index
 GET     /restaurant/{id}                          Restaurants.show
-GET     /restaurants/create                       Restaurants.create
-POST    /restaurants/create                       Restaurants.saveCreate
+GET     /restaurant/create                        Restaurants.create
+POST    /restaurant/create                        Restaurants.saveCreate
 GET     /restaurant/{id}/edit                     Restaurants.edit
 POST    /restaurant/{id}                          Restaurants.saveEdit
 DELETE  /restaurant/{id}                          Restaurants.destroy 
 
 # Item
 
-GET     /restaurants/items                        Items.index
-POST    /restaurant/item/create                   Items.create
-POST    /restaurant/item/create              Items.saveCreate
-GET     /restaurant/{id}/item/{id_item}/edit      Items.edit
-POST    /restaurant/{id}/item/{id_item}           Items.saveEdit
-DELETE  /restaurant/{id}/item/{id_item}           Items.destroy
+GET     /items                                    Items.index
+GET     /item/create                              Items.create
+POST    /item/create                              Items.saveCreate
+GET     /item/{id}/edit                           Items.edit
+POST    /item/{id}                                Items.saveEdit
+DELETE  /item/{id}                                Items.destroy
 
 # Menu
 
-GET     /restaurants/menus                        Menu.index
-GET     /restaurant/{id}/menu/{id_menu}           Menu.show
-POST    /restaurant/{id}/menu/create              Menu.create
-GET     /restaurant/{id}/menu/{id_menu}/edit      Menu.edit
-POST    /restaurant/{id}/menu/{id_menu}           Menu.saveEdit
-DELETE  /restaurant/{id}/menu/{id_menu}           Menu.destroy
+GET     /menus                                    Menus.index
+GET     /menu/{id}                                Menus.show
+POST    /menu/create                              Menus.create
+GET     /menu/{id}/edit                           Menus.edit
+POST    /menu/{id}                                Menus.saveEdit
+DELETE  /menu/{id}                                Menus.destroy
 
 # Order
 
@@ -56,10 +56,10 @@ POST    /restaurant/{id}/waiter/{id_table}        Waiter.saveEdit
 DELETE  /restaurant/{id}/waiter/{id_table}        Waiter.destroy
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /favicon.ico                              404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
+GET     /public/                                  staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}                    {controller}.{action}

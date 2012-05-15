@@ -35,7 +35,7 @@ public class Menus extends Controller {
         Menu menu = Menu.findById(id);
         render(menu);
     }
-    
+
     public static void saveEdit(@Required Long id, @Required String name, @Required List<Item> items) {
         Menu menu = Menu.findById(id);
         menu.name = name;
@@ -48,7 +48,7 @@ public class Menus extends Controller {
         }
         show(id);
     }
-    
+
     public static void destroy(Long id) {
         List<Restaurant> restaurants = Restaurant.find("byCurrentMenu_id", id).fetch();
 
@@ -61,7 +61,7 @@ public class Menus extends Controller {
                 restaurants.get(i).save();
             }
         }
-        
+
         Menu menu = Menu.findById(id);
         menu.delete();
         index();
