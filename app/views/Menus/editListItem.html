@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Menu List Item Edit</h1>
+
+#{form @saveEditListItem(menu.id)}
+    #{field 'listItems'}
+        <p>
+            #{list items, as:'item'}
+                <input type="checkbox" name="${item.name}" value="${item.name}" />${item.name}<br />
+            #{/list}
+        </p> 
+    #{/field}
+    <p class="buttons">
+        <input type="submit" value="Save"> <a href="@{show(menu.id)}">Cancel</a>    
+    </p>
+#{/form}

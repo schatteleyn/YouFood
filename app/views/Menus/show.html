@@ -9,26 +9,33 @@ Creation Date : ${menu.creationDate}</br></br>
 #{a @destroy(menu.id)}Delete#{/a}
 </br></br>
 
-ITEMS
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-    <tbody>
-        #{list items, as:'item'}
+#{a @editListItem(menu.id)}Edit List Item#{/a}
+</br></br>
+
+#{if !items.isEmpty()}
+    ITEMS
+    
+    <table>
+        <thead>
             <tr>
-                <td>#{a @show(item.id)}${item.name}#{/a}</td>
-                <td>${item.price}</td>
-                <td>${item.type}</td>
-                <td>#{a @destroy(restaurant.id)}Delete#{/a}<td>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Type</th>
             </tr>
-        #{/list}
-    </tbody>
-</table>
-
-
+        </thead>
+        <tbody>
+            #{list items, as:'item'}
+                <tr>
+                    <td>#{a @show(item.id)}${item.name}#{/a}</td>
+                    <td>${item.price}</td>
+                    <td>${item.type}</td>
+                    <td>#{a @destroy(restaurant.id)}Delete#{/a}<td>
+                </tr>
+            #{/list}
+        </tbody>
+    </table>
+#{/if}
+#{else}
+    No items
+#{/else}
 

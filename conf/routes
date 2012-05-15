@@ -31,6 +31,8 @@ GET     /menu/{id}                                Menus.show
 POST    /menu/create                              Menus.create
 GET     /menu/{id}/edit                           Menus.edit
 POST    /menu/{id}                                Menus.saveEdit
+GET     /menu/{id}/editListItem                   Menus.editListItem
+POST    /menu/{id}/editListItem                   Menus.saveEditListItem
 DELETE  /menu/{id}                                Menus.destroy
 
 # Order

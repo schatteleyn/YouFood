@@ -49,6 +49,24 @@ public class Menus extends Controller {
         show(id);
     }
 
+    public static void editListItem(Long id){
+        Menu menu = Menu.findById(id);
+        List<Item> items = Item.findAll();
+        render(menu, items);
+    }
+
+    public static void saveEditListItem(@Required Long id, @Required List<Item> listItems) {
+        Menu menu = Menu.findById(id);
+        menu.listItems = listItems;
+        validation.valid(menu);
+        if(validation.hasErrors()) {
+            // Message errors to test in views
+        } else {
+            menu.save();
+        }
+        show(id);
+    }
+    
     public static void destroy(Long id) {
         List<Restaurant> restaurants = Restaurant.find("byCurrentMenu_id", id).fetch();
 

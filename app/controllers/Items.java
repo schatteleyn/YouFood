@@ -17,13 +17,14 @@ public class Items extends Controller {
         render();
     }
 
-    public static void saveCreate(@Required String name, @Required Float price, @Required Enum type, List<Menu> listMenu) {
+    public static void saveCreate(@Required String name, @Required Float price, Enum type, List<Menu> listMenu) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
-            index();
+            //index();
         }
+        
         Item item = new Item(name, price, type, null);
         item.save();
         index();
@@ -42,10 +43,10 @@ public class Items extends Controller {
         item.listMenus = listMenus;
         validation.valid(item);
         if(validation.hasErrors()) {
-          // Message errors to test in views
+            // Message errors to test in views
         } else {
-           flash.success("The item has been updated !");
-          item.save();
+            flash.success("The item has been updated !");
+            item.save();
         }
         index();
     }

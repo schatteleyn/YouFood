@@ -17,9 +17,10 @@
         <tbody>
             #{list items, as:'item'}
                 <tr>
-                    <td>#{a @edit(item.id)}${item.name}#{/a}</td>
+                    <td>${item.name}</td>
                     <td>${item.price}</td>
-                    <td>${menu.type}</td>
+                    <td>${item.type}</td>
+                    <td>#{a @edit(item.id)}edit#{/a}</td>
                 </tr>
             #{/list}
         </tbody>
