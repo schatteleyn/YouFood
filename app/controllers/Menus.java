@@ -1,4 +1,5 @@
 package controllers;
+
 import java.util.List;
 import models.Item;
 import models.Menu;
@@ -18,7 +19,7 @@ public class Menus extends Controller {
         render(menu);
     }
     
-    public static void create(@Required String name, List<Item> items) {
+    public static void saveCreate(@Required String name, List<Item> items) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
@@ -74,8 +75,15 @@ public class Menus extends Controller {
     }
 
     public static void saveEditListItem(@Required Long id, @Required List<Item> listItems) {
+        List<Item> items = null;
+        
+        for(int i=0; i<listItems.size(); i++){
+             items = Item.find("byName", listItems.get(i)).fetch();
+        }
+        
         Menu menu = Menu.findById(id);
-        menu.listItems = listItems;
+        
+        menu.listItems = items;
         validation.valid(menu);
         if(validation.hasErrors()) {
             // Message errors to test in views
@@ -84,7 +92,6 @@ public class Menus extends Controller {
             menu.save();
             show(id);
         }
-        
     }
     
     public static void destroy(Long id) {
