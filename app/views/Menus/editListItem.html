@@ -1,17 +1,27 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Menu List Item Edit</h1>
+<script>
+    function sendList(){
+        var selected = new Array();
+        $('#checkboxes input:checked').each(function() {
+            selected.push($(this).attr('name'));
+        });
+        return selected;
+    }
+</script>
 
-#{form @saveEditListItem(menu.id)}
-    #{field 'listItems'}
+<h1>Manage Menu List Items</h1>
+
+<form action="@{Menus.saveEditListItem(menu.id)}" onsubmit="return sendList()" method="POST">
+    <div class="checkboxes">
         <p>
             #{list items, as:'item'}
                 <input type="checkbox" name="${item.name}" value="${item.name}" />${item.name}<br />
             #{/list}
         </p> 
-    #{/field}
+    </div>
     <p class="buttons">
         <input type="submit" value="Save"> <a href="@{show(menu.id)}">Cancel</a>    
     </p>
-#{/form}
+</form>

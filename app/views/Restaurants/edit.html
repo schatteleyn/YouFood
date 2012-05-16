@@ -1,7 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Restaurant Edit</h1>
+<header class="jumbotron subhead" id="overview">
+    <h1>Restaurant Edit : ${restaurant.city}</h1>
+</header>
 
 #{form @saveEdit(restaurant.id)}
     #{field 'country'}
@@ -22,7 +24,6 @@
             <input type="text" name="address" id="Address" value="${restaurant.address}" />
         </p>
     #{/field}
-    -- select menu --    
     <p class="buttons">
         <input type="submit" value="Save"> <a href="@{show(restaurant.id)}">Cancel</a>    
     </p>

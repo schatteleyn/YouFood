@@ -10,33 +10,41 @@ Creation Date : ${menu.creationDate}
 
 </br></br>
 
-#{a @editListItem(menu.id)}Edit List Item#{/a}
-</br>
+#{a @editListItem(menu.id)}Manage List Item#{/a}
+</br></br>
 
-#{if !items.isEmpty()}
-    ITEMS
-    
-    <table>
+
+    <div class="page-header">
+        <h1>
+            List items
+        </h1>
+    </div>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Type</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            #{list items, as:'item'}
+            #{if !menu.listItems.isEmpty()}
+                #{list items, as:'item'}
+                    <tr>
+                        <td>#{a @show(item.id)}${item.name}#{/a}</td>
+                        <td>${item.price}</td>
+                        <td>${item.type}</td>
+                        <td>#{a @destroy(item.id)}Delete#{/a}</td>
+                    </tr>
+                #{/list}
+            #{/if}
+            #{else}
                 <tr>
-                    <td>#{a @show(item.id)}${item.name}#{/a}</td>
-                    <td>${item.price}</td>
-                    <td>${item.type}</td>
-                    <td>#{a @destroy(restaurant.id)}Delete#{/a}<td>
+                    <td colspan="4">No Items</td>
                 </tr>
-            #{/list}
+            #{/else}
         </tbody>
     </table>
-#{/if}
-#{else}
-    No items
-#{/else}
+
 

@@ -1,7 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Add Item</h1>
+<header class="jumbotron subhead" id="overview">
+    <h1>Item edit : ${item.name}</h1>
+</header>
 
 #{form @saveEdit(item.id)}
     #{field 'name'}
@@ -18,8 +20,12 @@
     #{/field}
     #{field 'type'}
         <p>
-            <label>Type</label>
-            <input type="text" name="type" id="type" value="${item.type}"/>
+        <label>Type</label>
+            <select name="type" id="type">
+                <option value="Meat">Meat</option>
+                <option value="Vegetable">Vegetable</option>
+                <option value="Dessert">Dessert</option>
+            </select>
         </p> 
     #{/field}
     <p class="buttons">

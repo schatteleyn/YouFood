@@ -25,7 +25,7 @@ public class Items extends Controller {
             //index();
         }
         
-        Item item = new Item(name, price, type, null);
+        Item item = new Item(name, price, type);
         item.save();
         index();
     }
@@ -35,15 +35,14 @@ public class Items extends Controller {
         render(item);
     }
 
-    public static void saveEdit(@Required Long id, @Required String name, @Required Float price, @Required Enum type, @Required Menu menu) {
+    public static void saveEdit(@Required Long id, @Required String name, @Required Float price) {
         Item item = Item.findById(id);
         item.name = name;
         item.price = price;
-        item.type = type;
-        item.menu = menu;
+        //item.type = type;
         validation.valid(item);
         if(validation.hasErrors()) {
-            // Message errors to test in views
+            flash.error("Please correct these errors !");
         } else {
             flash.success("The item has been updated !");
             item.save();

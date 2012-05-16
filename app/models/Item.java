@@ -14,9 +14,8 @@ public class Item extends Model {
     @ManyToOne
     public Menu menu;
     
-    public Item(String name, Float price, Enum type, Menu menu){
+    public Item(String name, Float price, Enum type){
         this.name = name;
-        this.menu = menu;
         this.price = price;
         this.type = type;
     }

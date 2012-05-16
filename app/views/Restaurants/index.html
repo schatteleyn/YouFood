@@ -1,11 +1,13 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Restaurant list</h1>
+<header class="jumbotron subhead" id="overview">
+    <h1>Restaurants</h1>
+</header>
 #{a @create()}Add Restaurant#{/a}
 </br></br>
 
-#{if !restaurants.isEmpty() }
+
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -15,39 +17,46 @@
             </tr>
         </thead>
         <tbody>
-            #{list restaurants, as:'restaurant'}
+            #{if !restaurants.isEmpty() }
+                #{list restaurants, as:'restaurant'}
+                    <tr>
+                        <td>#{a @show(restaurant.id)}${restaurant.city}#{/a}</td>
+                        <td>${restaurant.address}</td>
+                        <td>${restaurant.country}</td>
+                    </tr>
+                #{/list}
+            #{/if}
+            #{else}
                 <tr>
-                    <td>#{a @show(restaurant.id)}${restaurant.city}#{/a}</td>
-                    <td>${restaurant.address}</td>
-                    <td>${restaurant.country}</td>
+                    <td colspan="3">No restaurants created</td>
                 </tr>
-            #{/list}
+            #{/else}
         </tbody>
     </table> 
-#{/if}
-#{else}
-    No restaurant create</br>
-#{/else}
+
 </br>
+
+<div class="page-header">
+    <h1>Current Menu</h1>
+</div>
 #{if !menus.isEmpty()}
     #{form @saveEditMenu()}
         #{field 'menu_id'}
             <p>
-                <label>Current Menu</label>
-                    <select name="menu_id">
-                        #{list menus, as:'menu'}
-                            #{if menu.currentMenu == true}
-                                <option selected="selected" value=${menu.id}>
-                                    ${menu.name}
-                                </option>
-                            #{/if}
-                            #{else}
-                                <option value=${menu.id}>
-                                    ${menu.name}
-                                </option>
-                            #{/else}
-                        #{/list}
-                    </select>
+                <select name="menu_id">
+                    #{list menus, as:'menu'}
+                        #{if menu.currentMenu == true}
+                            <option selected="selected" value=${menu.id}>
+                                ${menu.name}
+                            </option>
+                        #{/if}
+                        #{else}
+                            <option value=${menu.id}>
+                                ${menu.name}
+                            </option>
+                        #{/else}
+                    #{/list}
+                </select>
                 <input type="submit" value="Change" id="postCurrentMenu" />
             </p> 
         #{/field}

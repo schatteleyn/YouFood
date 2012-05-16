@@ -15,8 +15,7 @@ public class Menus extends Controller {
     
     public static void show(Long id){
         Menu menu = Menu.findById(id);
-        List<Item> items = Item.find("byMenu_id", id).fetch();
-        render(menu,items);
+        render(menu);
     }
     
     public static void create(@Required String name, List<Item> items) {
@@ -27,7 +26,26 @@ public class Menus extends Controller {
             index();
         }
         Menu menu = new Menu(name, items);
-        menu.save();
+        
+        List<Menu> menus = Menu.findAll();
+        if(menus.isEmpty()){
+            
+            menu.currentMenu = true;
+            menu.save();
+            List<Restaurant> restaurants = Restaurant.findAll();
+            
+            for(int i=0; i<restaurants.size(); i++){
+            restaurants.get(i).currentMenu = menu; 
+                validation.valid(restaurants.get(i));
+                if(validation.hasErrors()) {
+                    // Message errors to test in views
+                } else {
+                    restaurants.get(i).save();
+                }
+            }
+        }else{
+            menu.save();
+        }
         index();
     }
     
@@ -60,10 +78,12 @@ public class Menus extends Controller {
         validation.valid(menu);
         if(validation.hasErrors()) {
             // Message errors to test in views
+            index();
         } else {
             menu.save();
+            show(id);
         }
-        show(id);
+        
     }
     
     public static void destroy(Long id) {

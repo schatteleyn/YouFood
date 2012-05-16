@@ -1,7 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Menu Edit</h1>
+<header class="jumbotron subhead" id="overview">
+    <h1>Menu edit : ${menu.name}</h1>
+</header>
 
 #{form @saveEdit(menu.id)}
     #{field 'name'}

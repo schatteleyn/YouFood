@@ -1,35 +1,41 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Menu list</h1>
+<header class="jumbotron subhead" id="overview">
+    <h1>Menu list</h1>
+</header>
 
-#{if !menus.isEmpty()}
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Current Menu</th>
-                <th>Name</th>
-                <th>Creation Date</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Current Menu</th>
+            <th>Creation Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{if !menus.isEmpty()}
             #{list menus, as:'menu'}
                 <tr>
+                    <td>#{a @show(menu.id)}${menu.name}#{/a}</td>
                     <td>
                     #{if menu.currentMenu == true}
                         X
                     #{/if}
                     </td>
-                    <td>#{a @show(menu.id)}${menu.name}#{/a}</td>
                     <td>${menu.creationDate}</td>
                 </tr>
             #{/list}
-        </tbody>
-    </table>
-#{/if}
-#{else}
-    No Menu create</br>
-#{/else}
+        #{/if}
+        #{else}
+            <tr>
+                <td colspan="3">No menu created</td>
+            </tr>
+        #{/else}
+    </tbody>
+</table>
+
+
 
 <h2>Add menu:</h2>
 
