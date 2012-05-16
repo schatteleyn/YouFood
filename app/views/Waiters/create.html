@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Add Waiter</h1>
+
+<form id="post" action="@{Waiters.saveCreate}" method="POST">
+    <p>
+        <label>Name</label>
+        <input type="text" name="name" id="name" />
+    </p>
+    <p>
+        <input type="submit" value="Create" id="postWaiter" />
+    </p>
+</form>
+
+
+
+

@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<header class="jumbotron subhead" id="overview">
+    <h1>Waiter edit : ${waiter.name}</h1>
+</header>
+
+#{form @saveEdit(waiter.id)}
+    #{field 'name'}
+        <p>
+            <label>Name</label>
+            <input type="text" name="name" id="name" value="${waiter.name}"/>
+        </p> 
+    #{/field}
+    <p class="buttons">
+        <input type="submit" value="Save"> <a href="@{index()}">Cancel</a>    
+    </p>
+#{/form}
+
+
+
+

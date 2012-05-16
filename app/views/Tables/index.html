@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Table list</h1>
+#{a @create()}Add Table#{/a}
+</br>
+</br>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{if !tables.isEmpty()}
+        #{list tables, as:'table'}
+            <tr>
+                <td>${table.id}</td>
+                <td>#{a @destroy(table.id)}delete#{/a}</td>
+            </tr>
+        #{/list}
+        #{/if}
+        #{else}
+            <tr>
+                <td colspan="4">No item created</td>
+            </tr>
+        #{/else}
+
+    </tbody>
+</table> 
+
