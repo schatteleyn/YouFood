@@ -17,15 +17,16 @@ public class Items extends Controller {
         render();
     }
 
-    public static void saveCreate(@Required String name, @Required Float price, Enum type, List<Menu> listMenu) {
+    public static void saveCreate(@Required String name, @Required Float price, @Required String type) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
-            //index();
         }
         
-        Item item = new Item(name, price, type);
+        Enum enumType = Item.Type.valueOf(type);
+        Item item = new Item(name, price, enumType);
+        
         item.save();
         index();
     }
