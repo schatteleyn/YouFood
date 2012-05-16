@@ -1,7 +1,6 @@
 package controllers;
 
 import java.util.List;
-import models.Item;
 import models.Table;
 import models.Waiter;
 import play.data.validation.Required;
@@ -18,7 +17,11 @@ public class Waiters extends Controller {
         render(waiter);
     }
     
-    public static void create(@Required String name, List<Table> tables) {
+    public static void create() {
+        render();
+    }
+    
+    public static void saveCreate(@Required String name, List<Table> tables) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
@@ -41,6 +44,7 @@ public class Waiters extends Controller {
         if(validation.hasErrors()) {
           // Message errors to test in views
         } else {
+          flash.success("The waiter has been updated !");
           waiter.save();
         }
         index();

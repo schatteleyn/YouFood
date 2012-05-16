@@ -61,6 +61,7 @@ public class Menus extends Controller {
         if(validation.hasErrors()) {
             // Message errors to test in views
         } else {
+            flash.success("The menu has been updated !");
             menu.save();
         }
         show(id);

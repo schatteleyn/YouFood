@@ -28,7 +28,8 @@ DELETE  /item/{id}                                Items.destroy
 
 GET     /menus                                    Menus.index
 GET     /menu/{id}                                Menus.show
-POST    /menu/create                              Menus.create
+GET     /menu/create                              Menus.create
+POST    /menu/create                              Menus.saveCreate
 GET     /menu/{id}/edit                           Menus.edit
 POST    /menu/{id}                                Menus.saveEdit
 GET     /menu/{id}/editListItem                   Menus.editListItem
@@ -38,7 +39,8 @@ DELETE  /menu/{id}                                Menus.destroy
 # Order
 
 GET     /restaurant/{id}/order                    Order.index
-POST    /restaurant/{id}/order/create             Order.create
+GET     /restaurant/{id}/order/create             Order.create
+POST    /restaurant/{id}/order/create             Order.saveCreate
 GET     /restaurant/{id}/order/{id_order}/edit    Order.edit
 POST    /restaurant/{id}/order/{id_order}         Order.saveEdit
 DELETE  /restaurant/{id}/order/{id_order}         Order.destroy
@@ -46,13 +48,15 @@ DELETE  /restaurant/{id}/order/{id_order}         Order.destroy
 # Table
 
 GET     /restaurant/{id}/table                    Table.index
-POST    /restaurant/{id}/table/create             Table.create
+GET     /restaurant/{id}/table/create             Table.create
+POST    /restaurant/{id}/table/create             Table.saveCreate
 DELETE  /restaurant/{id}/table/{id_table}         Table.destroy
 
 # Waiter
 
 GET     /restaurant/{id}/waiter                   Waiter.index
-POST    /restaurant/{id}/waiter/create            Waiter.create
+GET     /restaurant/{id}/waiter/create            Waiter.create
+POST    /restaurant/{id}/waiter/create            Waiter.saveCreate
 GET     /restaurant/{id}/waiter/{id_table}/edit   Waiter.edit
 POST    /restaurant/{id}/waiter/{id_table}        Waiter.saveEdit
 DELETE  /restaurant/{id}/waiter/{id_table}        Waiter.destroy

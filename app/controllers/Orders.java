@@ -19,7 +19,11 @@ public class Orders extends Controller {
         render(order);
     }
     
-    public static void create(List<Item> items, Date date, Float price, Table table) {
+    public static void create() {
+        render();
+    }
+    
+    public static void saveCreate(List<Item> items, Date date, Float price, Table table) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
@@ -45,6 +49,7 @@ public class Orders extends Controller {
         if(validation.hasErrors()) {
           // Message errors to test in views
         } else {
+          flash.success("The order has been updated !");
           order.save();
         }
         index();
