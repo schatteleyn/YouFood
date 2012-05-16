@@ -19,6 +19,10 @@ public class Tables extends Controller {
     }
     
     public static void create() {
+        render();
+    }
+    
+    public static void saveCreate() {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();

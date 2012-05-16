@@ -58,6 +58,7 @@ public class Restaurants extends Controller {
         if(validation.hasErrors()) {
             // Message errors to test in views
         } else {
+            flash.success("The restaurant has been updated !");
             restaurant.save();
         }
         show(id);
