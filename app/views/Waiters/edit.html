@@ -2,14 +2,20 @@
 #{set title:'Restaurant' /}
 
 <header class="jumbotron subhead" id="overview">
-    <h1>Waiter edit : ${waiter.name}</h1>
+    <h1>Waiter edit : ${waiter.firstName} ${waiter.lastName}</h1>
 </header>
 
 #{form @saveEdit(waiter.id)}
-    #{field 'name'}
+    #{field 'firstName'}
         <p>
-            <label>Name</label>
-            <input type="text" name="name" id="name" value="${waiter.name}"/>
+            <label>First name</label>
+            <input type="text" name="firstName" id="firstName" value="${waiter.firstName}"/>
+        </p> 
+    #{/field}
+    #{field 'lastName'}
+        <p>
+            <label>Last name</label>
+            <input type="text" name="lastName" id="lastName" value="${waiter.lastName}"/>
         </p> 
     #{/field}
     <p class="buttons">
