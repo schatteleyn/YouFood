@@ -3,16 +3,22 @@
 
 <h1>Add Waiter</h1>
 
-<form id="post" action="@{Waiters.saveCreate}" method="POST">
-    <p>
-        <label>Name</label>
-        <input type="text" name="name" id="name" />
+#{form @Waiters.saveCreate(restaurant.id)}
+    #{field 'firstName'}
+        <p>
+            <label>FirstName</label>
+            <input type="text" name="firstName" id="firstName" />
+        </p> 
+    #{/field}
+    #{field 'lastName'}
+        <p>
+            <label>LastName</label>
+            <input type="text" name="lastName" id="lastName" />
+        </p> 
+    #{/field}
+    <p class="buttons">
+        <input type="submit" value="Save">
     </p>
-    <p>
-        <input type="submit" value="Create" id="postWaiter" />
-    </p>
-</form>
-
-
+#{/form}
 
 

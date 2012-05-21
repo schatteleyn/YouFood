@@ -1,7 +1,9 @@
 package models;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import play.db.jpa.Model;
 
 @Entity
@@ -13,6 +15,9 @@ public class Restaurant extends Model {
     
     @ManyToOne
     public Menu currentMenu;
+    
+    @OneToMany
+    public List<Waiter> listWaiters;
     
     public Restaurant(String address, String city, String country, Menu currentMenu) {
         this.address = address;

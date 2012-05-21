@@ -38,28 +38,28 @@ DELETE  /menu/{id}                                Menus.destroy
 
 # Order
 
-GET     /restaurant/{id}/order                    Order.index
-GET     /restaurant/{id}/order/create             Order.create
-POST    /restaurant/{id}/order/create             Order.saveCreate
-GET     /restaurant/{id}/order/{id_order}/edit    Order.edit
-POST    /restaurant/{id}/order/{id_order}         Order.saveEdit
-DELETE  /restaurant/{id}/order/{id_order}         Order.destroy
+GET     /restaurant/{id}/order                    Orders.index
+GET     /restaurant/{id}/order/create             Orders.create
+POST    /restaurant/{id}/order/create             Orders.saveCreate
+GET     /restaurant/{id}/order/{id_order}/edit    Orders.edit
+POST    /restaurant/{id}/order/{id_order}         Orders.saveEdit
+DELETE  /restaurant/{id}/order/{id_order}         Orders.destroy
 
 # Table
 
-GET     /restaurant/{id}/table                    Table.index
-GET     /restaurant/{id}/table/create             Table.create
-POST    /restaurant/{id}/table/create             Table.saveCreate
-DELETE  /restaurant/{id}/table/{id_table}         Table.destroy
+GET     /restaurant/{id}/table                    Tables.index
+GET     /restaurant/{id}/table/create             Tables.create
+POST    /restaurant/{id}/table/create             Tables.saveCreate
+DELETE  /restaurant/{id}/table/{id_table}         Tables.destroy
 
 # Waiter
 
-GET     /restaurant/{id}/waiter                   Waiter.index
-GET     /restaurant/{id}/waiter/create            Waiter.create
-POST    /restaurant/{id}/waiter/create            Waiter.saveCreate
-GET     /restaurant/{id}/waiter/{id_table}/edit   Waiter.edit
-POST    /restaurant/{id}/waiter/{id_table}        Waiter.saveEdit
-DELETE  /restaurant/{id}/waiter/{id_table}        Waiter.destroy
+GET     /restaurant/{id}                          Waiters.index
+GET     /restaurant/{id}/waiter/create            Waiters.create
+POST    /restaurant/{id}/waiter/create            Waiters.saveCreate
+GET     /restaurant/{id}/waiter/{id_waiter}/edit  Waiters.edit
+POST    /restaurant/{id}/waiter/{id_waiter}       Waiters.saveEdit
+DELETE  /restaurant/{id}/waiter/{id_waiter}       Waiters.destroy
 
 # Ignore favicon requests
 GET     /favicon.ico                              404

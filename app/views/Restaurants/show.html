@@ -12,9 +12,36 @@ Address : ${restaurant.address}</br>
 Country : ${restaurant.country}</br>
 
 
-</br>
-
--- STATISTIQUE --
-
+<div class="page-header">
+    <h1>
+        List Waiters
+    </h1>
+</div>
+#{a @Waiters.create(restaurant.id)}Add Waiter#{/a}</br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{if !waiters.isEmpty()}
+            #{list waiters, as:'waiter'}
+                <tr>
+                    <td>${waiter.firstName}</td>
+                    <td>${waiter.lastName}</td>
+                    <td>#{a @Waiters.edit(waiter.id)}Edit#{/a} #{a @Waiters.destroy(waiter.id)}Delete#{/a}</td>
+                </tr>
+            #{/list}
+        #{/if}
+        #{else}
+            <tr>
+                <td colspan="4">No Waiters</td>
+            </tr>
+        #{/else}
+    </tbody>
+</table>
 
 

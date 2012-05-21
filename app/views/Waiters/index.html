@@ -1,33 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Waiter list</h1>
-#{a @create()}Add Waiter#{/a}
-</br>
-</br>
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        #{if !waiters.isEmpty()}
-        #{list waiters, as:'waiter'}
-            <tr>
-                <td>${waiter.name}</td>
-                <td>#{a @edit(waiter.id)}edit#{/a} #{a @destroy(waiter.id)}delete#{/a}</td>
-            </tr>
-        #{/list}
-        #{/if}
-        #{else}
-            <tr>
-                <td colspan="4">No waiter created</td>
-            </tr>
-        #{/else}
-
-    </tbody>
-</table> 
-
+<header class="jumbotron subhead" id="overview">
+    <h2>Done</h2>
+    Back to #{a @Restaurants.show(restaurant.id)}${restaurant.city}#{/a}
+</header>

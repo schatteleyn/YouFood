@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 import models.Menu;
 import models.Restaurant;
+import models.Waiter;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
@@ -16,7 +17,8 @@ public class Restaurants extends Controller {
     
     public static void show(Long id) {
         Restaurant restaurant = Restaurant.findById(id);
-        render(restaurant);
+        List<Waiter> waiters = Waiter.find("byRestaurant_id", id).fetch();
+        render(restaurant, waiters);
     }
         
     public static void create(){
