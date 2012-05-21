@@ -1,17 +1,22 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Item list</h1>
-#{a @create()}Add Item#{/a}
-</br>
-</br>
+<header class="jumbotron subhead" id="overview">
+    <h1>Item list</h1>
+</header>
+#{if !categories.isEmpty()}
+    #{a @create()}Add Item#{/a}
+#{/if}
+#{else}
+    To add an Item, #{a @Categories.create()}create a Category#{/a}
+#{/else}
 
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>Name</th>
             <th>Price</th>
-            <th>Type</th>
+            <th>Category</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -21,7 +26,7 @@
             <tr>
                 <td>${item.name}</td>
                 <td>${item.price} $</td>
-                <td>${item.type}</td>
+                <td>${item.category.name}</td>
                 <td>#{a @edit(item.id)}edit#{/a} #{a @destroy(item.id)}delete#{/a}</td>
             </tr>
         #{/list}
@@ -35,3 +40,32 @@
     </tbody>
 </table> 
 
+<header class="jumbotron subhead" id="overview">
+    <h1>Category list</h1>
+</header>
+#{a @Categories.create()}Add Category#{/a}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{if !categories.isEmpty()}
+        #{list categories, as:'category'}
+            <tr>
+                <td>${category.name}</td>
+                <td>#{a @Categories.edit(category.id)}edit#{/a} #{a @Categories.destroy(category.id)}delete#{/a}</td>
+            </tr>
+        #{/list}
+        #{/if}
+        #{else}
+            <tr>
+                <td colspan="4">No category created</td>
+            </tr>
+        #{/else}
+
+    </tbody>
+</table> 

@@ -1,8 +1,8 @@
 package controllers;
 
 import java.util.List;
+import models.Category;
 import models.Item;
-import models.Menu;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
@@ -10,22 +10,24 @@ public class Items extends Controller {
 
     public static void index() {
         List<Item> items = Item.findAll();
-        render(items);
+        List<Category> categories = Category.findAll();
+        render(items, categories);
     }
     
     public static void create() {
-        render();
+        List<Category> categories = Category.findAll();
+        render(categories);
     }
 
-    public static void saveCreate(@Required String name, @Required Float price, @Required String type) {
+    public static void saveCreate(@Required String name, @Required Float price, @Required Long category_id) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
         }
         
-        Enum enumType = Item.Type.valueOf(type);
-        Item item = new Item(name, price, enumType);
+        Category category = Category.findById(category_id);
+        Item item = new Item(name, price, category);
         
         item.save();
         index();
@@ -40,7 +42,6 @@ public class Items extends Controller {
         Item item = Item.findById(id);
         item.name = name;
         item.price = price;
-        //item.type = type;
         validation.valid(item);
         if(validation.hasErrors()) {
             flash.error("Please correct these errors !");

@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'YouFood - Clients' /}
+
+<header class="jumbotron subhead" id="overview">
+    <h1>Welcome to YouFood : ${restaurant.city}</h1>
+    <p class="lead">Phasellus faucibus elementum gravida. Vivamus consectetur facilisis felis nec pharetra. 
+        Mauris consectetur ante sed mauris tempus commodo. Vestibulum ante ipsum primis in faucibus orci luctus et 
+        ultrices posuere cubilia Curae; Suspendisse id ligula in nisi congue lacinia. Morbi ut suscipit sapien. 
+        Nulla eget felis eros, nec posuere felis.</p>
+</header>
+
+<div class="row">
+    <div class="span12 offset5">
+        <a href="@{Clients.menu(restaurant.id)}" class="btn btn-primary">Interface Client test</a>
+    </div>
+</div>

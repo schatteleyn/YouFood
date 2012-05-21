@@ -14,10 +14,10 @@
     </p>
     <p>
         <label>Type</label>
-        <select name="type" id="type">
-            <option value="MEAT">MEAT</option>
-            <option value="VEGETABLE">VEGETABLE</option>
-            <option value="DESSERT">DESSERT</option>
+        <select name="category_id" id="category_id">
+            #{list categories, as:'category'}
+                <option value="${category.id}">${category.name}</option>
+            #{/list}
         </select>
     </p>
     <p>

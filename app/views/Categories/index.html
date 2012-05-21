@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Category list</h1>
+#{a @create()}Add Category#{/a}
+</br>
+</br>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{if !items.isEmpty()}
+        #{list items, as:'item'}
+            <tr>
+                <td>${item.name}</td>
+                <td>${item.price} $</td>
+                <td>${item.type}</td>
+                <td>#{a @edit(item.id)}edit#{/a} #{a @destroy(item.id)}delete#{/a}</td>
+            </tr>
+        #{/list}
+        #{/if}
+        #{else}
+            <tr>
+                <td colspan="4">No item created</td>
+            </tr>
+        #{/else}
+
+    </tbody>
+</table> 
+

@@ -24,6 +24,15 @@ GET     /item/{id}/edit                           Items.edit
 POST    /item/{id}                                Items.saveEdit
 DELETE  /item/{id}                                Items.destroy
 
+# Category
+
+GET     /items                                    Categories.index
+GET     /categories/create                        Categories.create
+POST    /categories/create                        Categories.saveCreate
+GET     /categories/{id}/edit                     Categories.edit
+POST    /categories/{id}                          Categories.saveEdit
+DELETE  /categories/{id}                          Categories.destroy
+
 # Menu
 
 GET     /menus                                    Menus.index
@@ -39,8 +48,8 @@ DELETE  /menu/{id}                                Menus.destroy
 # Order
 
 GET     /restaurant/{id}/order                    Orders.index
-GET     /restaurant/{id}/order/create             Orders.create
-POST    /restaurant/{id}/order/create             Orders.saveCreate
+GET     /restaurant/{id}/order/client/create      Orders.create
+POST    /restaurant/{id}/order/client/create      Orders.saveCreate
 GET     /restaurant/{id}/order/{id_order}/edit    Orders.edit
 POST    /restaurant/{id}/order/{id_order}         Orders.saveEdit
 DELETE  /restaurant/{id}/order/{id_order}         Orders.destroy
@@ -60,6 +69,12 @@ POST    /restaurant/{id}/waiter/create            Waiters.saveCreate
 GET     /restaurant/{id}/waiter/{id_waiter}/edit  Waiters.edit
 POST    /restaurant/{id}/waiter/{id_waiter}       Waiters.saveEdit
 DELETE  /restaurant/{id}/waiter/{id_waiter}       Waiters.destroy
+
+# Client
+
+GET     /restaurant/{id}/client/home              Clients.index
+GET     /restaurant/{id}/client/menu/categories   Clients.menu
+GET     /restaurant/{id}/client/menu/items        Clients.items
 
 # Ignore favicon requests
 GET     /favicon.ico                              404
