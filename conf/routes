@@ -15,51 +15,67 @@ GET     /restaurant/{id}/edit                     Restaurants.edit
 POST    /restaurant/{id}                          Restaurants.saveEdit
 DELETE  /restaurant/{id}                          Restaurants.destroy 
 
-# Item
+    # Category
 
-GET     /items                                    Items.index
-GET     /item/create                              Items.create
-POST    /item/create                              Items.saveCreate
-GET     /item/{id}/edit                           Items.edit
-POST    /item/{id}                                Items.saveEdit
-DELETE  /item/{id}                                Items.destroy
+    GET     /restaurant/{id}/categories                               Categories.index
+    GET     /restaurant/{id}/category/{id}                            Categories.show
+    GET     /restaurant/{id}/categories/create                        Categories.create
+    POST    /restaurant/{id}/categories/create                        Categories.saveCreate
+    GET     /restaurant/{id}/category/{id}/edit                       Categories.edit
+    POST    /restaurant/{id}/category/{id}                            Categories.saveEdit
+    DELETE  /restaurant/{id}/category/{id}                            Categories.destroy
 
-# Menu
+    # Item
 
-GET     /menus                                    Menus.index
-GET     /menu/{id}                                Menus.show
-GET     /menu/create                              Menus.create
-POST    /menu/create                              Menus.saveCreate
-GET     /menu/{id}/edit                           Menus.edit
-POST    /menu/{id}                                Menus.saveEdit
-GET     /menu/{id}/editListItem                   Menus.editListItem
-POST    /menu/{id}/editListItem                   Menus.saveEditListItem
-DELETE  /menu/{id}                                Menus.destroy
+    GET     /restaurant/{id}/category/{id}                            Items.index
+    GET     /restaurant/{id}/category/{id}/item/create                Items.create
+    POST    /restaurant/{id}/category/{id}/item/create                Items.saveCreate
+    GET     /restaurant/{id}/category/{id}/item/{id_item}/edit        Items.edit
+    POST    /restaurant/{id}/category/{id}/item/{id_item}             Items.saveEdit
+    DELETE  /restaurant/{id}/category/{id}/item/{id_item}             Items.destroy
 
-# Order
+    # Menu
 
-GET     /restaurant/{id}/order                    Orders.index
-GET     /restaurant/{id}/order/create             Orders.create
-POST    /restaurant/{id}/order/create             Orders.saveCreate
-GET     /restaurant/{id}/order/{id_order}/edit    Orders.edit
-POST    /restaurant/{id}/order/{id_order}         Orders.saveEdit
-DELETE  /restaurant/{id}/order/{id_order}         Orders.destroy
+    GET     /restaurant/{id}/menus                                    Menus.index
+    GET     /restaurant/{id}/menu/{id}                                Menus.show
+    GET     /restaurant/{id}/menu/create                              Menus.create
+    POST    /restaurant/{id}/menu/create                              Menus.saveCreate
+    GET     /restaurant/{id}/menu/{id}/edit                           Menus.edit
+    POST    /restaurant/{id}/menu/{id}                                Menus.saveEdit
+    GET     /restaurant/{id}/menu/{id}/editListItem                   Menus.editListItem
+    POST    /restaurant/{id}/menu/{id}/editListItem                   Menus.saveEditListItem
+    DELETE  /restaurant/{id}/menu/{id}                                Menus.destroy
 
-# Table
+    # Order
 
-GET     /restaurant/{id}/table                    Tables.index
-GET     /restaurant/{id}/table/create             Tables.create
-POST    /restaurant/{id}/table/create             Tables.saveCreate
-DELETE  /restaurant/{id}/table/{id_table}         Tables.destroy
+    GET     /restaurant/{id}/order                    Orders.index
+    GET     /restaurant/{id}/order/client/create      Orders.create
+    POST    /restaurant/{id}/order/client/create      Orders.saveCreate
+    GET     /restaurant/{id}/order/{id_order}/edit    Orders.edit
+    POST    /restaurant/{id}/order/{id_order}         Orders.saveEdit
+    DELETE  /restaurant/{id}/order/{id_order}         Orders.destroy
 
-# Waiter
+    # Table
 
-GET     /restaurant/{id}                          Waiters.index
-GET     /restaurant/{id}/waiter/create            Waiters.create
-POST    /restaurant/{id}/waiter/create            Waiters.saveCreate
-GET     /restaurant/{id}/waiter/{id_waiter}/edit  Waiters.edit
-POST    /restaurant/{id}/waiter/{id_waiter}       Waiters.saveEdit
-DELETE  /restaurant/{id}/waiter/{id_waiter}       Waiters.destroy
+    GET     /restaurant/{id}/table                    Tables.index
+    GET     /restaurant/{id}/table/create             Tables.create
+    POST    /restaurant/{id}/table/create             Tables.saveCreate
+    DELETE  /restaurant/{id}/table/{id_table}         Tables.destroy
+
+    # Waiter
+
+    GET     /restaurant/{id}                          Waiters.index
+    GET     /restaurant/{id}/waiter/create            Waiters.create
+    POST    /restaurant/{id}/waiter/create            Waiters.saveCreate
+    GET     /restaurant/{id}/waiter/{id_waiter}/edit  Waiters.edit
+    POST    /restaurant/{id}/waiter/{id_waiter}       Waiters.saveEdit
+    DELETE  /restaurant/{id}/waiter/{id_waiter}       Waiters.destroy
+
+    # Client
+
+    GET     /restaurant/{id}/client/home              Clients.index
+    GET     /restaurant/{id}/client/menu/categories   Clients.menu
+    GET     /restaurant/{id}/client/menu/items        Clients.items
 
 # Ignore favicon requests
 GET     /favicon.ico                              404

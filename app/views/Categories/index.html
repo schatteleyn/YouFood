@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<h1>Categories list</h1>
+    #{a @create()}Add Category#{/a}
+</br>
+</br>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{if !categories.isEmpty()}
+        #{list categories, as:'category'}
+            <tr>
+                <td>#{a @show(category.id)}${category.name}#{/a}</td>
+            </tr>
+        #{/list}
+        #{/if}
+        #{else}
+            <tr>
+                <td colspan="4">No category created</td>
+            </tr>
+        #{/else}
+
+    </tbody>
+</table> 
+
