@@ -46,15 +46,6 @@ GET     /restaurants/menu/{id}/editListItem                                 Menu
 POST    /restaurants/menu/{id}/editListItem                                 Menus.saveEditListItem
 DELETE  /restaurants/menu/{id}                                              Menus.destroy
 
-# Order
-
-GET     /restaurant/{id}/order                                              Orders.index
-GET     /restaurant/{id}/order/client/create                                Orders.create
-POST    /restaurant/{id}/order/client/create                                Orders.saveCreate
-GET     /restaurant/{id}/order/{id_order}/edit                              Orders.edit
-POST    /restaurant/{id}/order/{id_order}                                   Orders.saveEdit
-DELETE  /restaurant/{id}/order/{id_order}                                   Orders.destroy
-
 # Table
 
 GET     /restaurant/{id}/table                                              Tables.index
@@ -76,6 +67,20 @@ DELETE  /restaurant/{id}/waiter/{id_waiter}                                 Wait
 GET     /restaurant/{id}/client/home                                        Clients.index
 GET     /restaurant/{id}/client/menu/categories                             Clients.menu
 GET     /restaurant/{id}/client/menu/items                                  Clients.items
+
+# Order
+
+GET     /order                                                              Orders.index
+GET     /order/client/create                                                Orders.create
+POST    /order/client/create                                                Orders.saveCreate
+GET     /order/{id_order}/edit                                              Orders.edit
+POST    /order/{id_order}                                                   Orders.saveEdit
+DELETE  /order/{id_order}                                                   Orders.destroy
+
+# Kitchen
+
+GET     /kitchens                                                           Orders.index
+GET     /kitchen/delete/{order_id}                                          Orders.destroy
 
 # Ignore favicon requests
 GET     /favicon.ico                                                        404
