@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.Date;
 import java.util.List;
 import models.Item;
 import models.OrderClient;
@@ -11,7 +10,7 @@ import play.mvc.Controller;
 public class Orders extends Controller {
     
     public static void index() {
-        OrderClient.findAll();
+
     }
     
     public static void find(Long id){

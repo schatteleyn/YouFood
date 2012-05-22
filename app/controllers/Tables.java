@@ -11,11 +11,6 @@ public class Tables extends Controller {
         Restaurants.show(restaurant_id);
     }
     
-    public static void find(Long id){
-        TableRest table = TableRest.findById(id);
-        render(table);
-    }
-    
     public static void create(Long restaurant_id) {
         if (validation.hasErrors()) {
             validation.keep();
