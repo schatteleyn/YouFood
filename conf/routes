@@ -15,23 +15,24 @@ GET     /restaurant/{id}/edit                     Restaurants.edit
 POST    /restaurant/{id}                          Restaurants.saveEdit
 DELETE  /restaurant/{id}                          Restaurants.destroy 
 
-# Item
-
-GET     /items                                    Items.index
-GET     /item/create                              Items.create
-POST    /item/create                              Items.saveCreate
-GET     /item/{id}/edit                           Items.edit
-POST    /item/{id}                                Items.saveEdit
-DELETE  /item/{id}                                Items.destroy
-
 # Category
 
-GET     /items                                    Categories.index
+GET     /categories                               Categories.index
+GET     /category/{id}                            Categories.show
 GET     /categories/create                        Categories.create
 POST    /categories/create                        Categories.saveCreate
-GET     /categories/{id}/edit                     Categories.edit
-POST    /categories/{id}                          Categories.saveEdit
-DELETE  /categories/{id}                          Categories.destroy
+GET     /category/{id}/edit                       Categories.edit
+POST    /category/{id}                            Categories.saveEdit
+DELETE  /category/{id}                            Categories.destroy
+
+# Item
+
+GET     /category/{id}                            Items.index
+GET     /category/{id}/item/create                Items.create
+POST    /category/{id}/item/create                Items.saveCreate
+GET     /category/{id}/item/{id_item}/edit        Items.edit
+POST    /category/{id}/item/{id_item}             Items.saveEdit
+DELETE  /category/{id}/item/{id_item}             Items.destroy
 
 # Menu
 
