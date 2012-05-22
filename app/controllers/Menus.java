@@ -74,16 +74,18 @@ public class Menus extends Controller {
         render(menu, items);
     }
 
-    public static void saveEditListItem(@Required Long id, @Required List<Item> listItems) {
+    public static void saveEditListItem(@Required Long id, @Required List<Item> items) {
+
+        System.out.print(items);
+        /*
         List<Item> items = null;
-        
         for(int i=0; i<listItems.size(); i++){
              items = Item.find("byName", listItems.get(i)).fetch();
         }
-        
+        */
         Menu menu = Menu.findById(id);
         
-        menu.listItems = items;
+        //menu.listItems = items;
         validation.valid(menu);
         if(validation.hasErrors()) {
             // Message errors to test in views

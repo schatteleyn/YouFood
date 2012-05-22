@@ -6,10 +6,10 @@
 </header>
 
 #{form @saveEditListItem(menu.id)}
-    #{field 'listItems'}
+    #{field 'items'}
         <p>
             #{list items, as:'item'}
-                <input type="checkbox" name="${item.name}" value="${item.name}" />${item.name}<br />
+                <input type="checkbox" name="item[${item.id}]"/>${item.name}<br />
             #{/list}
         </p> 
     #{/field}
