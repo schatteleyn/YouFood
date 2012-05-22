@@ -8,9 +8,7 @@ import play.mvc.Controller;
 public class Items extends Controller {
 
     public static void index(Long category_id) {
-        //Trouver une autre solution pour rediriger directement vers restaurants.show
-        Category category = Category.findById(category_id);
-        render(category);
+        Categories.show(category_id);
     }
     
     public static void create(Long id) {

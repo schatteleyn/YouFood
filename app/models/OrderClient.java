@@ -8,22 +8,24 @@ import javax.persistence.OneToMany;
 import play.db.jpa.Model;
 
 @Entity
-public class Order extends Model {
+public class OrderClient extends Model {
     
     public Date date;
     public Float totalPrice;
-    
-    @ManyToOne
-    public Table table;
-
+   
     @OneToMany
     public List<Item> listItems;
     
-    public Order(List<Item> listItems, Date date, Float totalPrice, Table table) {
+    @ManyToOne
+    public TableRest table;
+    
+    @ManyToOne
+    public Restaurant restaurant;
+    
+    public OrderClient(Restaurant restaurant, TableRest table, List<Item> listItems){
+        this.restaurant = restaurant;
+        this.table = table;   
         this.listItems = listItems;
-        this.date = new Date();
-        this.totalPrice = totalPrice;
-        this.table = table;
     }
     
 }

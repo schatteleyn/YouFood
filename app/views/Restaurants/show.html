@@ -12,37 +12,54 @@ Address : ${restaurant.address}</br>
 Country : ${restaurant.country}</br>
 
 
-<div class="page-header">
-    <h1>
-        List Waiters
-    </h1>
-</div>
-#{a @Waiters.create(restaurant.id)}Add Waiter#{/a}</br>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        #{if !waiters.isEmpty()}
-            #{list waiters, as:'waiter'}
+<div class="row">
+    <div class="span12">
+        <div class="page-header">
+            <h1>
+                List Waiters
+            </h1>
+        </div>
+        #{a @Waiters.create(restaurant.id)}Add Waiter#{/a}</br>
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>${waiter.firstName}</td>
-                    <td>${waiter.lastName}</td>
-                    <td>#{a @Waiters.edit(waiter.id)}Edit#{/a} #{a @Waiters.destroy(waiter.id)}Delete#{/a}</td>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Actions</th>
                 </tr>
-            #{/list}
-        #{/if}
-        #{else}
-            <tr>
-                <td colspan="4">No Waiters</td>
-            </tr>
-        #{/else}
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                #{if !waiters.isEmpty()}
+                    #{list waiters, as:'waiter'}
+                        <tr>
+                            <td>${waiter.firstName}</td>
+                            <td>${waiter.lastName}</td>
+                            <td>#{a @Waiters.edit(waiter.id)}Edit#{/a} #{a @Waiters.destroy(waiter.id)}Delete#{/a}</td>
+                        </tr>
+                    #{/list}
+                #{/if}
+                #{else}
+                    <tr>
+                        <td colspan="4">No Waiters</td>
+                    </tr>
+                #{/else}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span4">
+        <div class="page-header">
+            <h2>
+                Nombre de table : ${tables.size}
+            </h2>
+            #{a @Tables.create(restaurant.id)}Create Table#{/a}</br>
+            #{a @Tables.destroy(restaurant.id)}Delete Table#{/a}
+        </div>
+
+    </div>
+</div>
 
 #{a @Clients.index(restaurant.id)}Interface Client test#{/a}
 

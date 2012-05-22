@@ -19,6 +19,9 @@ public class Restaurant extends Model {
     @OneToMany
     public List<Waiter> listWaiters;
     
+    @OneToMany
+    public List<TableRest> listTables;
+    
     public Restaurant(String address, String city, String country, Menu currentMenu) {
         this.address = address;
         this.city = city;
