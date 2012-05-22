@@ -18,16 +18,6 @@
             <input type="text" name="price" id="price" value="${item.price}"/>
         </p> 
     #{/field}
-    #{field 'type'}
-        <p>
-        <label>Type</label>
-            <select name="type" id="type">
-                <option value="Meat">Meat</option>
-                <option value="Vegetable">Vegetable</option>
-                <option value="Dessert">Dessert</option>
-            </select>
-        </p> 
-    #{/field}
     <p class="buttons">
         <input type="submit" value="Save"> <a href="@{index()}">Cancel</a>    
     </p>

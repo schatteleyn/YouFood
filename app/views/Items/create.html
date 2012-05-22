@@ -3,7 +3,7 @@
 
 <h1>Add Item</h1>
 
-<form id="post" action="@{Items.saveCreate}" method="POST">
+<form id="post" action="@{Items.saveCreate(category.id)}" method="POST">
     <p>
         <label>Name</label>
         <input type="text" name="name" id="name" />
@@ -11,14 +11,6 @@
     <p>
         <label>Price</label>
         <input type="text" name="price" id="price" />
-    </p>
-    <p>
-        <label>Type</label>
-        <select name="category_id" id="category_id">
-            #{list categories, as:'category'}
-                <option value="${category.id}">${category.name}</option>
-            #{/list}
-        </select>
     </p>
     <p>
         <input type="submit" value="Create" id="postItem" />

@@ -1,15 +1,24 @@
 package controllers;
 
+import java.util.List;
 import models.Category;
+import models.Item;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
 public class Categories extends Controller {
 
     public static void index() {
-        render();
+        List<Category> categories = Category.findAll();
+        render(categories);
     }
     
+    public static void show(Long id) {
+        Category category = Category.findById(id);
+        List<Item> items = Item.find("byCategory_id", id).fetch();
+        render(category, items);
+    }
+        
     public static void create() {
         render();
     }
@@ -45,7 +54,12 @@ public class Categories extends Controller {
     
     public static void destroy(Long id) {
         Category category = Category.findById(id);
-        category.delete();
-        index();
+        List<Item> items = Item.find("byCategory_id", id).fetch();
+        if(!items.isEmpty()){
+            show(id);
+        }else{
+            category.delete();
+            index();
+        }
     }
 }

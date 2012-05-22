@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.List;
 import models.Category;
 import models.Item;
 import play.data.validation.Required;
@@ -8,29 +7,29 @@ import play.mvc.Controller;
 
 public class Items extends Controller {
 
-    public static void index() {
-        List<Item> items = Item.findAll();
-        List<Category> categories = Category.findAll();
-        render(items, categories);
+    public static void index(Long category_id) {
+        //Trouver une autre solution pour rediriger directement vers restaurants.show
+        Category category = Category.findById(category_id);
+        render(category);
     }
     
-    public static void create() {
-        List<Category> categories = Category.findAll();
-        render(categories);
+    public static void create(Long id) {
+        Category category = Category.findById(id);
+        render(category);
     }
 
-    public static void saveCreate(@Required String name, @Required Float price, @Required Long category_id) {
+    public static void saveCreate(@Required Long id, @Required String name, @Required Float price) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
         }
         
-        Category category = Category.findById(category_id);
+        Category category = Category.findById(id);
         Item item = new Item(name, price, category);
         
         item.save();
-        index();
+        index(id);
     }
     
     public static void edit(Long id) {
@@ -49,12 +48,12 @@ public class Items extends Controller {
             flash.success("The item has been updated !");
             item.save();
         }
-        index();
+        index(item.category.id);
     }
     
     public static void destroy(Long id) {
         Item item = Item.findById(id);
         item.delete();
-        index();
+        index(item.category.id);
     }
 }
