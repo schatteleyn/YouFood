@@ -9,7 +9,7 @@ YouFood
 + <del>Items</del>
 + <del>Categories</del>
 + <del>Waiter</del>
-+ Table
++ <del>Table</del>
 + Order
 
 ### Controller ###
@@ -19,7 +19,7 @@ YouFood
 + <del>Items</del>
 + <del>Categories</del>
 + <del>Waiter</del>
-+ Table
++ <del>Table</del>
 + Order
 
 ## Interface Client : Matt ##
@@ -46,10 +46,5 @@ TO DO
 ## Paiement ##
 TO DO
 
-Questions :
-+ Ergonomie de l'interface admin
-+ Compte : Admin(Gérant) - Opérateur(Responsable) - Waiter(normal)
-+ Localisation du serveurs : DB-YouFood(Ext) / Client-Waiter-Cuisine(Int?)
-+ Comment le client(tablette) se connecte à l'interface ?
 
 
