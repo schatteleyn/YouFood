@@ -1,10 +1,12 @@
 package controllers;
 
 import java.util.List;
+import models.Category;
 import models.Item;
 import models.Menu;
 import models.Restaurant;
 import play.data.validation.Required;
+import play.db.jpa.GenericModel;
 import play.mvc.Controller;
 
 public class Menus extends Controller {
@@ -70,22 +72,27 @@ public class Menus extends Controller {
 
     public static void editListItem(Long id){
         Menu menu = Menu.findById(id);
-        List<Item> items = Item.findAll();
-        render(menu, items);
+        List<Category> categories = Category.findAll();
+        render(menu, categories);
     }
 
-    public static void saveEditListItem(@Required Long id, @Required List<Item> items) {
-
-        System.out.print(items);
-        /*
-        List<Item> items = null;
-        for(int i=0; i<listItems.size(); i++){
-             items = Item.find("byName", listItems.get(i)).fetch();
-        }
-        */
+    public static void saveEditListItem(@Required Long id) {
         Menu menu = Menu.findById(id);
+
+        String[] itemschk = params.getAll("item");
         
-        //menu.listItems = items;
+        for(int i = 0; i<menu.listItems.size(); i++){
+            menu.listItems.remove(i);
+        }
+        
+        for(int i = 0; i<itemschk.length; i++)
+        {
+            System.out.println(Long.parseLong(itemschk[i]));
+            Item item = Item.findById(Long.parseLong(itemschk[i]));
+            menu.listItems.add(item); 
+        }
+
+        
         validation.valid(menu);
         if(validation.hasErrors()) {
             // Message errors to test in views

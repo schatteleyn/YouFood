@@ -12,8 +12,7 @@ public class Restaurants extends Controller {
     
     public static void index(){
         List<Restaurant> restaurants = Restaurant.findAll();
-        List<Menu> menus = Menu.findAll();
-        render(restaurants,menus);
+        render(restaurants);
     }
     
     public static void show(Long id) {

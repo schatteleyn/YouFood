@@ -24,9 +24,12 @@ public class Items extends Controller {
         }
         
         Category category = Category.findById(id);
-        Item item = new Item(name, price, category);
         
+        Item item = new Item(name, price, category);
+        category.listItems.add(item);
+
         item.save();
+        category.save();
         index(id);
     }
     

@@ -1,19 +1,30 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="jumbotron subhead" id="overview">
+<header class="page-header">
     <h1>Manage Menu List Items</h1>
 </header>
 
-#{form @saveEditListItem(menu.id)}
-    #{field 'items'}
-        <p>
-            #{list items, as:'item'}
-                <input type="checkbox" name="item[${item.id}]"/>${item.name}<br />
+<section id="category">
+    #{form @saveEditListItem(menu.id)}
+        <div class="row">
+            #{list categories, as:'category'}
+                <div class="span2">
+                    <div class="page-header">
+                        <h1>
+                            ${category.name}
+                        </h1>
+                    </div>
+                    <p>
+                        #{list category.listItems, as:'item'}
+                            <input type="checkbox" name="item" value="${item.id}"/>${item.name}<br />
+                        #{/list}
+                    </p> 
+                </div>
             #{/list}
-        </p> 
-    #{/field}
-    <p class="buttons">
-        <input type="submit" value="Save"> <a href="@{show(menu.id)}">Cancel</a>    
-    </p>
-#{/form}
+        </div>
+        <p class="buttons">
+            <input type="submit" value="Save"> <a href="@{show(menu.id)}">Cancel</a>    
+        </p>
+    #{/form}
+</section>
