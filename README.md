@@ -15,7 +15,7 @@ YouFood
 ### Controller ###
 (Create Edit Delete)
 + <del>Restaurants</del>
-+ <del>Menus :</del> Comment get les items envoyé un post (editListItem)
++ <del>Menus :</del>
 + <del>Items</del>
 + <del>Categories</del>
 + <del>Waiter</del>
