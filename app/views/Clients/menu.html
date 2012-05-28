@@ -3,7 +3,7 @@
 
 <header class="jumbotron subhead">
     <h1>Menu</h1>
-    #{a @Clients.index(restaurant.id)}Home#{/a}
+    #{a @Clients.index(restaurant.id,table.id)}Home#{/a}
 </header>
 
 <div class="row">
@@ -17,7 +17,7 @@
             <tbody>
                 #{list categories, as:'category'}
                     <tr>
-                        <td>#{a @items(restaurant.id, category.id)}${category.name}#{/a}</td>
+                        <td>#{a @items(restaurant.id, table.id, category.id)}${category.name}#{/a}</td>
                     </tr>
                 #{/list}
             </tbody>
@@ -25,5 +25,33 @@
     </div>
     <div class="span4">
         <h2>Panier</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Items</th>
+                    <th>Price</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                #{if card != null}
+                    #{list card.listItems, as:'item'}
+                        <tr>
+                            <td>${item.name}</td>
+                            <td>${item.price}</td>
+                            <td>Delete</td>
+                        </tr>
+                    #{/list}
+                #{/if}
+                #{else}
+                    <tr>
+                        <td colspan="3">No Items</td>
+                    </tr>
+                #{/else}
+            </tbody>
+        </table> 
+        #{if card != null}
+            #{a @Orders.saveCreate(table_id, listItemsCard)}Done#{/a}
+        #{/if}
     </div>
 </div>

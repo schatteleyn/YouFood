@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 import models.Item;
 import models.OrderClient;
+import models.Restaurant;
 import models.TableRest;
 import play.data.validation.Required;
 import play.mvc.Controller;
@@ -17,25 +18,21 @@ public class Orders extends Controller {
         OrderClient order = OrderClient.findById(id);
         render(order);
     }
-    
-    public static void save(Long restaurant_id, Long category_id) {
-        index();
-    }
         
-    public static void create() {
-        render();
-    }
-    
-    public static void saveCreate(List<Item> items, TableRest table) {
+    public static void saveCreate(Long table_id, List<Item> listItemsCard) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
             index();
         }
-        //Order order = new Order(restaurant, table, listItems);
-        //order.save();
-        index();
+        
+        TableRest table = TableRest.findById(table_id);
+        Restaurant restaurant = table.restaurant;
+        
+        OrderClient order = new OrderClient(restaurant, table, listItemsCard);
+        order.save();
+        confirmation(restaurant.id, table.id);
     }
     
     public static void edit(Long id) {
@@ -56,6 +53,11 @@ public class Orders extends Controller {
           order.save();
         }
         index();
+    }
+    
+    public static void confirmation(Long restaurant_id, Long table_id) {
+        Clients.index(restaurant_id, table_id);
+        //destroy
     }
     
     public static void destroy(Long id) {

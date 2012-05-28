@@ -24,11 +24,11 @@
                         </thead>
                         <tbody>
                             #{if !categories.isEmpty()}
-                            #{list categories, as:'category'}
-                                <tr>
-                                    <td>#{a @show(category.id)}${category.name}#{/a}</td>
-                                </tr>
-                            #{/list}
+                                #{list categories, as:'category'}
+                                    <tr>
+                                        <td>#{a @show(category.id)}${category.name}#{/a}</td>
+                                    </tr>
+                                #{/list}
                             #{/if}
                             #{else}
                                 <tr>
