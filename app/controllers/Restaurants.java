@@ -1,8 +1,10 @@
 package controllers;
 
 import java.util.List;
+import models.OrderClient;
 import models.Menu;
 import models.Restaurant;
+import models.TableRest;
 import models.Waiter;
 import play.data.validation.Required;
 import play.mvc.Controller;
@@ -11,14 +13,21 @@ public class Restaurants extends Controller {
     
     public static void index(){
         List<Restaurant> restaurants = Restaurant.findAll();
-        List<Menu> menus = Menu.findAll();
-        render(restaurants,menus);
+        render(restaurants);
     }
     
     public static void show(Long id) {
         Restaurant restaurant = Restaurant.findById(id);
         List<Waiter> waiters = Waiter.find("byRestaurant_id", id).fetch();
-        render(restaurant, waiters);
+        List<TableRest> tables = TableRest.find("byRestaurant_id", id).fetch();
+        render(restaurant, waiters, tables);
+    }
+    
+    public static void showOrders(Long id) {
+        Restaurant restaurant = Restaurant.findById(id);
+        List<OrderClient> orders = OrderClient.find("byRestaurant_id", id).fetch();
+        //List<TableRest> tables = TableRest.find("byRestaurant_id", id).fetch();
+        render(restaurant, orders);
     }
         
     public static void create(){

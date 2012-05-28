@@ -1,31 +1,45 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Categories list</h1>
-    #{a @create()}Add Category#{/a}
-</br>
-</br>
+<header class="page-header">
+    <h1>Categories list</h1>
+</header>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        #{if !categories.isEmpty()}
-        #{list categories, as:'category'}
-            <tr>
-                <td>#{a @show(category.id)}${category.name}#{/a}</td>
-            </tr>
-        #{/list}
-        #{/if}
-        #{else}
-            <tr>
-                <td colspan="4">No category created</td>
-            </tr>
-        #{/else}
+<section id="description">
+    <div class="offset10">
+        <a class="btn btn-success" href="@{create()}">Create Item</a>
+    </div>
+</section>
 
-    </tbody>
-</table> 
+<section id="categoryList">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            #{if !categories.isEmpty()}
+                            #{list categories, as:'category'}
+                                <tr>
+                                    <td>#{a @show(category.id)}${category.name}#{/a}</td>
+                                </tr>
+                            #{/list}
+                            #{/if}
+                            #{else}
+                                <tr>
+                                    <td colspan="4">No category created</td>
+                                </tr>
+                            #{/else}
 
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

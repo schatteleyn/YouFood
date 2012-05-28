@@ -2,49 +2,37 @@
 #{set title:'Restaurant' /}
 
 <header class="page-header">
-    <h1>Menu : ${menu.name}</h1>
+    <h1>Orders : ${restaurant.city}</h1>
 </header>
 
-<section id="description">
-    <div class="row">
-        <div class="span3">
-            <h3>Creation Date</h3> ${menu.creationDate}</br>
-        </div>
-        <div class="offset10">
-            <a class="btn btn-warning" href="@{edit(menu.id)}">Edit</a>
-            <a class="btn btn-danger" href="@{destroy(menu.id)}">Delete</a>
-        </div>
-    </div>
-</section>
-
-<section id="itemList">
+<section id="ordersList">
     <div class="row">
         <div class="span12">
             <div class="page-header">
                 <h1>
-                    List items
+                    List orders
                 </h1>
             </div>
             <div class="row">
                 <div class="span12">
                     <div class="offset10">
-                        <a class="btn btn-success" href="@{editListItem(menu.id)}">Edit Item list</a>
+<!--                        <a class="btn btn-success" href="">Edit Item list</a>-->
                     </div>
                     <table class="table table table-striped">
                         <thead>
                             <tr>
+                                <th>Table #</th>
                                 <th>Name</th>
-                                <th>Price</th>
-                                <th>Type</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            #{if !menu.listItems.isEmpty()}
-                                #{list menu.listItems, as:'item'}
+                            #{if !orders.listItems.isEmpty()}
+                                #{list orders.listItems, as:'item'}
                                     <tr>
+                                        <td>${order.table.id}</td>
                                         <td>${item.name}</td>
-                                        <td>${item.price} $</td>
-                                        <td>#{a @Categories.show(item.category.id)}${item.category.name}#{/a}</td>
+                                        <td>${order.date}</td>
                                     </tr>
                                 #{/list}
                             #{/if}

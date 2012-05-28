@@ -1,7 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Add Waiter</h1>
+<header class="page-header">
+    <h1>Add Waiter</h1>
+</header>
 
 #{form @Waiters.saveCreate(restaurant.id)}
     #{field 'firstName'}

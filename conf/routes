@@ -56,6 +56,7 @@ DELETE  /restaurant/{id}/table/{id_table}                                   Tabl
 # Waiter
 
 GET     /restaurant/{id}                                                    Waiters.index
+GET     /restaurant/{id}/waiter                                             Waiters.showOrders
 GET     /restaurant/{id}/waiter/create                                      Waiters.create
 POST    /restaurant/{id}/waiter/create                                      Waiters.saveCreate
 GET     /restaurant/{id}/waiter/{id_waiter}/edit                            Waiters.edit
@@ -70,17 +71,16 @@ GET     /restaurant/{id}/client/menu/items                                  Clie
 
 # Order
 
-GET     /order                                                              Orders.index
-GET     /order/client/create                                                Orders.create
-POST    /order/client/create                                                Orders.saveCreate
-GET     /order/{id_order}/edit                                              Orders.edit
-POST    /order/{id_order}                                                   Orders.saveEdit
-DELETE  /order/{id_order}                                                   Orders.destroy
+GET     /restaurant/{id}/client/orders                                      Orders.index
+GET     /restaurant/{id}/client/order/create                                Orders.create
+POST    /restaurant/{id}/client/order/create                                Orders.saveCreate
+GET     /restaurant/{id}/client/order/{id_order}/edit                       Orders.edit
+POST    /restaurant/{id}/client/order/{id_order}                            Orders.saveEdit
+DELETE  /restaurant/{id}/client/order/{id_order}                            Orders.destroy
 
 # Kitchen
 
-GET     /kitchens                                                           Orders.index
-GET     /kitchen/delete/{order_id}                                          Orders.destroy
+GET     /restaurant/{id}/kitchen                                           Restaurants.showOrders
 
 # Ignore favicon requests
 GET     /favicon.ico                                                        404

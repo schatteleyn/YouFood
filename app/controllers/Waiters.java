@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+import models.OrderClient;
 import models.Restaurant;
 import models.Waiter;
 import play.data.validation.Required;
@@ -8,9 +10,15 @@ import play.mvc.Controller;
 public class Waiters extends Controller {
 
     public static void index(Long restaurant_id) {
-        //Trouver une autre solution pour rediriger directement vers restaurants.show
-        Restaurant restaurant = Restaurant.findById(restaurant_id);
-        render(restaurant);
+        Restaurants.show(restaurant_id);
+    }
+    
+        
+    public static void showOrders(Long id) {
+        Restaurant restaurant = Restaurant.findById(id);
+        List<OrderClient> orders = OrderClient.find("byRestaurant_id", id).fetch();
+        //List<TableRest> tables = TableRest.find("byRestaurant_id", id).fetch();
+        render(restaurant, orders);
     }
     
     public static void find(Long id){
@@ -31,9 +39,12 @@ public class Waiters extends Controller {
             index(id);
         }
         Restaurant restaurant = Restaurant.findById(id);
-        Waiter waiter = new Waiter(firstName, lastName, restaurant, null);
+        Waiter waiter = new Waiter(firstName, lastName, restaurant);
+        restaurant.listWaiters.add(waiter);
         waiter.save();
-        index(id);
+        restaurant.save();
+        
+        index(restaurant.id);
     }
     
     public static void edit(Long id) {
@@ -57,7 +68,15 @@ public class Waiters extends Controller {
     public static void destroy(Long id) {
         Waiter waiter = Waiter.findById(id);
         Long restaurant_id = waiter.restaurant.id;
-        waiter.delete();
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
+        
+        for(int i=0; i<restaurant.listWaiters.size(); i++){
+            if(i == waiter.id-1){
+                restaurant.listWaiters.remove(i);
+                restaurant.save();
+                waiter.delete();
+            }
+        }
         index(restaurant_id);
     }
 }   

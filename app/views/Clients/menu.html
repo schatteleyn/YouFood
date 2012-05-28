@@ -3,20 +3,27 @@
 
 <header class="jumbotron subhead">
     <h1>Menu</h1>
-    #{a @Clients.index(restaurant.id)}HOME#{/a}
+    #{a @Clients.index(restaurant.id)}Home#{/a}
 </header>
 
 <div class="row">
     <div class="span8">
-        <h2>Categories</h2>
-        #{list categories, as:'category'}
-            #{a @items(restaurant.id, category.id)}${category.name}#{/a}</br>
-        #{/list}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                #{list categories, as:'category'}
+                    <tr>
+                        <td>#{a @items(restaurant.id, category.id)}${category.name}#{/a}</td>
+                    </tr>
+                #{/list}
+            </tbody>
+        </table> 
     </div>
     <div class="span4">
         <h2>Panier</h2>
-        #{list categories, as:'category'}
-            ${category.name}</br>
-        #{/list}
     </div>
 </div>

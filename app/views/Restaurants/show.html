@@ -1,48 +1,81 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="jumbotron subhead" id="overview">
+<header class="page-header">
     <h1>Restaurant : ${restaurant.city}</h1>
 </header>
+<section id="description">
+    <div class="row">
+        <div class="span3">
+            <h3>Address</h3> ${restaurant.address}</br>
+        </div>
+        <div class="span3">
+            <h3>Country</h3> ${restaurant.country}</br>
+        </div>
+        <div class="offset10">
+            <a class="btn btn-warning" href="@{edit(restaurant.id)}">Edit</a>
+            <a class="btn btn-danger" href="@{destroy(restaurant.id)}">Delete</a>
+        </div>
+    </div>
+</section>
 
-#{a @edit(restaurant.id)}Edit#{/a}</br>
-#{a @destroy(restaurant.id)}Delete#{/a}
-</br></br>
-Address : ${restaurant.address}</br>
-Country : ${restaurant.country}</br>
+<section id="waiterList">
+    <div class="row">
+        <div class="span8">
+            <div class="page-header">
+                <h1> 
+                    Waiters
+                </h1>
+            </div>
+            <div class="row">
+                <div class="span8">
+                    <div class="offset6">
+                        <a class="btn btn-success" href="@{Waiters.create(restaurant.id)}">Add Waiter</a>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            #{if !waiters.isEmpty()}
+                                #{list waiters, as:'waiter'}
+                                    <tr>
+                                        <td>${waiter.firstName}</td>
+                                        <td>${waiter.lastName}</td>
+                                        <td>#{a @Waiters.edit(waiter.id)}Edit#{/a} #{a @Waiters.destroy(waiter.id)}Delete#{/a}</td>
+                                    </tr>
+                                #{/list}
+                            #{/if}
+                            #{else}
+                                <tr>
+                                    <td colspan="4">No Waiters</td>
+                                </tr>
+                            #{/else}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="page-header">
+                <h1>
+                    Number of table : ${tables.size}
+                </h1>
+            </div>
+            <div class="row">
+                <div class ="offset1">
+                <a class="btn btn-success" href="@{Tables.create(restaurant.id)}">Add Table</a>
+                <a class="btn btn-danger" href="@{Tables.destroy(restaurant.id)}">Delete Waiter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-
-<div class="page-header">
-    <h1>
-        List Waiters
-    </h1>
-</div>
-#{a @Waiters.create(restaurant.id)}Add Waiter#{/a}</br>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        #{if !waiters.isEmpty()}
-            #{list waiters, as:'waiter'}
-                <tr>
-                    <td>${waiter.firstName}</td>
-                    <td>${waiter.lastName}</td>
-                    <td>#{a @Waiters.edit(waiter.id)}Edit#{/a} #{a @Waiters.destroy(waiter.id)}Delete#{/a}</td>
-                </tr>
-            #{/list}
-        #{/if}
-        #{else}
-            <tr>
-                <td colspan="4">No Waiters</td>
-            </tr>
-        #{/else}
-    </tbody>
-</table>
 
 #{a @Clients.index(restaurant.id)}Interface Client test#{/a}
 

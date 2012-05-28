@@ -2,17 +2,32 @@
 #{set title:'YouFood - Clients' /}
 
 <header class="jumbotron subhead">
-    <h1>Menu</h1>
-    #{a @Clients.index(restaurant.id)}Interface Client test#{/a}
+    <h1>Menu/${category.name}</h1>
+    #{a @Clients.menu(restaurant.id)}Back#{/a}
 </header>
 
 <div class="row">
     <div class="span8">
-        <h2>Items</h2>
-        #{list items, as:'item'}
-            #{a @items(item.id)}${item.name}#{/a}</br>
-        #{/list}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Items</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                #{list listItemsMenuCategory, as:'item'}
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.price}</td>
+                        <td>#{a @Card.edit(restaurant.id, category.id)}Add#{/a}</td>
+                    </tr>
+                #{/list}
+            </tbody>
+        </table> 
     </div>
+    
     <div class="span4">
         <h2>Panier</h2>
     </div>
