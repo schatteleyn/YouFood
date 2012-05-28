@@ -10,7 +10,7 @@ import play.mvc.Controller;
 public class Orders extends Controller {
     
     public static void index() {
-
+        //Clients.items(restaurant_id, category_id);
     }
     
     public static void find(Long id){
@@ -18,6 +18,10 @@ public class Orders extends Controller {
         render(order);
     }
     
+    public static void save(Long restaurant_id, Long category_id) {
+        index();
+    }
+        
     public static void create() {
         render();
     }

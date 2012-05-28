@@ -6,7 +6,6 @@ import models.Item;
 import models.Menu;
 import models.Restaurant;
 import play.data.validation.Required;
-import play.db.jpa.GenericModel;
 import play.mvc.Controller;
 
 public class Menus extends Controller {
@@ -81,18 +80,14 @@ public class Menus extends Controller {
 
         String[] itemschk = params.getAll("item");
         
-        for(int i = 0; i<menu.listItems.size(); i++){
-            menu.listItems.remove(i);
-        }
+        menu.listItems.clear();
         
         for(int i = 0; i<itemschk.length; i++)
         {
-            System.out.println(Long.parseLong(itemschk[i]));
             Item item = Item.findById(Long.parseLong(itemschk[i]));
             menu.listItems.add(item); 
         }
 
-        
         validation.valid(menu);
         if(validation.hasErrors()) {
             // Message errors to test in views
@@ -105,9 +100,15 @@ public class Menus extends Controller {
     
     public static void destroy(Long id) {
         List<Restaurant> restaurants = Restaurant.find("byCurrentMenu_id", id).fetch();
-
+        List<Menu> menus = Menu.findAll();
+        
         for(int i=0; i<restaurants.size(); i++){
-            restaurants.get(i).currentMenu = null;
+            if(menus.isEmpty()){
+               restaurants.get(i).currentMenu = null;
+            }else{
+               restaurants.get(i).currentMenu = menus.get(0); 
+            }
+            
             validation.valid(restaurants.get(i));
             if(validation.hasErrors()) {
                 // Message errors to test in views
