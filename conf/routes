@@ -56,6 +56,7 @@ DELETE  /restaurant/{id}/table/{id_table}                                   Tabl
 # Waiter
 
 GET     /restaurant/{id}                                                    Waiters.index
+GET     /restaurant/{id}/waiter                                             Waiters.showOrders
 GET     /restaurant/{id}/waiter/create                                      Waiters.create
 POST    /restaurant/{id}/waiter/create                                      Waiters.saveCreate
 GET     /restaurant/{id}/waiter/{id_waiter}/edit                            Waiters.edit
@@ -81,8 +82,7 @@ DELETE  /restaurant/{id}/client/order/{id_order}                            Orde
 
 # Kitchen
 
-GET     /kitchens                                                           Orders.index
-GET     /kitchen/delete/{order_id}                                          Orders.destroy
+GET     /restaurant/{id}/kitchen                                           Restaurants.showOrders
 
 # Ignore favicon requests
 GET     /favicon.ico                                                        404

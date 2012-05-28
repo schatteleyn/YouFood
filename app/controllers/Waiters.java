@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.List;
+import models.OrderClient;
 import models.Restaurant;
 import models.Waiter;
 import play.data.validation.Required;
@@ -10,6 +11,14 @@ public class Waiters extends Controller {
 
     public static void index(Long restaurant_id) {
         Restaurants.show(restaurant_id);
+    }
+    
+        
+    public static void showOrders(Long id) {
+        Restaurant restaurant = Restaurant.findById(id);
+        List<OrderClient> orders = OrderClient.find("byRestaurant_id", id).fetch();
+        //List<TableRest> tables = TableRest.find("byRestaurant_id", id).fetch();
+        render(restaurant, orders);
     }
     
     public static void find(Long id){

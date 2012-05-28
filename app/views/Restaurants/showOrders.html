@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+#{set title:'Restaurant' /}
+
+<header class="page-header">
+    <h1>Orders : ${restaurant.city}</h1>
+</header>
+
+<section id="ordersList">
+    <div class="row">
+        <div class="span12">
+            <div class="page-header">
+                <h1>
+                    List orders
+                </h1>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div class="offset10">
+<!--                        <a class="btn btn-success" href="">Edit Item list</a>-->
+                    </div>
+                    <table class="table table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Table #</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            #{if !orders.listItems.isEmpty()}
+                                #{list orders.listItems, as:'item'}
+                                    <tr>
+                                        <td>${order.table.id}</td>
+                                        <td>${item.name}</td>
+                                        <td>${order.date}</td>
+                                    </tr>
+                                #{/list}
+                            #{/if}
+                            #{else}
+                                <tr>
+                                    <td colspan="4">No Items</td>
+                                </tr>
+                            #{/else}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

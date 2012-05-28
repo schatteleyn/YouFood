@@ -87,7 +87,6 @@ public class Menus extends Controller {
             Item item = Item.findById(Long.parseLong(itemschk[i]));
             menu.listItems.add(item); 
         }
-
         validation.valid(menu);
         if(validation.hasErrors()) {
             // Message errors to test in views
