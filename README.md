@@ -10,7 +10,9 @@ YouFood
 + <del>Categories</del>
 + <del>Waiter</del>
 + <del>Table</del>
-+ Order
++ <del>Order</del>
++ <del>Kitchen</del>
++ <del>Clients</del> IMPORTANT : Ajouter plusiseurs même items dans le card
 
 ### Controller ###
 (Create Edit Delete)
@@ -20,25 +22,10 @@ YouFood
 + <del>Categories</del>
 + <del>Waiter</del>
 + <del>Table</del>
-+ Order
++ <del>Order</del>
++ <del>Kitchen</del>
++ <del>Clients</del>
 
-## Interface Client : Matt ##
-TO DO
-### Views ###
-### Controller ###
-+Clients
-
-## Interface Waiter : XXXX ##
-TO Do
-### Views ###
-### Controller ###
-+Waiters
-
-## Interface Cuisine : XXXX ##
-TO DO
-### Views ###
-### Controller ###
-+Cuisines
 
 ## Design ##
 TO DO
@@ -46,5 +33,7 @@ TO DO
 ## Paiement ##
 TO DO
 
+## Sécurisation / User account ##
+TO DO
 
 
