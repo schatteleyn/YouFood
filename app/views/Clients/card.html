@@ -2,34 +2,12 @@
 #{set title:'YouFood - Clients' /}
 
 <header class="jumbotron subhead">
-    <h1>Menu/${category.name}</h1>
-    #{a @Clients.menu(restaurant.id,table.id)}Back#{/a}
+    <h1>Card</h1>
+    #{a @Clients.menu(card.restaurant.id,card.table.id)}Back#{/a}
 </header>
 
 <div class="row">
     <div class="span8">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Items</th>
-                    <th>Price</th>
-                    <th>Add</th>
-                </tr>
-            </thead>
-            <tbody>
-                #{list listItemsMenuCategory, as:'item'}
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>${item.price}</td>
-                        <td>#{a @Cards.createItem(table.id, item.id)}Add#{/a}</td>
-                    </tr>
-                #{/list}
-            </tbody>
-        </table> 
-    </div>
-    
-    <div class="span4">
-        <h2>Card</h2>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -44,7 +22,7 @@
                         <tr>
                             <td>${item.name}</td>
                             <td>${item.price}</td>
-                            <td>#{a @Cards.deleteItem(table.id, item.id)}Delete#{/a}</td>
+                            <td>#{a @Cards.deleteItem(card.table.id, item.id)}Delete#{/a}</td>
                         </tr>
                     #{/list}
                 #{/if}
@@ -57,7 +35,7 @@
         </table> 
         #{if card != null}
             <h3>Subtotal : ${card.totalPrice} $</h3><br/>
-            #{a @card(restaurant.id,table.id)}ORDER#{/a}
+            #{a @Orders.saveCreate(card.restaurant.id, card.id)}CHECKOUT#{/a}
         #{/if}
     </div>
 </div>

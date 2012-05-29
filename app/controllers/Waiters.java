@@ -14,10 +14,9 @@ public class Waiters extends Controller {
     }
     
         
-    public static void showOrders(Long id) {
-        Restaurant restaurant = Restaurant.findById(id);
-        List<OrderClient> orders = OrderClient.find("byRestaurant_id", id).fetch();
-        //List<TableRest> tables = TableRest.find("byRestaurant_id", id).fetch();
+    public static void showOrders(Long restaurant_id) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
+        List<OrderClient> orders = OrderClient.find("byRestaurant_id", restaurant_id).fetch();
         render(restaurant, orders);
     }
     

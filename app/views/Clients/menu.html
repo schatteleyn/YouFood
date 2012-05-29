@@ -24,7 +24,7 @@
         </table> 
     </div>
     <div class="span4">
-        <h2>Panier</h2>
+        <h2>Card</h2>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -39,7 +39,7 @@
                         <tr>
                             <td>${item.name}</td>
                             <td>${item.price}</td>
-                            <td>Delete</td>
+                            <td>#{a @Cards.deleteItem(table.id, item.id)}Delete#{/a}</td>
                         </tr>
                     #{/list}
                 #{/if}
@@ -51,7 +51,8 @@
             </tbody>
         </table> 
         #{if card != null}
-            #{a @Orders.saveCreate(table_id, listItemsCard)}Done#{/a}
+            <h3>Subtotal : ${card.totalPrice} $</h3><br/>
+            #{a @card(restaurant.id,table.id)}ORDER#{/a}
         #{/if}
     </div>
 </div>

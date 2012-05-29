@@ -65,24 +65,26 @@ DELETE  /restaurant/{id}/waiter/{id_waiter}                                 Wait
 
 # Client
 
-GET     /restaurant/{restaurant_id}/table/{table_id}/client                            Clients.index
-GET     /restaurant/{restaurant_id}/table/{table_id}/client/categories                 Clients.menu
-GET     /restaurant/{restaurant_id}/table/{table_id}/client/items                      Clients.items
-GET     /restaurant/{restaurant_id}/client/config                                      Clients.config
-POST    /restaurant/{restaurant_id}/client/config                                      Clients.saveConfig
+GET     /restaurant/{restaurant_id}/table/{table_id}/client                 Clients.index
+GET     /restaurant/{restaurant_id}/table/{table_id}/client/categories      Clients.menu
+GET     /restaurant/{restaurant_id}/table/{table_id}/client/items           Clients.items
+GET     /restaurant/{restaurant_id}/client/config                           Clients.config
+POST    /restaurant/{restaurant_id}/client/config                           Clients.saveConfig
+GET     /restaurant/{restaurant_id}/table/{table_id}/client/card            Clients.card
+POST    /restaurant/{restaurant_id}/table/{table_id}/client/card            Clients.sendCard
+
 
 # Order
 
-GET     /restaurant/{id}/client/orders                                      Orders.index
-GET     /restaurant/{id}/client/order/create                                Orders.create
-POST    /restaurant/{id}/client/order/create                                Orders.saveCreate
-GET     /restaurant/{id}/client/order/{id_order}/edit                       Orders.edit
-POST    /restaurant/{id}/client/order/{id_order}                            Orders.saveEdit
-DELETE  /restaurant/{id}/client/order/{id_order}                            Orders.destroy
+GET     /restaurant/{restaurant_id}/client/orders                           Orders.index
+POST    /restaurant/{restaurant_id}/client/order/create                     Orders.saveCreate
+GET     /restaurant/{restaurant_id}/client/order/{id_order}/edit            Orders.edit
+POST    /restaurant/{restaurant_id}/client/order/{id_order}                 Orders.saveEdit
+DELETE  /restaurant/{restaurant_id}/client/order/{id_order}                 Orders.destroy
 
 # Kitchen
 
-GET     /restaurant/{id}/kitchen                                           Restaurants.showOrders
+GET     /restaurant/{restaurant_id}/kitchen                                 Restaurants.showOrders
 
 # Ignore favicon requests
 GET     /favicon.ico                                                        404
