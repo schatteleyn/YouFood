@@ -55,10 +55,11 @@ public class Cards extends Controller{
     }
 
     public static void destroy(Long table_id) {
+        TableRest table = TableRest.findById(table_id);
         Card card = Card.find("byTable_id", table_id).first();
         card.listItems.clear();
         card.delete();
         
-        Clients.confirmation(card.id, table_id);
+        Clients.confirmation(table.restaurant.id, table.id);
     }
 }
