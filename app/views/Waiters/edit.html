@@ -1,28 +1,29 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="jumbotron subhead" id="overview">
+<header class="page-header">
     <h1>Waiter edit : ${waiter.firstName} ${waiter.lastName}</h1>
 </header>
 
-#{form @saveEdit(waiter.id)}
-    #{field 'firstName'}
-        <p>
-            <label>First name</label>
-            <input type="text" name="firstName" id="firstName" value="${waiter.firstName}"/>
-        </p> 
-    #{/field}
-    #{field 'lastName'}
-        <p>
-            <label>Last name</label>
-            <input type="text" name="lastName" id="lastName" value="${waiter.lastName}"/>
-        </p> 
-    #{/field}
-    <p class="buttons">
-        <input type="submit" value="Save"> <a href="@{index()}">Cancel</a>    
-    </p>
-#{/form}
-
+<div class="span12">
+    #{form @saveEdit(waiter.id)}
+        #{field 'firstName'}
+            <p>
+                <label>First name</label>
+                <input type="text" name="firstName" id="firstName" value="${waiter.firstName}"/>
+            </p> 
+        #{/field}
+        #{field 'lastName'}
+            <p>
+                <label>Last name</label>
+                <input type="text" name="lastName" id="lastName" value="${waiter.lastName}"/>
+            </p> 
+        #{/field}
+        <p class="buttons">
+            <input type="submit" value="Save"> <a href="@{index()}">Cancel</a>    
+        </p>
+    #{/form}
+</div>
 
 
 

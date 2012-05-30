@@ -7,7 +7,39 @@
     </header> 
     #{if !listTables.isEmpty()}
         #{list listTables, as:'table'}
-
+            <div class="span3">
+                <ul data-role="listview" data-inset="true" data-theme="c">
+                    <li data-role="list-divider">Table #${table.numTable}</li>
+                    #{if table.isAvailable == true}
+                        <li data-icon="check">
+                            <a href="@{Tables.editIsAvailable(restaurant.id,table.id)}">
+                                Available :  YES
+                            </a>
+                        </li>
+                    #{/if}
+                    #{else}
+                        <li data-icon="minus" data-theme="a">
+                            <a href="@{Tables.editIsAvailable(restaurant.id,table.id)}">
+                                Available :  NO
+                            </a>
+                        </li>
+                    #{/else}
+                    #{if table.needHelp == false}
+                        <li data-icon="check">
+                            <a href="@{Tables.editNeedHelp(restaurant.id,table.id)}">
+                                Need help : NO
+                            </a>
+                        </li>
+                    #{/if}
+                    #{else}
+                        <li data-icon="alert" data-theme="e">
+                            <a href="@{Tables.editNeedHelp(restaurant.id,table.id)}">
+                                Need help : YES
+                            </a>
+                        </li>
+                    #{/else}
+                </ul>
+            </div>  
         #{/list}
     #{/if}
 </div>

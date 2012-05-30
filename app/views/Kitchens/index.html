@@ -7,8 +7,23 @@
     </header>
     <ul data-role="listview" data-inset="true" data-theme="c" data-divider-theme="e">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">To do</li>
-        #{if !listItems.isEmpty()}
-            #{list listItems, as:'item'}
+        #{if kitchen != null}
+            #{list kitchen.listItemsToDo, as:'item'}
+                <li data-icon="gear">
+                    <a href="@{Kitchens.removeItem(restaurant.id,item.id)}">${item.name}</a>
+                </li>
+            #{/list}
+        #{/if}
+        #{else}
+            <li>No Items</li>
+        #{/else}
+    </ul>
+    <br/>
+    <br/>
+    <ul data-role="listview" data-inset="true" data-theme="c" data-divider-theme="e">
+        <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">Done</li>
+        #{if kitchen != null}
+            #{list kitchen.listItemsDone, as:'item'}
                 <li data-icon="gear">
                     <a>${item.name}</a>
                 </li>

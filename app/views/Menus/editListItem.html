@@ -5,21 +5,32 @@
     <h1>Manage Menu List Items</h1>
 </header>
 
-<section id="category">
+<div class="span12">
     #{form @saveEditListItem(menu.id)}
         <div class="row">
             #{list categories, as:'category'}
-                <div class="span2">
+                <div class="span3">
                     <div class="page-header">
-                        <h1>
-                            ${category.name}
-                        </h1>
+                        <h1>${category.name}</h1>
                     </div>
-                    <p>
-                        #{list category.listItems, as:'item'}
-                            <input type="checkbox" name="item" value="${item.id}"/>${item.name}<br />
-                        #{/list}
-                    </p> 
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            #{list category.listItems, as:'item'}
+                                <tr>
+                                    <td><input type="checkbox" name="item" value="${item.id}"/></td>
+                                    <td>${item.name}</td>
+                                    <td>${item.price} $</td>
+                                </tr>
+                            #{/list}
+                        </tbody>
+                    </table>
                 </div>
             #{/list}
         </div>
@@ -27,4 +38,4 @@
             <input type="submit" value="Save"> <a href="@{show(menu.id)}">Cancel</a>    
         </p>
     #{/form}
-</section>
+</div>

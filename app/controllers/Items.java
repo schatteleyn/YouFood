@@ -13,35 +13,35 @@ public class Items extends Controller {
         Categories.show(category_id);
     }
     
-    public static void create(Long id) {
-        Category category = Category.findById(id);
+    public static void create(Long category_id) {
+        Category category = Category.findById(category_id);
         render(category);
     }
 
-    public static void saveCreate(@Required Long id, @Required String name, @Required Float price) {
+    public static void saveCreate(@Required Long category_id, @Required String name, @Required Float price) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
         }
         
-        Category category = Category.findById(id);
+        Category category = Category.findById(category_id);
         
         Item item = new Item(name, price, category);
         category.listItems.add(item);
 
         item.save();
         category.save();
-        index(id);
+        index(category_id);
     }
     
-    public static void edit(Long id) {
-        Item item = Item.findById(id);
+    public static void edit(Long item_id) {
+        Item item = Item.findById(item_id);
         render(item);
     }
 
-    public static void saveEdit(@Required Long id, @Required String name, @Required Float price) {
-        Item item = Item.findById(id);
+    public static void saveEdit(@Required Long item_id, @Required String name, @Required Float price) {
+        Item item = Item.findById(item_id);
         item.name = name;
         item.price = price;
         validation.valid(item);
@@ -54,8 +54,8 @@ public class Items extends Controller {
         index(item.category.id);
     }
     
-    public static void destroy(Long id) {
-        Item item = Item.findById(id);
+    public static void destroy(Long item_id) {
+        Item item = Item.findById(item_id);
         List<Menu> listMenus = Menu.findAll();
         List<Category> listCategories = Category.findAll();
         

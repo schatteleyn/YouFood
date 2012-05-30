@@ -15,8 +15,8 @@ public class Menus extends Controller {
         render(menus);
     }
     
-    public static void show(Long id){
-        Menu menu = Menu.findById(id);
+    public static void show(Long menu_id){
+        Menu menu = Menu.findById(menu_id);
         render(menu);
     }
     
@@ -51,13 +51,13 @@ public class Menus extends Controller {
         index();
     }
     
-    public static void edit(Long id){
-        Menu menu = Menu.findById(id);
+    public static void edit(Long menu_id){
+        Menu menu = Menu.findById(menu_id);
         render(menu);
     }
 
-    public static void saveEdit(@Required Long id, @Required String name) {
-        Menu menu = Menu.findById(id);
+    public static void saveEdit(@Required Long menu_id, @Required String name) {
+        Menu menu = Menu.findById(menu_id);
         menu.name = name;
         validation.valid(menu);
         if(validation.hasErrors()) {
@@ -66,17 +66,17 @@ public class Menus extends Controller {
             flash.success("The menu has been updated !");
             menu.save();
         }
-        show(id);
+        show(menu_id);
     }
 
-    public static void editListItem(Long id){
-        Menu menu = Menu.findById(id);
+    public static void editListItem(Long menu_id){
+        Menu menu = Menu.findById(menu_id);
         List<Category> categories = Category.findAll();
         render(menu, categories);
     }
 
-    public static void saveEditListItem(@Required Long id) {
-        Menu menu = Menu.findById(id);
+    public static void saveEditListItem(@Required Long menu_id) {
+        Menu menu = Menu.findById(menu_id);
 
         String[] itemschk = params.getAll("item");
         
@@ -93,12 +93,12 @@ public class Menus extends Controller {
             index();
         } else {
             menu.save();
-            show(id);
+            show(menu_id);
         }
     }
     
-    public static void destroy(Long id) {
-        List<Restaurant> restaurants = Restaurant.find("byCurrentMenu_id", id).fetch();
+    public static void destroy(Long menu_id) {
+        List<Restaurant> restaurants = Restaurant.find("byCurrentMenu_id", menu_id).fetch();
         List<Menu> menus = Menu.findAll();
         
         for(int i=0; i<restaurants.size(); i++){
@@ -116,7 +116,7 @@ public class Menus extends Controller {
             }
         }
 
-        Menu menu = Menu.findById(id);
+        Menu menu = Menu.findById(menu_id);
         menu.delete();
         index();
     }

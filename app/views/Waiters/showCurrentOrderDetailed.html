@@ -6,7 +6,7 @@
         <h1>Detailed Orders</h1>
     </header> 
     <ul data-role="listview" data-inset="true" data-theme="d">
-        <li data-role="list-divider">Table #${order.table.id}</li>
+        <li data-role="list-divider">Table #${order.table.numTable}</li>
         <li>
             <h3>Time :  ${order.date}</h3>
             <table class="table table-bordered">
@@ -28,6 +28,5 @@
             <h3>Subtotal : ${order.totalPrice} $</h3>
         </li>
     </ul>
-    <a href="index.html" data-role="button" data-iconpos="top" data-theme="a" data-icon="gear">EDIT</a>
     <a href="@{Orders.orderComplete(order.id)}" data-role="button" data-iconpos="top" data-theme="e" data-icon="check">ORDER COMPLETE</a>
 </div>
