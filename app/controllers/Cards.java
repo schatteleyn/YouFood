@@ -53,6 +53,14 @@ public class Cards extends Controller{
         
         Clients.menu(restaurant.id, table.id);
     }
+    
+    public static void clear(Long card_id) {
+        Card card = Card.findById(card_id);
+        card.listItems.clear();
+        card.delete();
+        
+        Clients.index(card.restaurant.id, card.table.id);
+    }
 
     public static void destroy(Long table_id) {
         TableRest table = TableRest.findById(table_id);

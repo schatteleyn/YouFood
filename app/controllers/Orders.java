@@ -8,7 +8,7 @@ import play.data.validation.Required;
 import play.mvc.Controller;
 
 public class Orders extends Controller {
-        
+    
     public static void saveCreate(Long restaurant_id, Long card_id) {
         if (validation.hasErrors()) {
             validation.keep();
@@ -31,7 +31,6 @@ public class Orders extends Controller {
 
         order.save();
         Cards.destroy(table.id);
- 
     }
     
     public static void edit(Long id) {

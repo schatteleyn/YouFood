@@ -91,13 +91,13 @@ public class Clients extends Controller{
         render(restaurant, listTables);
     }
     
+    public static void saveConfig(@Required Long restaurant_id, @Required Long table_id) {        
+        index(restaurant_id, table_id);
+    }
+        
     public static void confirmation(Long restaurant_id, Long table_id) {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
         TableRest table = TableRest.findById(table_id);
         render(restaurant, table);
-    }
-    
-    public static void saveConfig(@Required Long restaurant_id, @Required Long table_id) {        
-        index(restaurant_id, table_id);
     }
 }

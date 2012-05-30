@@ -1,41 +1,35 @@
-#{extends 'main.html' /}
+#{extends 'Clients/mainClient.html' /}
 #{set title:'YouFood - Clients' /}
 
-<header class="jumbotron subhead">
-    <h1>Card</h1>
-    #{a @Clients.menu(card.restaurant.id,card.table.id)}Back#{/a}
-</header>
+<a href="@{Clients.menu(card.restaurant.id,card.table.id)}" data-role="button" data-icon="back" data-iconpos="notext">Home</a>
 
-<div class="row">
-    <div class="span8">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Items</th>
-                    <th>Price</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                #{if card != null}
-                    #{list card.listItems, as:'item'}
-                        <tr>
-                            <td>${item.name}</td>
-                            <td>${item.price}</td>
-                            <td>#{a @Cards.deleteItem(card.table.id, item.id)}Delete#{/a}</td>
-                        </tr>
-                    #{/list}
-                #{/if}
-                #{else}
-                    <tr>
-                        <td colspan="3">No Items</td>
-                    </tr>
-                #{/else}
-            </tbody>
-        </table> 
+<header class="page-header">
+    <h1>Card</h1>
+</header>
+<div class="span6">
+    <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">List items</li>
         #{if card != null}
-            <h3>Subtotal : ${card.totalPrice} $</h3><br/>
-            #{a @Orders.saveCreate(card.restaurant.id, card.id)}CHECKOUT#{/a}
+            #{list card.listItems, as:'item'}
+                <li data-icon="minus">
+                    <a href="@{Cards.deleteItem(card.table.id, item.id)}">
+                        <h2>${item.name}</h2>
+                        <p class="ui-li-aside">${item.price} $</p>
+                    </a>
+                </li>
+            #{/list}
         #{/if}
-    </div>
+        #{else}
+            <li>
+                No Items
+            </li>
+        #{/else}
+    </ul>
+    <h3>Subtotal : ${card.totalPrice} $</h3>
+</div>
+<div class="span6">
+    <a href="@{Clients.menu(card.restaurant.id,card.table.id)}" data-role="button" data-icon="plus" data-theme="b">ADD ITEM</a>
+    <a href="@{Cards.clear(card.id)}" data-role="button" data-icon="home" data-theme="a">CLEAR CARD</a>
+    <a href="@{Orders.saveCreate(card.restaurant.id,card.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">CHECKOUT & ORDER</a>
+    #{a @Orders.saveCreate(card.restaurant.id,card.id)}CHECKOUT & ORDER#{/a}
 </div>

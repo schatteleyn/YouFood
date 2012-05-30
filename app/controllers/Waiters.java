@@ -1,8 +1,11 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import models.OrderClient;
 import models.Restaurant;
+import models.TableRest;
 import models.Waiter;
 import play.data.validation.Required;
 import play.mvc.Controller;
@@ -12,12 +15,33 @@ public class Waiters extends Controller {
     public static void index(Long restaurant_id) {
         Restaurants.show(restaurant_id);
     }
-    
-        
+
     public static void showOrders(Long restaurant_id) {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
         List<OrderClient> orders = OrderClient.find("byRestaurant_id", restaurant_id).fetch();
         render(restaurant, orders);
+    }
+    
+    public static void showPreviousOrders(Long restaurant_id) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
+        List<OrderClient> listOrders = OrderClient.find("byRestaurant_id", restaurant_id).fetch();
+        List<OrderClient> listOldOrders = new ArrayList<OrderClient>();
+        
+        Date toDay = new Date();
+        
+        for(int i=0; i<listOrders.size(); i++){
+            if(listOrders.get(i).date == toDay){
+                listOldOrders.add(listOrders.get(i));
+            }
+        }
+        render(restaurant, listOldOrders);
+    }
+    
+    public static void showStatusTables(Long restaurant_id) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
+        List<TableRest> listTables = TableRest.find("byRestaurant_id", restaurant_id).fetch();
+        
+        render(restaurant, listTables);
     }
     
     public static void find(Long id){
