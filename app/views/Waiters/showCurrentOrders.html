@@ -1,0 +1,44 @@
+#{extends 'Waiters/mainWaiter.html' /}
+#{set title:'Restaurant' /}
+
+<div class="span12">
+    <header class="page-header">
+        <h1>Current Orders</h1>
+    </header> 
+    #{if !listCurrentOrders.isEmpty()}
+        #{list listCurrentOrders, as:'order'}
+            <div class="span5">
+                <ul data-role="listview" data-inset="true" data-theme="d">
+                    <li data-role="list-divider">Table #${order.table.id}</li>
+                    <li data-icon="gear">
+                        <a href="@{Waiters.showCurrentOrderDetailed(restaurant.id,order.id)}">
+                            <h3>Time :  ${order.date}</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price $</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    #{list order.listItems, as:'item'}
+                                        <tr>
+                                            <th>${item.name}</th>
+                                            <th>${item.price}</th>
+                                        </tr>
+                                    #{/list}
+                                </tbody>
+                            </table>
+                            <h3>Subtotal : ${order.totalPrice} $</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        #{/list}
+    #{/if}
+    #{else}
+        <div class="span12">
+            No Orders
+        </div>
+    #{/else}
+</div>

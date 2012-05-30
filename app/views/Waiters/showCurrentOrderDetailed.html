@@ -1,0 +1,33 @@
+#{extends 'Waiters/mainWaiter.html' /}
+#{set title:'Restaurant' /}
+
+<div class="span12">
+    <header class="page-header">
+        <h1>Detailed Orders</h1>
+    </header> 
+    <ul data-role="listview" data-inset="true" data-theme="d">
+        <li data-role="list-divider">Table #${order.table.id}</li>
+        <li>
+            <h3>Time :  ${order.date}</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price $</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #{list order.listItems, as:'item'}
+                        <tr>
+                            <th>${item.name}</th>
+                            <th>${item.price}</th>
+                        </tr>
+                    #{/list}
+                </tbody>
+            </table>
+            <h3>Subtotal : ${order.totalPrice} $</h3>
+        </li>
+    </ul>
+    <a href="index.html" data-role="button" data-iconpos="top" data-theme="a" data-icon="gear">EDIT</a>
+    <a href="@{Orders.orderComplete(order.id)}" data-role="button" data-iconpos="top" data-theme="e" data-icon="check">ORDER COMPLETE</a>
+</div>

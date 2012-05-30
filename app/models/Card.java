@@ -9,6 +9,8 @@ import play.db.jpa.Model;
 @Entity
 public class Card extends Model{
     
+    public Float totalPrice = Float.parseFloat("0");
+    
     @ManyToOne
     public Restaurant restaurant;
     

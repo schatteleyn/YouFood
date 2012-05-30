@@ -1,57 +1,46 @@
-#{extends 'main.html' /}
+#{extends 'Clients/mainClient.html' /}
 #{set title:'YouFood - Clients' /}
 
-<header class="jumbotron subhead">
-    <h1>Menu</h1>
-    #{a @Clients.index(restaurant.id,table.id)}Home#{/a}
-</header>
-
-<div class="row">
-    <div class="span8">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody>
-                #{list categories, as:'category'}
-                    <tr>
-                        <td>#{a @items(restaurant.id, table.id, category.id)}${category.name}#{/a}</td>
-                    </tr>
-                #{/list}
-            </tbody>
-        </table> 
-    </div>
-    <div class="span4">
-        <h2>Panier</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Items</th>
-                    <th>Price</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                #{if card != null}
-                    #{list card.listItems, as:'item'}
-                        <tr>
-                            <td>${item.name}</td>
-                            <td>${item.price}</td>
-                            <td>Delete</td>
-                        </tr>
-                    #{/list}
-                #{/if}
-                #{else}
-                    <tr>
-                        <td colspan="3">No Items</td>
-                    </tr>
-                #{/else}
-            </tbody>
-        </table> 
-        #{if card != null}
-            #{a @Orders.saveCreate(table_id, listItemsCard)}Done#{/a}
-        #{/if}
-    </div>
+<a href="@{Clients.index(restaurant.id,table.id)}" data-role="button" data-icon="home" data-iconpos="notext">Home</a>
+<div class="span6">
+    <header class="page-header">
+        <h1>Menu</h1>
+    </header>
+    <ul data-role="listview" data-inset="true" data-theme="d">
+        <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">Select your category and pick which item you want</li>
+        #{list categories, as:'category'}
+            <li>#{a @items(restaurant.id, table.id, category.id)}${category.name}#{/a}</li>
+        #{/list}
+    </ul>
 </div>
+
+<div class="span4">
+    <header class="page-header">
+        <h1>Card</h1>
+    </header>  
+    <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">List items</li>
+            #{if card != null}
+                #{list card.listItems, as:'item'}
+                    <li data-icon="minus">
+                        <a href="@{Cards.deleteItem(table.id, item.id)}">
+                            <h2>${item.name}</h2>
+                            <p class="ui-li-aside">${item.price} $</p>
+                        </a>
+                    </li>
+                #{/list}
+            #{/if}
+            #{else}
+                <li>
+                    No Items
+                </li>
+            #{/else}
+    </ul>
+    <br/>
+    <h3>Subtotal : #{if card != null}${card.totalPrice} $#{/if}#{else}0 $#{/else}</h3><br/>
+    #{if card != null}
+        <a href="@{card(restaurant.id,table.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">CHECKOUT & ORDER</a>
+    #{/if}
+</div>
+
+

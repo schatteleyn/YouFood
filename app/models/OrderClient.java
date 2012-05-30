@@ -12,7 +12,8 @@ public class OrderClient extends Model {
     
     public Date date;
     public Float totalPrice;
-   
+    public Boolean inProgress = true;
+            
     @OneToMany
     public List<Item> listItems;
     
@@ -22,10 +23,9 @@ public class OrderClient extends Model {
     @ManyToOne
     public Restaurant restaurant;
     
-    public OrderClient(Restaurant restaurant, TableRest table, List<Item> listItems){
+    public OrderClient(Restaurant restaurant, TableRest table){
         this.restaurant = restaurant;
         this.table = table;   
-        this.listItems = listItems;
     }
     
 }

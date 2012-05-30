@@ -1,24 +1,30 @@
-#{extends 'main.html' /}
+#{extends 'Clients/mainClient.html' /}
 #{set title:'Restaurant' /}
 
-<header class="page-header">
-    <h1>Configuration Card</h1>
-</header>
+<div class="span5">
+    <header class="page-header">
+        <h1>Configuration Card</h1>
+    </header>
 
-<form id="post" action="@{Clients.saveConfig(restaurant.id)}" method="POST">
-    <p>
-        <label>N°Table :</label>
-        <select class="span1" name="table_id">
-            #{list listTables, as:'table'}
-                <option values="${table.id}">${table.id}</option>
-            #{/list}
-        </select>
-    </p>
-    <p>
-        <input type="submit" value="Save" id="postConfigClient" />
-    </p>
-</form>
-
-
+    #{if !listTables.isEmpty()}
+    <form id="post" action="@{Clients.saveConfig(restaurant.id)}" method="POST">
+        <p>
+            <label>Choose your n°table :</label>
+            <select class="span1" name="table_id">
+                #{list listTables, as:'table'}
+                    <option values="${table.id}">${table.id}</option>
+                #{/list}
+            </select>
+        </p>
+        <p>
+            <button type="submit" data-theme="b">Menu</button>
+        </p>
+    </form>
+    #{/if}
+    #{else}
+        <p>No table created</p>
+        <a href="@{Restaurants.show(restaurant.id)}" data-role="button">Back to ${restaurant.city}</a>
+    #{/else}
+</div>
 
 

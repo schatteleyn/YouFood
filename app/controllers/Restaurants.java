@@ -1,7 +1,6 @@
 package controllers;
 
 import java.util.List;
-import models.OrderClient;
 import models.Menu;
 import models.Restaurant;
 import models.TableRest;
@@ -16,18 +15,11 @@ public class Restaurants extends Controller {
         render(restaurants);
     }
     
-    public static void show(Long id) {
-        Restaurant restaurant = Restaurant.findById(id);
-        List<Waiter> waiters = Waiter.find("byRestaurant_id", id).fetch();
-        List<TableRest> tables = TableRest.find("byRestaurant_id", id).fetch();
+    public static void show(Long restaurant_id) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
+        List<Waiter> waiters = Waiter.find("byRestaurant_id", restaurant_id).fetch();
+        List<TableRest> tables = TableRest.find("byRestaurant_id", restaurant_id).fetch();
         render(restaurant, waiters, tables);
-    }
-    
-    public static void showOrders(Long id) {
-        Restaurant restaurant = Restaurant.findById(id);
-        List<OrderClient> orders = OrderClient.find("byRestaurant_id", id).fetch();
-        //List<TableRest> tables = TableRest.find("byRestaurant_id", id).fetch();
-        render(restaurant, orders);
     }
         
     public static void create(){
@@ -55,13 +47,13 @@ public class Restaurants extends Controller {
         index();
     }
     
-    public static void edit(Long id){
-        Restaurant restaurant = Restaurant.findById(id);
+    public static void edit(Long restaurant_id){
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
         render(restaurant);
     }
     
-    public static void saveEdit(@Required Long id, @Required String country, @Required String city, @Required String address) {
-        Restaurant restaurant = Restaurant.findById(id);
+    public static void saveEdit(@Required Long restaurant_id, @Required String country, @Required String city, @Required String address) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
         restaurant.address = address;
         restaurant.city = city;
         restaurant.country = country;
@@ -72,7 +64,7 @@ public class Restaurants extends Controller {
             flash.success("The restaurant has been updated !");
             restaurant.save();
         }
-        show(id);
+        show(restaurant_id);
     }
     
     public static void saveEditMenu(@Required Long menu_id) {
@@ -110,8 +102,8 @@ public class Restaurants extends Controller {
         index();
     }
     
-    public static void destroy(Long id) {
-        Restaurant restaurant = Restaurant.findById(id);
+    public static void destroy(Long restaurant_id) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
         restaurant.delete();
         index();
     }

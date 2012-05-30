@@ -1,43 +1,44 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import models.Item;
-import models.OrderClient;
-import models.Restaurant;
-import models.TableRest;
+import models.*;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
 public class Orders extends Controller {
     
-    public static void index() {
-        //Clients.items(restaurant_id, category_id);
-    }
-    
-    public static void find(Long id){
-        OrderClient order = OrderClient.findById(id);
-        render(order);
-    }
-        
-    public static void saveCreate(Long table_id, List<Item> listItemsCard) {
+    public static void saveCreate(Long restaurant_id, Long card_id) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
-            index();
         }
         
-        TableRest table = TableRest.findById(table_id);
-        Restaurant restaurant = table.restaurant;
+        Card card = Card.findById(card_id);
+        TableRest table = card.table;
+        Restaurant restaurant = card.restaurant;
         
-        OrderClient order = new OrderClient(restaurant, table, listItemsCard);
+        OrderClient order = new OrderClient(restaurant, table);
+        order.date = new Date();
+        order.totalPrice = card.totalPrice;
+        order.listItems = new ArrayList<Item>();
+        
+        for(int i=0; i<card.listItems.size(); i++){
+            order.listItems.add(card.listItems.get(i));
+        }
+
         order.save();
-        confirmation(restaurant.id, table.id);
+        Cards.destroy(table.id);
     }
     
-    public static void edit(Long id) {
-        OrderClient order = OrderClient.findById(id);
-        render(order);
+    public static void orderComplete(Long order_id) {
+        OrderClient order = OrderClient.findById(order_id);
+        order.inProgress = false;
+        order.save();
+        
+        Waiters.showCurrentOrders(order.restaurant.id);
     }
     
     public static void saveEdit(@Required Long id, @Required List<Item> items, @Required Float price, @Required TableRest table) {
@@ -52,18 +53,11 @@ public class Orders extends Controller {
           flash.success("The order has been updated !");
           order.save();
         }
-        index();
-    }
-    
-    public static void confirmation(Long restaurant_id, Long table_id) {
-        Clients.index(restaurant_id, table_id);
-        //destroy
     }
     
     public static void destroy(Long id) {
         OrderClient order = OrderClient.findById(id);
         order.delete();
-        index();
     }
     
 }
