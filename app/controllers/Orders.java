@@ -33,9 +33,12 @@ public class Orders extends Controller {
         Cards.destroy(table.id);
     }
     
-    public static void edit(Long id) {
-        OrderClient order = OrderClient.findById(id);
-        render(order);
+    public static void orderComplete(Long order_id) {
+        OrderClient order = OrderClient.findById(order_id);
+        order.inProgress = false;
+        order.save();
+        
+        Waiters.showCurrentOrders(order.restaurant.id);
     }
     
     public static void saveEdit(@Required Long id, @Required List<Item> items, @Required Float price, @Required TableRest table) {

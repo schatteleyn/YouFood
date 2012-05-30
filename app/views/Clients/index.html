@@ -1,21 +1,14 @@
 #{extends 'Clients/mainClient.html' /}
 #{set title:'YouFood - Clients' /}
 
-<div class="span9 offset4">
+<div class="span9">
     <header class="page-header">
         <h1>Welcome to YouFood</h1>
         <h2>${restaurant.city}</h2>
     </header>
-
     <p>Phasellus faucibus elementum gravida. Vivamus consectetur facilisis felis nec pharetra. 
         Mauris consectetur ante sed mauris tempus commodo. Vestibulum ante ipsum primis in faucibus orci luctus et 
         ultrices posuere cubilia Curae; Suspendisse id ligula in nisi congue lacinia. Morbi ut suscipit sapien. 
         Nulla eget felis eros, nec posuere felis.</p>
-
-</div>
-
-<div class="row">
-    <div class="span7 offset5">
-        <a href="@{menu(restaurant.id,table.id)}" data-theme="b" value="Menu" data-role="button">Menu</a>
-    </div>
+    <a href="@{menu(restaurant.id,table.id)}" data-theme="b" value="Menu" data-role="button">Menu</a>
 </div>

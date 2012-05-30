@@ -12,7 +12,8 @@ public class OrderClient extends Model {
     
     public Date date;
     public Float totalPrice;
-   
+    public Boolean inProgress = true;
+            
     @OneToMany
     public List<Item> listItems;
     

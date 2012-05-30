@@ -56,8 +56,9 @@ DELETE  /restaurant/{id}/table/{id_table}                                   Tabl
 # Waiter
 
 GET     /restaurant/{restaurant_id}                                         Waiters.index
-GET     /restaurant/{restaurant_id}/waiter/orders                           Waiters.showOrders
+GET     /restaurant/{restaurant_id}/waiter/orders                           Waiters.showCurrentOrders
 GET     /restaurant/{restaurant_id}/waiter/orders/old                       Waiters.showPreviousOrders
+GET     /restaurant/{restaurant_id}/waiter/order/{order_id}                 Waiters.showCurrentOrderDetailed
 GET     /restaurant/{restaurant_id}/waiter/tables/status                    Waiters.showStatusTables
 GET     /restaurant/{restaurant_id}/waiter/create                           Waiters.create
 POST    /restaurant/{restaurant_id}/waiter/create                           Waiters.saveCreate

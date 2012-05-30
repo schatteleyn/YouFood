@@ -1,7 +1,6 @@
 package controllers;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import models.OrderClient;
 import models.Restaurant;
@@ -16,10 +15,18 @@ public class Waiters extends Controller {
         Restaurants.show(restaurant_id);
     }
 
-    public static void showOrders(Long restaurant_id) {
+    public static void showCurrentOrders(Long restaurant_id) {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
-        List<OrderClient> orders = OrderClient.find("byRestaurant_id", restaurant_id).fetch();
-        render(restaurant, orders);
+        List<OrderClient> listOrders = OrderClient.find("byRestaurant_id", restaurant_id).fetch();
+        List<OrderClient> listCurrentOrders = new ArrayList<OrderClient>();
+        
+        for(int i=0; i<listOrders.size(); i++){
+            if(listOrders.get(i).inProgress == true){
+                listCurrentOrders.add(listOrders.get(i));
+            }
+        }
+        
+        render(restaurant, listCurrentOrders);
     }
     
     public static void showPreviousOrders(Long restaurant_id) {
@@ -27,14 +34,19 @@ public class Waiters extends Controller {
         List<OrderClient> listOrders = OrderClient.find("byRestaurant_id", restaurant_id).fetch();
         List<OrderClient> listOldOrders = new ArrayList<OrderClient>();
         
-        Date toDay = new Date();
-        
         for(int i=0; i<listOrders.size(); i++){
-            if(listOrders.get(i).date == toDay){
+            if(listOrders.get(i).inProgress == false){
                 listOldOrders.add(listOrders.get(i));
             }
         }
         render(restaurant, listOldOrders);
+    }
+    
+    public static void showCurrentOrderDetailed(Long restaurant_id, Long order_id) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
+        OrderClient order = OrderClient.findById(order_id);
+
+        render(restaurant, order);
     }
     
     public static void showStatusTables(Long restaurant_id) {

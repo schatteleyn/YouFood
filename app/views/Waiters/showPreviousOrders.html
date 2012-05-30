@@ -1,18 +1,12 @@
 #{extends 'Waiters/mainWaiter.html' /}
 #{set title:'Restaurant' /}
-<div data-role="navbar">
-    <ul>
-        <li><a href="@{Waiters.showStatusTables(restaurant.id)}">Status Tables</a></li>
-        <li><a href="@{Waiters.showOrders(restaurant.id)}">Current Order</a></li>
-        <li><a href="@{Waiters.showPreviousOrders(restaurant.id)}" class="ui-btn-active">Previous Order Day</a></li>
-    </ul>
-</div><!-- /navbar -->
+
 <div class="span12">
     <header class="page-header">
         <h1>Previous Orders Day: ${restaurant.city}</h1>
     </header>
-    #{if !orders.isEmpty()}
-        #{list orders, as:'order'}
+    #{if !listOldOrders.isEmpty()}
+        #{list listOldOrders, as:'order'}
             <div class="span5">
                 <ul data-role="listview" data-inset="true" data-theme="d">
                     <li data-role="list-divider">Table #${order.table.id}</li>
@@ -31,7 +25,7 @@
                                         <tr>
                                             <th>${item.name}</th>
                                             <th>${item.price}</th>
-                                        <tr>
+                                        </tr>
                                     #{/list}
                                 </tbody>
                             </table>
