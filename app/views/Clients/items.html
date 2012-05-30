@@ -3,7 +3,7 @@
 
 <header class="jumbotron subhead">
     <h1>Menu/${category.name}</h1>
-    #{a @Clients.menu(restaurant.id)}Back#{/a}
+    #{a @Clients.menu(restaurant_id,table_id)}Back#{/a}
 </header>
 
 <div class="row">
@@ -13,7 +13,7 @@
                 <tr>
                     <th>Items</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>Add</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                     <tr>
                         <td>${item.name}</td>
                         <td>${item.price}</td>
-                        <td>#{a @Card.edit(restaurant.id, category.id)}Add#{/a}</td>
+                        <td>#{a @Cards.saveCreate(table_id, item.id)}Add#{/a}</td>
                     </tr>
                 #{/list}
             </tbody>
@@ -30,5 +30,33 @@
     
     <div class="span4">
         <h2>Panier</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Items</th>
+                    <th>Price</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                #{if card != null}
+                    #{list card.listItems, as:'item'}
+                        <tr>
+                            <td>${item.name}</td>
+                            <td>${item.price}</td>
+                            <td>Delete</td>
+                        </tr>
+                    #{/list}
+                #{/if}
+                #{else}
+                    <tr>
+                        <td colspan="3">No Items</td>
+                    </tr>
+                #{/else}
+            </tbody>
+        </table> 
+        #{if card != null}
+            #{a @Orders.saveCreate(table_id, listItemsCard)}Done#{/a}
+        #{/if}
     </div>
 </div>

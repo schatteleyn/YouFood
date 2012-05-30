@@ -65,9 +65,11 @@ DELETE  /restaurant/{id}/waiter/{id_waiter}                                 Wait
 
 # Client
 
-GET     /restaurant/{id}/client/home                                        Clients.index
-GET     /restaurant/{id}/client/menu/categories                             Clients.menu
-GET     /restaurant/{id}/client/menu/items                                  Clients.items
+GET     /restaurant/{restaurant_id}/table/{table_id}/client                            Clients.index
+GET     /restaurant/{restaurant_id}/table/{table_id}/client/categories                 Clients.menu
+GET     /restaurant/{restaurant_id}/table/{table_id}/client/items                      Clients.items
+GET     /restaurant/{restaurant_id}/client/config                                      Clients.config
+POST    /restaurant/{restaurant_id}/client/config                                      Clients.saveConfig
 
 # Order
 
