@@ -40,5 +40,5 @@ TO DO
 TO DO
 
 ## BUGS ##
-- Impossible de delete un categorie, même vide.
+- Impossible de delete une categorie, même vide.
 - Lors de l'edit d'une categorie ou d'un item, si on clique sur cancel au lieu de save => Error.
