@@ -77,8 +77,6 @@
 </section>
 
 <section id="navigation">    
-    #{a @Clients.index(restaurant.id)}Interface Client test #{/a}
-    #{a @Restaurants.showOrders(restaurant.id)}Interface Cuisine test #{/a}
-    #{a @Waiters.showOrders(restaurant.id)}Interface Serveur test#{/a}
-    #{a @Waiters.showCurrentOrders(restaurant.id)} Interface Waiter#{/a}
+    #{a @Clients.config(restaurant.id)}Interface Client test#{/a}
+    #{a @Kitchens.index(restaurant.id)}Interface Kitchen#{/a}
 </section>
