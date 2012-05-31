@@ -39,6 +39,7 @@ public class Waiters extends Controller {
                 listOldOrders.add(listOrders.get(i));
             }
         }
+        
         render(restaurant, listOldOrders);
     }
     
@@ -58,22 +59,24 @@ public class Waiters extends Controller {
     
     public static void find(Long id){
         Waiter waiter = Waiter.findById(id);
+        
         render(waiter);
     }
     
     public static void create(Long id) {
         Restaurant restaurant = Restaurant.findById(id);
+        
         render(restaurant);
     }
     
-    public static void saveCreate(@Required Long id, @Required String firstName, @Required String lastName) {
+    public static void saveCreate(@Required Long restaurant_id, @Required String firstName, @Required String lastName) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
-            index(id);
+            index(restaurant_id);
         }
-        Restaurant restaurant = Restaurant.findById(id);
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
         Waiter waiter = new Waiter(firstName, lastName, restaurant);
         restaurant.listWaiters.add(waiter);
         waiter.save();
@@ -82,12 +85,12 @@ public class Waiters extends Controller {
         index(restaurant.id);
     }
     
-    public static void edit(Long id) {
-        Waiter waiter = Waiter.findById(id);
+    public static void edit(Long waiter_id) {
+        Waiter waiter = Waiter.findById(waiter_id);
         render(waiter);
     }
-    public static void saveEdit(@Required Long id, @Required String firstName, @Required String lastName) {
-        Waiter waiter = Waiter.findById(id);
+    public static void saveEdit(@Required Long waiter_id, @Required String firstName, @Required String lastName) {
+        Waiter waiter = Waiter.findById(waiter_id);
         waiter.firstName = firstName;
         waiter.lastName = lastName;
         validation.valid(waiter);
@@ -97,11 +100,12 @@ public class Waiters extends Controller {
           flash.success("The waiter has been updated !");
           waiter.save();
         }
+        
         index(waiter.restaurant.id);
     }
     
-    public static void destroy(Long id) {
-        Waiter waiter = Waiter.findById(id);
+    public static void destroy(Long waiter_id) {
+        Waiter waiter = Waiter.findById(waiter_id);
         Long restaurant_id = waiter.restaurant.id;
         Restaurant restaurant = Restaurant.findById(restaurant_id);
         
@@ -112,6 +116,7 @@ public class Waiters extends Controller {
                 waiter.delete();
             }
         }
+        
         index(restaurant_id);
     }
 }   

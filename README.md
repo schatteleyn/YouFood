@@ -12,7 +12,7 @@ YouFood
 + <del>Table</del>
 + <del>Order</del>
 + <del>Kitchen</del>
-+ <del>Clients</del> IMPORTANT : Ajouter plusiseurs même items dans le card
++ <del>Clients</del> IMPORTANT SOLUTION A TROUVER: Ajouter plusiseurs même items dans le card
 
 ### Controller ###
 (Create Edit Delete)
@@ -23,9 +23,12 @@ YouFood
 + <del>Waiter</del>
 + <del>Table</del>
 + <del>Order</del>
-+ <del>Kitchen</del>
++ <del>Kitchen</del> IMPORTANT SOLUTION A TROUVER: Comment manipuler(save) un model avec 2 lists (@OneToMany)
 + <del>Clients</del>
 
+Interface Client : 90%
+Interface Waiter : 80%
+Interface Kitchen : 70%
 
 ## Design ##
 TO DO

@@ -1,18 +1,21 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<h1>Add Category</h1>
+<header class="page-header">
+    <h1>Add Category</h1>
+</header>
 
-<form id="post" action="@{Categories.saveCreate}" method="POST">
-    <p>
-        <label>Name</label>
-        <input type="text" name="name" id="name" />
-    </p>
-    <p>
-        <input type="submit" value="Create" id="postCateogry" />
-    </p>
-</form>
-
+<div class="span12">
+    <form id="post" action="@{Categories.saveCreate}" method="POST">
+        <p>
+            <label>Name</label>
+            <input type="text" name="name" id="name" />
+        </p>
+        <p>
+            <input type="submit" value="Create" id="postCateogry" />
+        </p>
+    </form>
+</div>
 
 
 

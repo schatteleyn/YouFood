@@ -9,7 +9,7 @@
         #{list listCurrentOrders, as:'order'}
             <div class="span5">
                 <ul data-role="listview" data-inset="true" data-theme="d">
-                    <li data-role="list-divider">Table #${order.table.id}</li>
+                    <li data-role="list-divider">Table #${order.table.numTable}</li>
                     <li data-icon="gear">
                         <a href="@{Waiters.showCurrentOrderDetailed(restaurant.id,order.id)}">
                             <h3>Time :  ${order.date}</h3>

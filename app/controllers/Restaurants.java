@@ -1,10 +1,7 @@
 package controllers;
 
 import java.util.List;
-import models.Menu;
-import models.Restaurant;
-import models.TableRest;
-import models.Waiter;
+import models.*;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
@@ -35,8 +32,8 @@ public class Restaurants extends Controller {
         }
         
         List<Menu> menus = Menu.find("byCurrentMenu",true).fetch();
-        Restaurant restaurant;
         
+        Restaurant restaurant;
         if(menus.isEmpty()){
             restaurant = new Restaurant(address,city,country,null); 
         }else{
@@ -104,6 +101,12 @@ public class Restaurants extends Controller {
     
     public static void destroy(Long restaurant_id) {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
+
+        Kitchen kitchen = restaurant.kitchen;
+        kitchen.listItemsToDo.clear();
+        kitchen.listItemsDone.clear();
+        
+        kitchen.delete();
         restaurant.delete();
         index();
     }

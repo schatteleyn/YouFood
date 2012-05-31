@@ -1,18 +1,20 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="page-header"> plus tot
-    <h1>Category edit : ${category.name}</h1>
+<header class="page-header">
+    <h1>Edit Category : ${category.name}</h1>
 </header>
 
-#{form @saveEdit(category.id)}
-    #{field 'name'}
-        <p>
-            <label>Name</label>
-            <input type="text" name="name" id="name" value="${category.name}"/>
-        </p> 
-    #{/field}
-    <p class="buttons">
-        <input type="submit" value="Save"> <a href="@{Items.index()}">Cancel</a>    
-    </p>
-#{/form}
+<div class="span12">
+    #{form @saveEdit(category.id)}
+        #{field 'name'}
+            <p>
+                <label>Name</label>
+                <input type="text" name="name" id="name" value="${category.name}"/>
+            </p> 
+        #{/field}
+        <p class="buttons">
+            <input type="submit" value="Save"> <a href="@{Items.index()}">Cancel</a>    
+        </p>
+    #{/form}
+</div>

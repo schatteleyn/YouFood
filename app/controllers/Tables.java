@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 import models.Restaurant;
 import models.TableRest;
+import play.data.validation.Required;
 import play.mvc.Controller;
 
 public class Tables extends Controller {
@@ -29,6 +30,30 @@ public class Tables extends Controller {
         table.save();
         restaurant.save();
         index(restaurant_id);
+    }
+    
+    public static void editIsAvailable(@Required Long restaurant_id, @Required Long table_id) {
+        TableRest table = TableRest.findById(table_id);
+        if(table.isAvailable){
+            table.isAvailable = false;
+        }else{
+            table.isAvailable = true;
+        }
+        
+        table.save();
+        Waiters.showStatusTables(restaurant_id);
+    }
+    
+    public static void editNeedHelp(Long restaurant_id, Long table_id) {
+        TableRest table = TableRest.findById(table_id);
+        if(table.needHelp){
+            table.needHelp = false;
+        }else{
+            table.needHelp = true;
+        }
+        
+        table.save();
+        Waiters.showStatusTables(restaurant_id);
     }
     
     public static void destroy(Long restaurant_id) {

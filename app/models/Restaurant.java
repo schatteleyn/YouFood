@@ -14,13 +14,16 @@ public class Restaurant extends Model {
     public String country;
     
     @ManyToOne
-    public Menu currentMenu;
+    public Kitchen kitchen;
     
     @OneToMany
     public List<Waiter> listWaiters;
-    
+   
     @OneToMany
     public List<TableRest> listTables;
+    
+    @ManyToOne
+    public Menu currentMenu;
     
     public Restaurant(String address, String city, String country, Menu currentMenu) {
         this.address = address;

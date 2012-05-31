@@ -2,9 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import models.*;
-import play.data.validation.Required;
 import play.mvc.Controller;
 
 public class Orders extends Controller {
@@ -41,22 +39,8 @@ public class Orders extends Controller {
         Waiters.showCurrentOrders(order.restaurant.id);
     }
     
-    public static void saveEdit(@Required Long id, @Required List<Item> items, @Required Float price, @Required TableRest table) {
-        OrderClient order = OrderClient.findById(id);
-        order.listItems = items;
-        order.totalPrice = price;
-        order.table = table;
-        validation.valid(order);
-        if(validation.hasErrors()) {
-          // Message errors to test in views
-        } else {
-          flash.success("The order has been updated !");
-          order.save();
-        }
-    }
-    
-    public static void destroy(Long id) {
-        OrderClient order = OrderClient.findById(id);
+    public static void destroy(Long order_id) {
+        OrderClient order = OrderClient.findById(order_id);
         order.delete();
     }
     

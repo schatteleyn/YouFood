@@ -13,9 +13,9 @@ public class Categories extends Controller {
         render(categories);
     }
     
-    public static void show(Long id) {
-        Category category = Category.findById(id);
-        List<Item> items = Item.find("byCategory_id", id).fetch();
+    public static void show(Long category_id) {
+        Category category = Category.findById(category_id);
+        List<Item> items = Item.find("byCategory_id", category_id).fetch();
         render(category, items);
     }
         
@@ -34,13 +34,13 @@ public class Categories extends Controller {
         index();
     }
     
-    public static void edit(Long id) {
-        Category category = Category.findById(id);
+    public static void edit(Long category_id) {
+        Category category = Category.findById(category_id);
         render(category);
     }
 
-    public static void saveEdit(@Required Long id, @Required String name) {
-        Category category = Category.findById(id);
+    public static void saveEdit(@Required Long category_id, @Required String name) {
+        Category category = Category.findById(category_id);
         category.name = name;
         validation.valid(category);
         if(validation.hasErrors()) {
@@ -52,11 +52,11 @@ public class Categories extends Controller {
         index();
     }
     
-    public static void destroy(Long id) {
-        Category category = Category.findById(id);
-        List<Item> items = Item.find("byCategory_id", id).fetch();
+    public static void destroy(Long category_id) {
+        Category category = Category.findById(category_id);
+        List<Item> items = Item.find("byCategory_id", category_id).fetch();
         if(!items.isEmpty()){
-            show(id);
+            show(category_id);
         }else{
             category.delete();
             index();
