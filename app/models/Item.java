@@ -9,11 +9,10 @@ public class Item extends Model {
  
     public String name;
     public Float price;
-<<<<<<< HEAD
+
     public String description;
-=======
+
     public int quantity;
->>>>>>> 1a5f351a193606a703713a92f6ad4b743d8482df
 
     @ManyToOne
     public Category category;

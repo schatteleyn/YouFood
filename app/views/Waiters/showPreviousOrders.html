@@ -11,26 +11,24 @@
                 <ul data-role="listview" data-inset="true" data-theme="d">
                     <li data-role="list-divider">Table #${order.table.numTable}</li>
                     <li data-icon="gear">
-                        <a href="">
-                            <h3>Time :  ${order.date}</h3>
-                            <table class="table table-bordered">
-                                <thead>
+                        <h3>Time :  ${order.date}</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                #{list order.listItems, as:'item'}
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Price</th>
+                                        <th>${item.name}</th>
+                                        <th>${item.price}</th>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    #{list order.listItems, as:'item'}
-                                        <tr>
-                                            <th>${item.name}</th>
-                                            <th>${item.price}</th>
-                                        </tr>
-                                    #{/list}
-                                </tbody>
-                            </table>
-                            <h3>Subtotal : ${order.totalPrice} $</h3>
-                        </a>
+                                #{/list}
+                            </tbody>
+                        </table>
+                        <h3>Subtotal : ${order.totalPrice} $</h3>
                     </li>
                 </ul>
             </div>

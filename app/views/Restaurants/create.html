@@ -5,25 +5,35 @@
     <h1>Add Restaurant</h1>
 </header>
 
-
-<form id="post" action="@{Restaurants.saveCreate}" method="POST">
-    <p>
-        <label>Country</label>
-        <input type="text" name="country" id="Country" />
-    </p>
-    <p>
-        <label>City</label>
-        <input type="text" name="city" id="city" />
-    </p>
-    <p>
-        <label>Address</label>
-        <input type="text" name="address" id="Address" />
-    </p>
-    <p>
-        <input type="submit" value="Create" id="postRestaurant" />
-    </p>
-</form>
-
+<div class="row">
+    <div class="span12">
+        <form class="form-horizontal" id="post" action="@{Restaurants.saveCreate}" method="POST">
+            <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="country">Country</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="country" name="country">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="city">City</label>
+                        <div class="controls">
+                            <input type="text" class="input-xxlarge" id="city" name="city">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="address">Address</label>
+                        <div class="controls">
+                            <input type="text" class="input-xxlarge" id="address" name="address">
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <input type="submit" value="Create" id="postRestaurant" />
+                    </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
 
 
 
