@@ -76,9 +76,8 @@
 </div>
 
 
-
-#{a @Clients.config(restaurant.id)}Interface Client#{/a}
-<br/>
-#{a @Kitchens.index(restaurant.id)}Interface Kitchen#{/a}
-<br/>
-#{a @Waiters.showCurrentOrders(restaurant.id)}Interface Waiter#{/a}
+<section id="navigation">    
+    #{a @Clients.config(restaurant.id)}Interface Client test#{/a}
+    #{a @Kitchens.index(restaurant.id)}Interface Kitchen#{/a}
+    #{a @Waiters.showCurrentOrders(restaurant.id)}Interface Waiter#{/a}
+</section>
