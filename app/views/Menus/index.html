@@ -5,83 +5,73 @@
     <h1>Menu list</h1>
 </header>
 
-<section id="menuList">
-    <div class="row">
-        <div class="span12">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Current Menu</th>
-                        <th>Creation Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    #{if !menus.isEmpty()}
-                        #{list menus, as:'menu'}
-                            <tr>
-                                <td>#{a @show(menu.id)}${menu.name}#{/a}</td>
-                                <td>
-                                #{if menu.currentMenu == true}
-                                    X
-                                #{/if}
-                                </td>
-                                <td>${menu.creationDate}</td>
-                            </tr>
-                        #{/list}
-                    #{/if}
-                    #{else}
+<div class="row">
+    <div class="span12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Current Menu</th>
+                    <th>Creation Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                #{if !menus.isEmpty()}
+                    #{list menus, as:'menu'}
                         <tr>
-                            <td colspan="3">No menu created</td>
+                            <td>#{a @show(menu.id)}${menu.name}#{/a}</td>
+                            <td>
+                            #{if menu.currentMenu == true}
+                                X
+                            #{/if}
+                            </td>
+                            <td>${menu.creationDate}</td>
                         </tr>
-                    #{/else}
-                </tbody>
-            </table>
-            <h2>Add menu:</h2>
-            <form id="post" action="@{Menus.saveCreate}" method="POST">
-                <p>
-                    <label>Name</label>
-                    <input type="text" name="name" id="Name" />
-                    <input type="submit" value="Create" id="postRestaurant" />
-                </p>
-            </form>
-        </div>
+                    #{/list}
+                #{/if}
+                #{else}
+                    <tr>
+                        <td colspan="3">No menu created</td>
+                    </tr>
+                #{/else}
+            </tbody>
+        </table>
+        <form id="post" action="@{Menus.saveCreate}" method="POST" class="form-horizontal">
+            <input type="text" name="name" id="Name" placeholder="New menu"/>
+            <input type="submit" value="Create" id="postRestaurant" />
+        </form>
     </div>
-</section>
+</div>
 
+<div class="row">
+    <div class="span12">
+        <h2>Current Menu</h2><br/>
+        #{if !menus.isEmpty()}
+            #{form @Restaurants.saveEditMenu()}
+                #{field 'menu_id'}
+                    <p>
+                        <select name="menu_id">
+                            #{list menus, as:'menu'}
+                                #{if menu.currentMenu == true}
+                                    <option selected="selected" value=${menu.id}>
+                                        ${menu.name}
+                                    </option>
+                                #{/if}
+                                #{else}
+                                    <option value=${menu.id}>
+                                        ${menu.name}
+                                    </option>
+                                #{/else}
+                            #{/list}
+                        </select>
+                        <input type="submit" value="Change" id="postCurrentMenu" />
+                    </p> 
+                #{/field}
+            #{/form}
+        #{/if}
+        #{else}
+            No menu created
+        #{/else}
+    </div>
+</div>
 
-<section id="menu">
-    <div class="page-header">
-        <h1>Current Menu</h1>
-    </div>
-    <div class="row">
-        <div class="span12">
-            #{if !menus.isEmpty()}
-                #{form @Restaurants.saveEditMenu()}
-                    #{field 'menu_id'}
-                        <p>
-                            <select name="menu_id">
-                                #{list menus, as:'menu'}
-                                    #{if menu.currentMenu == true}
-                                        <option selected="selected" value=${menu.id}>
-                                            ${menu.name}
-                                        </option>
-                                    #{/if}
-                                    #{else}
-                                        <option value=${menu.id}>
-                                            ${menu.name}
-                                        </option>
-                                    #{/else}
-                                #{/list}
-                            </select>
-                            <input type="submit" value="Change" id="postCurrentMenu" />
-                        </p> 
-                    #{/field}
-                #{/form}
-            #{/if}
-            #{else}
-                No menu created
-            #{/else}
-        </div>
-    </div>
-</section>

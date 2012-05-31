@@ -67,8 +67,8 @@ public class Tables extends Controller {
                 table.delete();
             }
         }
-        index(restaurant_id);
         
+        index(restaurant_id);
     }
     
 }

@@ -36,9 +36,10 @@
           <a class="brand" href="/restaurants">YouFood</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="/restaurants">Restaurants list</a></li>
-              <li><a href="/restaurants/menus">Menus list</a></li>
-              <li><a href="/restaurants/categories">Categories list</a></li>
+              <li #{if restaurants != null
+                    || restaurant != null} class="active" #{/if} ><a href="/restaurants">Restaurants</a></li>
+              <li #{if menus != null} class="active" #{/if} ><a href="/restaurants/menus">Menus</a></li>
+              <li #{if categories != null} class="active" #{/if} ><a href="/restaurants/categories">Categories</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

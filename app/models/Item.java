@@ -9,13 +9,15 @@ public class Item extends Model {
  
     public String name;
     public Float price;
+    public String description;
 
     @ManyToOne
     public Category category;
 
-    public Item(String name, Float price, Category category){
+    public Item(String name, Float price, String description, Category category){
         this.name = name;
         this.price = price;
+        this.description = description;
         this.category = category;
     }
 }

@@ -1,28 +1,43 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="jumbotron subhead" id="overview">
+<header class="page-header">
     <h1>Item edit : ${item.name}</h1>
 </header>
 
-#{form @saveEdit(item.id)}
-    #{field 'name'}
-        <p>
-            <label>Name</label>
-            <input type="text" name="name" id="name" value="${item.name}"/>
-        </p> 
-    #{/field}
-    #{field 'price'}
-        <p>
-            <label>Price</label>
-            <input type="text" name="price" id="price" value="${item.price}"/>
-        </p> 
-    #{/field}
-    <p class="buttons">
-        <input type="submit" value="Save"> <a href="@{index()}">Cancel</a>    
-    </p>
-#{/form}
-
-
-
+<div class="row">
+    <div class="span12">
+        #{form @saveEdit(item.id)}
+            <fieldset>
+                #{field 'name'}
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="name" name="name" value="${item.name}">
+                        </div>
+                    </div>
+                #{/field}
+                #{field 'price'}
+                    <div class="control-group">
+                        <label class="control-label" for="price">Price</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="price" name="price" value="${item.price}">
+                        </div>
+                    </div>
+                #{/field}
+                #{field 'description'}
+                    <div class="control-group">
+                        <label class="control-label" for="desc">Description</label>
+                        <div class="controls">
+                            <input type="text" class="input-xxlarge" id="desc" name="description" value="${item.description}">
+                        </div>
+                    </div>
+                #{/field}
+                    <div class="controls">
+                        <input type="submit" value="Create" id="postCateogry" />
+                    </div>
+            </fieldset>
+        #{/form}
+    </div>
+</div>
 

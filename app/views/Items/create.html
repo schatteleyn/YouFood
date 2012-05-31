@@ -5,22 +5,33 @@
     <h1>Add Item</h1>
 </header>
 
-<div class="span12">
-    <form id="post" action="@{Items.saveCreate(category.id)}" method="POST">
-        <p>
-            <label>Name</label>
-            <input type="text" name="name" id="name" />
-        </p>
-        <p>
-            <label>Price</label>
-            <input type="text" name="price" id="price" />
-        </p>
-        <p>
-            <input type="submit" value="Create" id="postItem" />
-        </p>
-    </form>
+<div class="row">
+    <div class="span12">
+        <form class="form-horizontal" id="post" action="@{Items.saveCreate(category.id)}" method="POST">
+            <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="price">Price</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="price" name="price">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="description">Description</label>
+                        <div class="controls">
+                            <input type="text" class="input-xxlarge" id="description" name="description">
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <input type="submit" value="Create" id="postItem" />
+                    </div>
+            </fieldset>
+        </form>
+    </div>
 </div>
-
-
-
 

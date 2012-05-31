@@ -5,44 +5,62 @@
     <h1>Category : ${category.name}</h1>
 </header>
 
-<div class="offset10">
-    <a class="btn btn-warning" href="@{edit(category.id)}">Edit</a>
-    <a class="btn btn-danger" href="@{destroy(category.id)}">Delete</a>
+<div class="span12">
+    <div class="span3">
+        <h3>Description</h3>${category.description}</br>
+    </div>
+    <div class="offset10">
+        <a class="btn btn-warning" href="@{edit(category.id)}">Edit</a>
+        #{if items.isEmpty()}
+            #{a @destroy(category.id)}Delete#{/a}
+        #{/if}
+        #{else}
+            <a class="btn btn-danger disabled" disabled="disabled">Delete</a>
+        #{/else}
+    </div>
 </div>
 
 <div class="row">
     <div class="span12">
         <div class="page-header">
-            <h1>Items list</h1>
+            <h1>Item list</h1>
         </div>
-        <div class="offset10">
-            <a class="btn btn-success" href="@{Items.create(category.id)}">Add Item</a>
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                #{if !items.isEmpty()}
-                #{list items, as:'item'}
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>${item.price} $</td>
-                        <td>#{a @Items.edit(item.id)}edit#{/a} #{a @Items.destroy(item.id)}delete#{/a}</td>
-                    </tr>
-                #{/list}
-                #{/if}
-                #{else}
-                    <tr>
-                        <td colspan="4">No item created</td>
-                    </tr>
-                #{/else}
+        <div class="row">
+            <div class="span12">
+                <div class="offset10">
+                    <a class="btn btn-success" href="@{Items.create(category.id)}">Add Item</a>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #{if !items.isEmpty()}
+                        #{list items, as:'item'}
+                            <tr>
+                                <td>${item.name}</td>
+                                <td>${item.price} $</td>
+                                <td>${item.description}</td>
+                                <td>
+                                    <a href="@{Items.edit(item.id)}"><button class="btn">edit</button></a>
+                                    <a href="@{Items.destroy(item.id)}"><button class="btn">delete</button></a>
+                                </td>
+                            </tr>
+                        #{/list}
+                        #{/if}
+                        #{else}
+                            <tr>
+                                <td colspan="4">No item created</td>
+                            </tr>
+                        #{/else}
 
-            </tbody>
-        </table> 
+                    </tbody>
+                </table> 
+            </div>
+        </div>
     </div>
-</div>

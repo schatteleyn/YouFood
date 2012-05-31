@@ -5,16 +5,28 @@
     <h1>Add Category</h1>
 </header>
 
-<div class="span12">
-    <form id="post" action="@{Categories.saveCreate}" method="POST">
-        <p>
-            <label>Name</label>
-            <input type="text" name="name" id="name" />
-        </p>
-        <p>
-            <input type="submit" value="Create" id="postCateogry" />
-        </p>
-    </form>
+<div class="row">
+    <div class="span12">
+        <form class="form-horizontal" id="post" action="@{Categories.saveCreate}" method="POST">
+            <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="desc">Description</label>
+                        <div class="controls">
+                            <input type="text" class="input-xxlarge" id="desc" name="description">
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <input type="submit" value="Create" id="postCateogry" />
+                    </div>
+            </fieldset>
+        </form>
+    </div>
 </div>
 
 

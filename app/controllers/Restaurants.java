@@ -103,10 +103,13 @@ public class Restaurants extends Controller {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
 
         Kitchen kitchen = restaurant.kitchen;
-        kitchen.listItemsToDo.clear();
-        kitchen.listItemsDone.clear();
+        if(kitchen != null){
+            kitchen.listItemsToDo.clear();
+            kitchen.listItemsDone.clear();
+
+            kitchen.delete();
+        }
         
-        kitchen.delete();
         restaurant.delete();
         index();
     }

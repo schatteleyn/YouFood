@@ -23,13 +23,13 @@ public class Categories extends Controller {
         render();
     }
 
-    public static void saveCreate(@Required String name) {
+    public static void saveCreate(@Required String name, @Required String description) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
             flash.error("Please correct these errors !");
         }
-        Category category = new Category(name);
+        Category category = new Category(name, description);
         category.save();
         index();
     }
@@ -39,9 +39,10 @@ public class Categories extends Controller {
         render(category);
     }
 
-    public static void saveEdit(@Required Long category_id, @Required String name) {
+    public static void saveEdit(@Required Long category_id, @Required String name, @Required String description) {
         Category category = Category.findById(category_id);
         category.name = name;
+        category.description = description;
         validation.valid(category);
         if(validation.hasErrors()) {
             flash.error("Please correct these errors !");
@@ -54,12 +55,7 @@ public class Categories extends Controller {
     
     public static void destroy(Long category_id) {
         Category category = Category.findById(category_id);
-        List<Item> items = Item.find("byCategory_id", category_id).fetch();
-        if(!items.isEmpty()){
-            show(category_id);
-        }else{
-            category.delete();
-            index();
-        }
+        category.delete();
+        index();
     }
 }

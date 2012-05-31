@@ -5,16 +5,30 @@
     <h1>Edit Category : ${category.name}</h1>
 </header>
 
-<div class="span12">
-    #{form @saveEdit(category.id)}
-        #{field 'name'}
-            <p>
-                <label>Name</label>
-                <input type="text" name="name" id="name" value="${category.name}"/>
-            </p> 
-        #{/field}
-        <p class="buttons">
-            <input type="submit" value="Save"> <a href="@{Items.index()}">Cancel</a>    
-        </p>
-    #{/form}
+<div class="row">
+    <div class="span12">
+        #{form @saveEdit(category.id)}
+            <fieldset>
+                #{field 'name'}
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="name" name="name" value="${category.name}">
+                        </div>
+                    </div>
+                #{/field}
+                #{field 'description'}
+                    <div class="control-group">
+                        <label class="control-label" for="desc">Description</label>
+                        <div class="controls">
+                            <input type="text" class="input-xxlarge" id="desc" name="description" value="${category.description}">
+                        </div>
+                    </div>
+                #{/field}
+                    <div class="controls">
+                        <input type="submit" value="Create" id="postCateogry" />
+                    </div>
+            </fieldset>
+        #{/form}
+    </div>
 </div>

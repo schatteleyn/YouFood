@@ -18,7 +18,7 @@ public class Items extends Controller {
         render(category);
     }
 
-    public static void saveCreate(@Required Long category_id, @Required String name, @Required Float price) {
+    public static void saveCreate(@Required Long category_id, @Required String name, @Required String description, @Required Float price) {
         if (validation.hasErrors()) {
             validation.keep();
             params.flash();
@@ -27,7 +27,7 @@ public class Items extends Controller {
         
         Category category = Category.findById(category_id);
         
-        Item item = new Item(name, price, category);
+        Item item = new Item(name, price, description, category);
         category.listItems.add(item);
 
         item.save();
@@ -40,10 +40,11 @@ public class Items extends Controller {
         render(item);
     }
 
-    public static void saveEdit(@Required Long item_id, @Required String name, @Required Float price) {
+    public static void saveEdit(@Required Long item_id, @Required String name, @Required Float price, @Required String description) {
         Item item = Item.findById(item_id);
         item.name = name;
         item.price = price;
+        item.description = description;
         validation.valid(item);
         if(validation.hasErrors()) {
             flash.error("Please correct these errors !");
