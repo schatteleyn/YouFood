@@ -28,7 +28,17 @@ public class Cards extends Controller{
             card.listItems = new ArrayList<Item>();   
         }
         
-        card.listItems.add(item);
+        if(card.listItems.contains(item))
+        {    
+            System.out.println(card.listItems);
+            card.listItems.remove(item);
+            System.out.println(card.listItems);
+            item.quantity++;
+            card.listItems.add(item);
+            System.out.println(card.listItems);
+        }
+        else
+            card.listItems.add(item);
         card.totalPrice = card.totalPrice+item.price;
         
         card.save();

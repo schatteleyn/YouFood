@@ -9,6 +9,7 @@ public class Item extends Model {
  
     public String name;
     public Float price;
+    public int quantity;
 
     @ManyToOne
     public Category category;
@@ -17,5 +18,6 @@ public class Item extends Model {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.quantity = 1;
     }
 }
