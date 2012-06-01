@@ -12,7 +12,8 @@ YouFood
 + <del>Table</del>
 + <del>Order</del>
 + <del>Kitchen</del>
-+ <del>Clients</del> IMPORTANT SOLUTION A TROUVER: Ajouter plusiseurs même items dans le card
++ <del>Clients</del> IMPORTANT SOLUTION A TROUVER: <del>Ajouter plusiseurs même items dans le card</del>
+                                                   Fonctionne pour le pannier, mais comment récupérer la quantité dans l'order
 
 ### Controller ###
 (Create Edit Delete)
@@ -26,8 +27,8 @@ YouFood
 + <del>Kitchen</del> IMPORTANT SOLUTION A TROUVER: Comment manipuler(save) un model avec 2 lists (@OneToMany)
 + <del>Clients</del>
 
-Interface Client : 90%
-Interface Waiter : 80%
+<del>Interface Client : 100%</del>
+Interface Waiter : 90%
 Interface Kitchen : 70%
 
 ## Design ##
@@ -40,5 +41,5 @@ TO DO
 TO DO
 
 ## BUGS ##
-- Impossible de delete une categorie, même vide.
-- Lors de l'edit d'une categorie ou d'un item, si on clique sur cancel au lieu de save => Error.
+- <del>Impossible de delete une categorie, même vide.</del> (Ne fonctionne pas avec un bouton)
+- <del>Lors de l'edit d'une categorie ou d'un item, si on clique sur cancel au lieu de save => Error.</del>
