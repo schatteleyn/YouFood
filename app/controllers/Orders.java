@@ -7,16 +7,10 @@ import play.mvc.Controller;
 
 public class Orders extends Controller {
     
-    public static void saveCreate(Long restaurant_id, Long card_id) {
-        if (validation.hasErrors()) {
-            validation.keep();
-            params.flash();
-            flash.error("Please correct these errors !");
-        }
-        
+    public static void saveCreate(Long restaurant_id, Long table_id, Long card_id) {      
         Card card = Card.findById(card_id);
-        TableRest table = card.table;
-        Restaurant restaurant = card.restaurant;
+        TableRest table = TableRest.findById(table_id);
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
         
         OrderClient order = new OrderClient(restaurant, table);
         order.date = new Date();
@@ -28,15 +22,15 @@ public class Orders extends Controller {
         }
 
         order.save();
-        Cards.destroy(table.id);
+        Cards.destroy(restaurant_id, table_id);
     }
     
-    public static void orderComplete(Long order_id) {
+    public static void orderComplete(Long restaurant_id, Long order_id) {
         OrderClient order = OrderClient.findById(order_id);
         order.inProgress = false;
         order.save();
         
-        Waiters.showCurrentOrders(order.restaurant.id);
+        Waiters.showCurrentOrders(restaurant_id);
     }
     
     public static void destroy(Long order_id) {

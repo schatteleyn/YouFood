@@ -35,12 +35,13 @@ public class Items extends Controller {
         index(category_id);
     }
     
-    public static void edit(Long item_id) {
+    public static void edit(Long category_id, Long item_id) {
+        Category category = Category.findById(category_id);
         Item item = Item.findById(item_id);
-        render(item);
+        render(category, item);
     }
 
-    public static void saveEdit(@Required Long item_id, @Required String name, @Required Float price, @Required String description) {
+    public static void saveEdit(@Required Long category_id, @Required Long item_id, @Required String name, @Required Float price, @Required String description) {
         Item item = Item.findById(item_id);
         item.name = name;
         item.price = price;
@@ -52,7 +53,7 @@ public class Items extends Controller {
             flash.success("The item has been updated !");
             item.save();
         }
-        index(item.category.id);
+        index(category_id);
     }
     
     public static void destroy(Long item_id) {

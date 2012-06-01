@@ -67,7 +67,8 @@ public class Clients extends Controller{
     }
     
     public static void card(@Required Long restaurant_id, @Required Long table_id) {    
-        
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
+        TableRest table = TableRest.findById(table_id);
         List<Card> listCard = Card.find("byRestaurant_id", restaurant_id).fetch();
         Card card = null;
         
@@ -78,7 +79,7 @@ public class Clients extends Controller{
         }
         
         if(card != null){
-           render(card);
+           render(restaurant, table, card);
         }else{
            menu(restaurant_id, table_id);
         }

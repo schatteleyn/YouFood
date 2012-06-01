@@ -1,7 +1,15 @@
 #{extends 'Clients/mainClient.html' /}
 #{set title:'YouFood - Clients' /}
 
-<a href="@{Clients.index(restaurant.id,table.id)}" data-role="button" data-icon="home" data-iconpos="notext">Home</a>
+<div class="span12">
+    <div data-role="controlgroup" data-type="horizontal">
+        <a href="@{Clients.index(restaurant.id,table.id)}" data-role="button" data-icon="home">HOME</a>
+        #{if card != null}
+            <a href="@{Cards.clear(restaurant.id,table.id,card.id)}" data-role="button" data-icon="delete" data-theme="a">CLEAR CARD & BACK HOME</a>
+        #{/if}
+    </div>
+</div>
+
 <div class="span6">
     <header class="page-header">
         <h1>Menu</h1>
@@ -9,7 +17,12 @@
     <ul data-role="listview" data-inset="true" data-theme="d">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">Select your category and pick which item you want</li>
         #{list categories, as:'category'}
-            <li>#{a @items(restaurant.id, table.id, category.id)}${category.name}#{/a}</li>
+            <li>
+                <a href="@{items(restaurant.id,table.id,category.id)}" data-transition="slidefade">
+                    <h1>${category.name}</h1>
+                    <p>${category.description}</p>
+                </a>
+            </li>
         #{/list}
     </ul>
 </div>
@@ -18,14 +31,13 @@
     <header class="page-header">
         <h1>Card</h1>
     </header>  
-    <ul data-role="listview" data-inset="true">
+    <ul data-role="listview" data-inset="true" data-theme="d">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">List items</li>
             #{if card != null}
                 #{list card.listItems, as:'item'}
                     <li data-icon="minus">
-                        <a href="@{Cards.deleteItem(table.id, item.id)}">
-                            <h2>${item.name}</h2>
-                            <p class="ui-li-aside">${item.price} $</p>
+                        <a href="@{Cards.deleteItem(restaurant.id,table.id,item.id)}">
+                            <h3>${item.name} - ${item.price} $ </h3><span class="ui-li-count">x ${item.quantity}</span>
                         </a>
                     </li>
                 #{/list}
@@ -35,11 +47,12 @@
                     No Items
                 </li>
             #{/else}
+
     </ul>
     <br/>
     <h3>Subtotal : #{if card != null}${card.totalPrice} $#{/if}#{else}0 $#{/else}</h3><br/>
     #{if card != null}
-        <a href="@{card(restaurant.id,table.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">CHECKOUT & ORDER</a>
+        <a href="@{card(restaurant.id,table.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">COMPLETE</a>
     #{/if}
 </div>
 

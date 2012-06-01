@@ -81,9 +81,15 @@ POST    /restaurant/{restaurant_id}/table/{table_id}/client/card                
 
 # Order
 
-POST    /restaurant/{restaurant_id}/client/order/create                     Orders.saveCreate
-POST    /restaurant/{restaurant_id}/client/order/{order_id}                 Orders.saveEdit
-DELETE  /restaurant/{restaurant_id}/waiter/order/{order_id}                 Orders.destroy
+GET     /restaurant/{restaurant_id}/table/{table_id}/order/create/{card_id}                 Orders.saveCreate
+GET     /restaurant/{restaurant_id}/waiter/order/complete/{order_id}              Orders.orderComplete
+DELETE  /restaurant/{restaurant_id}/waiter/order/{order_id}                                 Orders.destroy
+
+# Card
+
+GET    /restaurant/{restaurant_id}/table/{table_id}/client/addItem/{item_id}                Cards.createItem
+GET    /restaurant/{restaurant_id}/table/{table_id}/client/removeItem/{item_id}             Cards.deleteItem
+GET    /restaurant/{restaurant_id}/table/{table_id}/client/clearCard/{card_id}              Cards.clear
 
 # Kitchen
 

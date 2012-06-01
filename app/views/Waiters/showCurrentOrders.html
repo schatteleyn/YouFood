@@ -17,6 +17,7 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Quantity</th>
                                         <th>Price $</th>
                                     </tr>
                                 </thead>
@@ -24,6 +25,7 @@
                                     #{list order.listItems, as:'item'}
                                         <tr>
                                             <th>${item.name}</th>
+                                            <th>${item.quantity}</th>
                                             <th>${item.price}</th>
                                         </tr>
                                     #{/list}

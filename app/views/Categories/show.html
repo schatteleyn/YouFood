@@ -47,7 +47,7 @@
                                 <td>${item.price} $</td>
                                 <td>${item.description}</td>
                                 <td>
-                                    <a href="@{Items.edit(item.id)}"><button class="btn">edit</button></a>
+                                    <a href="@{Items.edit(category.id, item.id)}"><button class="btn">edit</button></a>
                                     <a href="@{Items.destroy(item.id)}"><button class="btn">delete</button></a>
                                 </td>
                             </tr>
@@ -64,3 +64,4 @@
             </div>
         </div>
     </div>
+</div>

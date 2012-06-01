@@ -14,12 +14,10 @@ public class Cards extends Controller{
         Clients.items(restaurant_id, table_id, category_id);
     }
     
-    public static void createItem(@Required Long table_id, @Required Long item_id) {
+    public static void createItem(@Required Long restaurant_id, @Required Long table_id, @Required Long item_id) {
         TableRest table = TableRest.findById(table_id);
-        Restaurant restaurant = table.restaurant;
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
         Item item = Item.findById(item_id);
-
-        System.out.print(table_id);
 
         Card card = Card.find("byTable_id", table_id).first();
         
@@ -28,57 +26,74 @@ public class Cards extends Controller{
             card.listItems = new ArrayList<Item>();   
         }
         
-        if(card.listItems.contains(item))
-        {    
-            System.out.println(card.listItems);
-            card.listItems.remove(item);
-            System.out.println(card.listItems);
+        if(card.listItems.contains(item)){    
+            item.quantity++;
+        }
+        else{
             item.quantity++;
             card.listItems.add(item);
-            System.out.println(card.listItems);
         }
-        else
-            card.listItems.add(item);
+        
         card.totalPrice = card.totalPrice+item.price;
         
+        item.save();
         card.save();
-        index(restaurant.id, table.id, item.category.id);
+        index(restaurant_id, table_id, item.category.id);
     }
     
-    public static void deleteItem(@Required Long table_id, @Required Long item_id) {
+    public static void deleteItem(@Required Long restaurant_id, @Required Long table_id, @Required Long item_id) {
         TableRest table = TableRest.findById(table_id);
-        Restaurant restaurant = table.restaurant;
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
         Item item = Item.findById(item_id);
-        System.out.print(table_id);
         
         Card card = Card.find("byTable_id", table_id).first();
         
-        card.listItems.remove(item);
+        if(item.quantity > 1){
+            item.quantity--;
+ 
+        }else{
+            item.quantity--;
+            card.listItems.remove(item);
+        }
+        
         card.totalPrice = card.totalPrice-item.price;
+        
+        item.save();
         
         if(!card.listItems.isEmpty()){
             card.save();
         }else{
             card.delete();
         }
-        
-        Clients.menu(restaurant.id, table.id);
+
+        Clients.menu(restaurant_id, table.id);
     }
     
-    public static void clear(Long card_id) {
+    public static void clear(@Required Long restaurant_id, @Required Long table_id, @Required Long card_id) {
         Card card = Card.findById(card_id);
+        
+        for(int i=0; i<card.listItems.size(); i++){
+            card.listItems.get(i).quantity = 0;
+            card.listItems.get(i).save();
+        }
+        
         card.listItems.clear();
         card.delete();
         
-        Clients.index(card.restaurant.id, card.table.id);
+        Clients.index(restaurant_id, table_id);
     }
 
-    public static void destroy(Long table_id) {
-        TableRest table = TableRest.findById(table_id);
+    public static void destroy(@Required Long restaurant_id, @Required Long table_id) {
         Card card = Card.find("byTable_id", table_id).first();
+        
+        for(int i=0; i<card.listItems.size(); i++){
+            card.listItems.get(i).quantity = 0;
+            card.listItems.get(i).save();
+        }
+        
         card.listItems.clear();
         card.delete();
         
-        Clients.confirmation(table.restaurant.id, table.id);
+        Clients.confirmation(restaurant_id, table_id);
     }
 }
