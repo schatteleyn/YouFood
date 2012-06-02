@@ -25,15 +25,9 @@ public class Cards extends Controller{
             card = new Card(restaurant, table);
             card.listItems = new ArrayList<Item>();   
         }
-        
-        if(card.listItems.contains(item)){    
-            item.quantity++;
-        }
-        else{
-            item.quantity++;
-            card.listItems.add(item);
-        }
-        
+
+        card.listItems.add(item);
+
         card.totalPrice = card.totalPrice+item.price;
         
         item.save();
@@ -48,13 +42,7 @@ public class Cards extends Controller{
         
         Card card = Card.find("byTable_id", table_id).first();
         
-        if(item.quantity > 1){
-            item.quantity--;
- 
-        }else{
-            item.quantity--;
-            card.listItems.remove(item);
-        }
+        card.listItems.remove(item);
         
         card.totalPrice = card.totalPrice-item.price;
         
@@ -72,12 +60,8 @@ public class Cards extends Controller{
     public static void clear(@Required Long restaurant_id, @Required Long table_id, @Required Long card_id) {
         Card card = Card.findById(card_id);
         
-        for(int i=0; i<card.listItems.size(); i++){
-            card.listItems.get(i).quantity = 0;
-            card.listItems.get(i).save();
-        }
-        
         card.listItems.clear();
+        
         card.delete();
         
         Clients.index(restaurant_id, table_id);
@@ -86,12 +70,8 @@ public class Cards extends Controller{
     public static void destroy(@Required Long restaurant_id, @Required Long table_id) {
         Card card = Card.find("byTable_id", table_id).first();
         
-        for(int i=0; i<card.listItems.size(); i++){
-            card.listItems.get(i).quantity = 0;
-            card.listItems.get(i).save();
-        }
-        
         card.listItems.clear();
+        
         card.delete();
         
         Clients.confirmation(restaurant_id, table_id);

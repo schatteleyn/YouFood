@@ -3,8 +3,8 @@ package models;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import play.db.jpa.Model;
 
 @Entity
@@ -14,7 +14,7 @@ public class OrderClient extends Model {
     public Float totalPrice;
     public Boolean inProgress = true;
             
-    @OneToMany
+    @ManyToMany
     public List<Item> listItems;
     
     @ManyToOne

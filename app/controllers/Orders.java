@@ -17,10 +17,11 @@ public class Orders extends Controller {
         order.totalPrice = card.totalPrice;
         order.listItems = new ArrayList<Item>();
         
+        
         for(int i=0; i<card.listItems.size(); i++){
             order.listItems.add(card.listItems.get(i));
         }
-
+        
         order.save();
         Cards.destroy(restaurant_id, table_id);
     }

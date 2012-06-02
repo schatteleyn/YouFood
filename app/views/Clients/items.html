@@ -14,7 +14,6 @@
     <header class="page-header">
         <h1>Menu/${category.name}</h1>
     </header>
-
     <ul data-role="listview" data-inset="true">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">Select your category and pick which item you want</li>
         #{list listItemsMenuCategory, as:'item'}
@@ -39,7 +38,7 @@
                 #{list card.listItems, as:'item'}
                     <li data-icon="minus">
                         <a href="@{Cards.deleteItem(restaurant.id,table.id,item.id)}">
-                            <h3>${item.name} - ${item.price} $ </h3><span class="ui-li-count">x ${item.quantity}</span>
+                            <h3>${item.name} - ${item.price} $ </h3>
                         </a>
                     </li>
                 #{/list}

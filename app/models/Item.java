@@ -12,8 +12,6 @@ public class Item extends Model {
 
     public String description;
 
-    public int quantity;
-
     @ManyToOne
     public Category category;
 
@@ -22,6 +20,5 @@ public class Item extends Model {
         this.price = price;
         this.description = description;
         this.category = category;
-        this.quantity = 1;
     }
 }

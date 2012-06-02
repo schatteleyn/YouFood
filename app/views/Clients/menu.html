@@ -37,7 +37,7 @@
                 #{list card.listItems, as:'item'}
                     <li data-icon="minus">
                         <a href="@{Cards.deleteItem(restaurant.id,table.id,item.id)}">
-                            <h3>${item.name} - ${item.price} $ </h3><span class="ui-li-count">x ${item.quantity}</span>
+                            <h3>${item.name} - ${item.price} $ </h3>
                         </a>
                     </li>
                 #{/list}

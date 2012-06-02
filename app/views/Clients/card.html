@@ -22,7 +22,7 @@
                 #{list card.listItems, as:'item'}
                     <li>
                         <a href="@{Clients.items(restaurant.id,table.id,item.category.id)}">
-                            <h3>${item.name} - ${item.price} $ </h3><span class="ui-li-count">x ${item.quantity}</span>
+                            <h3>${item.name} - ${item.price} $ </h3>
                         </a>
                     </li>
                 #{/list}
@@ -39,6 +39,6 @@
 
 <div class="span4">
     <a href="@{Clients.menu(restaurant.id,table.id)}" data-role="button" data-icon="plus" data-theme="b">ADD ITEM</a>
-    <a href="@{Cards.clear(card.id)}" data-role="button" data-icon="home" data-theme="a">CLEAR CARD</a>
+    <a href="@{Cards.clear(restaurant.id,table.id,card.id)}" data-role="button" data-icon="home" data-theme="a">CLEAR CARD</a>
     <a href="@{Orders.saveCreate(restaurant.id,table.id,card.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">CHECKOUT & ORDER</a>
 </div>
