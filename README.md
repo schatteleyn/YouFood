@@ -12,8 +12,7 @@ YouFood
 + <del>Table</del>
 + <del>Order</del>
 + <del>Kitchen</del>
-+ <del>Clients</del> IMPORTANT SOLUTION A TROUVER: <del>Ajouter plusiseurs même items dans le card</del>
-                                                   Fonctionne pour le pannier, mais comment récupérer la quantité dans l'order
++ <del>Clients</del>
 
 ### Controller ###
 (Create Edit Delete)
