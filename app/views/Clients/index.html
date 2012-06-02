@@ -10,5 +10,11 @@
         Mauris consectetur ante sed mauris tempus commodo. Vestibulum ante ipsum primis in faucibus orci luctus et 
         ultrices posuere cubilia Curae; Suspendisse id ligula in nisi congue lacinia. Morbi ut suscipit sapien. 
         Nulla eget felis eros, nec posuere felis.</p>
-    <a href="@{menu(restaurant.id,table.id)}" data-theme="b" value="Menu" data-role="button">Menu</a>
+    <a href="@{menu(restaurant.id,table.id)}" data-theme="b" value="Menu" data-role="button">MENU</a>
+    #{if table.needHelp == true}
+        <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-theme="e" value="Menu" data-role="button" data-icon="info" data-iconpos="top">ASK FOR HELP</a>
+    #{/if}
+    #{else}
+        <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-theme="d" value="Menu" data-role="button" data-icon="info" data-iconpos="top">ASK FOR HELP</a>
+    #{/else}
 </div>

@@ -56,6 +56,18 @@ public class Tables extends Controller {
         Waiters.showStatusTables(restaurant_id);
     }
     
+    public static void editNeedHelpClient(Long restaurant_id, Long table_id) {
+        TableRest table = TableRest.findById(table_id);
+        if(table.needHelp){
+            table.needHelp = false;
+        }else{
+            table.needHelp = true;
+        }
+        
+        table.save();
+        Clients.index(restaurant_id, table_id);
+    }
+    
     public static void destroy(Long restaurant_id) {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
         

@@ -53,6 +53,7 @@ GET     /restaurant/{restaurant_id}/table/create                                
 POST    /restaurant/{restaurant_id}/table/create                                                      Tables.saveCreate
 GET     /restaurant/{restaurant_id}/waiter/tables/status/editIsAvailable/{table_id}                   Tables.editIsAvailable
 GET     /restaurant/{restaurant_id}/waiter/tables/status/editNeedHelp/{table_id}                      Tables.editNeedHelp
+GET     /restaurant/{restaurant_id}/table/{table_id}/client/needHelp                                  Tables.editNeedHelp
 DELETE  /restaurant/{restaurant_id}/table/{table_id}                                                  Tables.destroy
 
 # Waiter
@@ -82,7 +83,7 @@ POST    /restaurant/{restaurant_id}/table/{table_id}/client/card                
 # Order
 
 GET     /restaurant/{restaurant_id}/table/{table_id}/order/create/{card_id}                 Orders.saveCreate
-GET     /restaurant/{restaurant_id}/waiter/order/complete/{order_id}              Orders.orderComplete
+GET     /restaurant/{restaurant_id}/waiter/order/complete/{order_id}                        Orders.orderComplete
 DELETE  /restaurant/{restaurant_id}/waiter/order/{order_id}                                 Orders.destroy
 
 # Card
