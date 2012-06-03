@@ -27,7 +27,7 @@ YouFood
 + <del>Clients</del>
 
 <del>Interface Client : 100%</del>
-Interface Waiter : 90%
+<del>Interface Waiter : 100%</del>
 Interface Kitchen : 70%
 
 ## Design ##
