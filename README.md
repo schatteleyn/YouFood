@@ -23,12 +23,13 @@ YouFood
 + <del>Waiter</del>
 + <del>Table</del>
 + <del>Order</del>
-+ <del>Kitchen</del> IMPORTANT SOLUTION A TROUVER: Comment manipuler(save) un model avec 2 lists (@OneToMany)
++ <del>Kitchen</del>
 + <del>Clients</del>
++ <del>ItemToCook</del>
 
 <del>Interface Client : 100%</del>
 <del>Interface Waiter : 100%</del>
-Interface Kitchen : 70%
+Interface Kitchen : 90%
 
 ## Design ##
 TO DO
