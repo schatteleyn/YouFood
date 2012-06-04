@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import models.*;
 import play.data.validation.Required;
@@ -39,8 +40,17 @@ public class Restaurants extends Controller {
         }else{
             restaurant = new Restaurant(address,city,country,menus.get(0));
         }
-        
+
         restaurant.save();
+        
+        Kitchen kitchen = new Kitchen(restaurant);
+        kitchen.listItems = new ArrayList<ItemToCook>();
+
+        restaurant.kitchen = kitchen;
+
+        kitchen.save();
+        restaurant.save();
+        
         index();
     }
     
@@ -104,9 +114,7 @@ public class Restaurants extends Controller {
 
         Kitchen kitchen = restaurant.kitchen;
         if(kitchen != null){
-            kitchen.listItemsToDo.clear();
-            kitchen.listItemsDone.clear();
-
+            kitchen.listItems.clear();
             kitchen.delete();
         }
         

@@ -7,11 +7,17 @@
     </header>
     <ul data-role="listview" data-inset="true" data-theme="c" data-divider-theme="e">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">To do</li>
-        #{if kitchen != null}
-            #{list kitchen.listItemsToDo, as:'item'}
-                <li data-icon="gear">
-                    <a href="@{Kitchens.removeItem(restaurant.id,item.id)}">${item.name}</a>
-                </li>
+        #{if !kitchen.listItems.isEmpty()}
+            #{list kitchen.listItems, as:'itemToCook'}
+                #{if itemToCook.finishCookDate == null}
+                    <li data-icon="plus">
+                        <a href="@{Kitchens.removeItem(restaurant.id,itemToCook.item.id)}">
+                            Table :  ${itemToCook.order.table.numTable}
+                            Name : ${itemToCook.item.name}
+                            Time : ${itemToCook.creationDate}
+                        </a>
+                    </li>
+                #{/if}
             #{/list}
         #{/if}
         #{else}
@@ -22,11 +28,16 @@
     <br/>
     <ul data-role="listview" data-inset="true" data-theme="c" data-divider-theme="e">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">Done</li>
-        #{if kitchen != null}
-            #{list kitchen.listItemsDone, as:'item'}
-                <li data-icon="gear">
-                    <a>${item.name}</a>
-                </li>
+        #{if !kitchen.listItems.isEmpty()}
+            #{list kitchen.listItems, as:'itemToCook'}
+                #{if itemToCook.finishCookDate != null}
+                    <li>
+                        Table :  ${itemToCook.order.table.numTable}
+                        Name : ${itemToCook.item.name}
+                        Time : ${itemToCook.creationDate}
+                        Finish at : ${itemToCook.finishCookDate}
+                    </li>
+                #{/if}
             #{/list}
         #{/if}
         #{else}

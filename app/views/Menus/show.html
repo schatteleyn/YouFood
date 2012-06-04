@@ -33,18 +33,20 @@
                     <table class="table table table-striped">
                         <thead>
                             <tr>
+                                <th>Type</th>
                                 <th>Name</th>
                                 <th>Price</th>
-                                <th>Type</th>
+                                <th>Description</th>
                             </tr>
                         </thead>
                         <tbody>
                             #{if !menu.listItems.isEmpty()}
                                 #{list menu.listItems, as:'item'}
                                     <tr>
+                                        <td>#{a @Categories.show(item.category.id)}${item.category.name}#{/a}</td>
                                         <td>${item.name}</td>
                                         <td>${item.price} $</td>
-                                        <td>#{a @Categories.show(item.category.id)}${item.category.name}#{/a}</td>
+                                        <td>${item.description}</td>
                                     </tr>
                                 #{/list}
                             #{/if}

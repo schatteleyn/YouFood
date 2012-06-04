@@ -11,18 +11,25 @@ public class Orders extends Controller {
         Card card = Card.findById(card_id);
         TableRest table = TableRest.findById(table_id);
         Restaurant restaurant = Restaurant.findById(restaurant_id);
-        
         OrderClient order = new OrderClient(restaurant, table);
+        
         order.date = new Date();
         order.totalPrice = card.totalPrice;
         order.listItems = new ArrayList<Item>();
-        
         
         for(int i=0; i<card.listItems.size(); i++){
             order.listItems.add(card.listItems.get(i));
         }
         
         order.save();
+        
+        for(int i=0; i<card.listItems.size(); i++){
+            ItemToCook itemToCook = new ItemToCook(restaurant.kitchen, order, card.listItems.get(i), order.date);
+            itemToCook.save();
+            restaurant.kitchen.listItems.add(itemToCook);
+            restaurant.kitchen.save();
+        }
+        
         Cards.destroy(restaurant_id, table_id);
     }
     
