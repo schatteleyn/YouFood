@@ -1,18 +1,36 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="page-header">
-    <h1>Menu edit : ${menu.name}</h1>
-</header>
+<ul class="breadcrumb">
+    <li>
+        <a href="/restaurants/menus">Menus</a> <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="@{show(menu.id)}">${menu.name}</a> <span class="divider">/</span>
+    </li>
+    <li class="active">Edition</li>
+</ul>
 
-#{form @saveEdit(menu.id)}
-    #{field 'name'}
-        <p>
-            <label>Name</label>
-            <input type="text" name="name" id="name" value="${menu.name}"/>
-        </p> 
-    #{/field}
-    <p class="buttons">
-        <input type="submit" value="Save"> <a href="@{show(menu.id)}">Cancel</a>    
-    </p>
-#{/form}
+<h1>Menu edit : ${menu.name}</h1>
+<hr>
+
+<div class="row">
+    <div class="span6">
+        #{form @saveEdit(menu.id)}
+            <fieldset>
+                #{field 'name'}
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input type="text" class="input" id="name" name="name" value="${menu.name}">
+                        </div>
+                    </div>
+                #{/field}
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button class="btn" href="@{show(menu.id)}">Cancel</button>
+                    </div>
+            </fieldset>
+        #{/form}
+    </div>
+</div>

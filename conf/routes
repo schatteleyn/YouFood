@@ -19,7 +19,6 @@ DELETE  /restaurant/{restaurant_id}                                         Rest
 
 GET     /restaurants/categories                                             Categories.index
 GET     /restaurants/category/{category_id}                                 Categories.show
-GET     /restaurants/categories/create                                      Categories.create
 POST    /restaurants/categories/create                                      Categories.saveCreate
 GET     /restaurants/category/{category_id}/edit                            Categories.edit
 POST    /restaurants/category/{category_id}                                 Categories.saveEdit
@@ -42,6 +41,7 @@ GET     /restaurants/menu/create                                            Menu
 POST    /restaurants/menu/create                                            Menus.saveCreate
 GET     /restaurants/menu/{menu_id}/edit                                    Menus.edit
 POST    /restaurants/menu/{menu_id}                                         Menus.saveEdit
+GET     /restaurants/currentMenu/{menu_id}                                  Menus.saveEditMenu
 GET     /restaurants/menu/{menu_id}/editListItem                            Menus.editListItem
 POST    /restaurants/menu/{menu_id}/editListItem                            Menus.saveEditListItem
 DELETE  /restaurants/menu/{menu_id}                                         Menus.destroy

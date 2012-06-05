@@ -1,67 +1,69 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="page-header"> 
-    <h1>Category : ${category.name}</h1>
-</header>
+<ul class="breadcrumb">
+    <li>
+        <a href="/restaurants/categories">Categories</a> <span class="divider">/</span>
+    </li>
+    <li class="active">${category.name}</li>
+</ul>
 
-<div class="span12">
-    <div class="span3">
-        <h3>Description</h3>${category.description}</br>
+<h1>Name : ${category.name}</h1>
+<hr>
+
+<div class="row">
+    <div class="span8">
+        <h3>Description</h3>${category.description}
     </div>
-    <div class="offset10">
-        <a class="btn btn-warning" href="@{edit(category.id)}">Edit</a>
+    <div style="float: right;">
+        <a class="btn btn-large btn-info" href="@{edit(category.id)}">Edition</a>
         #{if items.isEmpty()}
             #{a @destroy(category.id)}Delete#{/a}
         #{/if}
         #{else}
-            <a class="btn btn-danger disabled" disabled="disabled">Delete</a>
+            <a class="btn btn-large btn-danger disabled" disabled="disabled">Delete this Category</a>
         #{/else}
     </div>
 </div>
+<br/>
+<br/>
 
-<div class="row">
-    <div class="span12">
-        <div class="page-header">
-            <h1>Item list</h1>
-        </div>
-        <div class="row">
-            <div class="span12">
-                <div class="offset10">
-                    <a class="btn btn-success" href="@{Items.create(category.id)}">Add Item</a>
-                </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        #{if !items.isEmpty()}
-                        #{list items, as:'item'}
-                            <tr>
-                                <td>${item.name}</td>
-                                <td>${item.price} $</td>
-                                <td>${item.description}</td>
-                                <td>
-                                    <a href="@{Items.edit(category.id, item.id)}"><button class="btn">edit</button></a>
-                                    <a href="@{Items.destroy(item.id)}"><button class="btn">delete</button></a>
-                                </td>
-                            </tr>
-                        #{/list}
-                        #{/if}
-                        #{else}
-                            <tr>
-                                <td colspan="4">No item created</td>
-                            </tr>
-                        #{/else}
+<h2>Items list in this category</h2>
+<br/>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{if !items.isEmpty()}
+        #{list items, as:'item'}
+            <tr>
+                <td>#{a @Items.edit(category.id, item.id)}${item.name}#{/a}</td>
+                <td>${item.price} $</td>
+                <td>${item.description}</td>
+                <td>
+                    <a href="@{Items.destroy(item.id)}"><span class="label label-important">Delete</span></a>
+                </td>
+            </tr>
+        #{/list}
+        #{/if}
+        #{else}
+            <tr>
+                <td colspan="4">No item created</td>
+            </tr>
+        #{/else}
 
-                    </tbody>
-                </table> 
-            </div>
-        </div>
-    </div>
-</div>
+    </tbody>
+</table> 
+
+<form class="form-horizontal" id="post" action="@{Items.saveCreate(category.id)}" method="POST">
+    <input type="text" class="input" id="name" name="name" placeholder="New Item">
+    <input type="text" class="input-small" id="price" name="price" placeholder="Price $">
+    <input type="text" class="input-xxlarge" id="description" name="description" placeholder="Description">
+    <input type="submit" value="+" id="postItem" />
+</form>

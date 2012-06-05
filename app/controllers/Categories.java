@@ -18,10 +18,6 @@ public class Categories extends Controller {
         List<Item> items = Item.find("byCategory_id", category_id).fetch();
         render(category, items);
     }
-        
-    public static void create() {
-        render();
-    }
 
     public static void saveCreate(@Required String name, @Required String description) {
         if (validation.hasErrors()) {

@@ -1,9 +1,18 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="page-header">
-    <h1>Edit Category : ${category.name}</h1>
-</header>
+<ul class="breadcrumb">
+    <li>
+        <a href="/restaurants/categories">Categories</a> <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="@{Categories.show(category.id)}">${category.name}</a> <span class="divider">/</span>
+    </li>
+    <li class="active">Edition</li>
+</ul>
+
+<h1>Category edition</h1>
+<hr>
 
 <div class="row">
     <div class="span6">
@@ -13,7 +22,7 @@
                     <div class="control-group">
                         <label class="control-label" for="name">Name</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="name" name="name" value="${category.name}">
+                            <input type="text" class="input" id="name" name="name" value="${category.name}">
                         </div>
                     </div>
                 #{/field}

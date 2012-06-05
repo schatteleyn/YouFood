@@ -68,6 +68,41 @@ public class Menus extends Controller {
         }
         show(menu_id);
     }
+    
+    public static void saveEditMenu(Long menu_id) {
+        List<Restaurant> restaurants = Restaurant.findAll();
+        List<Menu> menus = Menu.findAll();
+        
+        for(int i=0; i<menus.size(); i++){
+            menus.get(i).currentMenu = false; 
+            validation.valid(menus.get(i));
+            if(validation.hasErrors()) {
+                // Message errors to test in views
+            } else {
+                menus.get(i).save();
+            }
+        }
+
+        Menu menu = Menu.findById(menu_id);
+        menu.currentMenu = true;
+        validation.valid(menu);
+        if(validation.hasErrors()) {
+            // Message errors to test in views
+        } else {
+            menu.save();
+        }
+        
+        for(int i=0; i<restaurants.size(); i++){
+           restaurants.get(i).currentMenu = menu; 
+            validation.valid(restaurants.get(i));
+            if(validation.hasErrors()) {
+                // Message errors to test in views
+            } else {
+                restaurants.get(i).save();
+            }
+        }
+        index();
+    }
 
     public static void editListItem(Long menu_id){
         Menu menu = Menu.findById(menu_id);
