@@ -4,6 +4,12 @@
 <div class="span12">
     <div data-role="controlgroup" data-type="horizontal">
         <a href="@{Clients.index(restaurant.id,table.id)}" data-role="button" data-icon="home">HOME</a>
+        #{if table.needHelp == true}
+            <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="e">ASK SEND</a>
+        #{/if}
+        #{else}
+            <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="d">ASK FOR HELP</a>
+        #{/else}
         #{if card != null}
             <a href="@{Cards.clear(restaurant.id,table.id,card.id)}" data-role="button" data-icon="delete" data-theme="a">CLEAR CARD & BACK HOME</a>
         #{/if}
@@ -55,5 +61,3 @@
         <a href="@{card(restaurant.id,table.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">COMPLETE</a>
     #{/if}
 </div>
-
-

@@ -5,8 +5,8 @@
     <h1>Restaurants</h1>
 </header>
 
-<div class="offset10">
-    <a class="btn btn-success" href="@{create()}">Add Restaurant</a>
+<div style="float: right;">
+    <a class="btn btn-large btn-success" href="@{create()}">Add Restaurant</a>
 </div>
 
 <section id="restaurantList">
@@ -16,9 +16,8 @@
                 <a href="@{show(restaurant.id)}">
                     <div class="span3">
                         <div class="well">
-                            <div class="page-header">
-                                <h1>${restaurant.city}</h1>
-                            </div>
+                            <h1>${restaurant.city}</h1>
+                            <hr/>
                             <h3>${restaurant.country}</h3>
                             <h3>${restaurant.address}</h3>
                         </div>

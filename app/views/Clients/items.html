@@ -4,6 +4,12 @@
 <div class="span12">
     <div data-role="controlgroup" data-type="horizontal">
         <a href="@{Clients.menu(restaurant.id,table.id)}" data-role="button" data-icon="back">BACK</a>
+        #{if table.needHelp == true}
+            <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="e">ASK SEND</a>
+        #{/if}
+        #{else}
+            <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="d">ASK FOR HELP</a>
+        #{/else}
         #{if card != null}
             <a href="@{Cards.clear(restaurant.id,table.id,card.id)}" data-role="button" data-icon="delete" data-theme="a">CLEAR CARD</a>
         #{/if}
@@ -16,15 +22,22 @@
     </header>
     <ul data-role="listview" data-inset="true">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">Select your category and pick which item you want</li>
-        #{list listItemsMenuCategory, as:'item'}
-            <li data-icon="plus">
-                <a href="@{Cards.createItem(restaurant.id,table.id,item.id)}" data-transition="slideup">
-                    <h1>${item.name}</h1>
-                    <p>${item.description}</p>
-                    <p class="ui-li-aside">${item.price} $</p>
-                </a>
+        #{if !listItemsMenuCategory.isEmpty()}
+            #{list listItemsMenuCategory, as:'item'}
+                <li data-icon="plus">
+                    <a href="@{Cards.createItem(restaurant.id,table.id,item.id)}" data-transition="slideup">
+                        <h1>${item.name}</h1>
+                        <p>${item.description}</p>
+                        <p class="ui-li-aside">${item.price} $</p>
+                    </a>
+                </li>
+            #{/list}
+        #{/if}
+        #{else}
+            <li>
+                No Items
             </li>
-        #{/list}
+        #{/else}
     </ul>
 </div>
 
@@ -55,4 +68,12 @@
     #{if card != null}
         <a href="@{card(restaurant.id,table.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">COMPLETE</a>
     #{/if}
+</div>
+
+
+<div class="span12">
+    <div data-role="controlgroup" data-type="horizontal">
+        <br/>
+        <a href="@{Clients.menu(restaurant.id,table.id)}" data-role="button" data-icon="back">BACK</a>
+    </div>
 </div>

@@ -16,8 +16,10 @@
         <h3>Creation Date</h3> ${menu.creationDate}
     </div>
     <div style="float: right;">
-        <a class="btn btn-large btn-info" href="@{edit(menu.id)}">Edition</a>
-        <a class="btn btn-large btn-danger" href="@{destroy(menu.id)}">Delete this menu</a>
+        <div class="btn-group">
+            <a class="btn btn-large btn-info" href="@{edit(menu.id)}">Edition</a>
+            <a class="btn btn-large btn-danger" href="@{destroy(menu.id)}">Delete this menu</a>
+        </div>
     </div>
 </div>
 <br/>
@@ -28,7 +30,9 @@
         <h2>List items</h2>
     </div>
     <div style="float: right;">
-        <a class="btn btn-large btn-success" href="@{editListItem(menu.id)}">Edition Item list</a>
+
+            <a class="btn btn-large btn-success" href="@{editListItem(menu.id)}">Edition Item list</a>
+       
     </div>
 </div>
 <br/>

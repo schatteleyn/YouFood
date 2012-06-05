@@ -1,28 +1,49 @@
 #{extends 'main.html' /}
 #{set title:'Restaurant' /}
 
-<header class="page-header">
-    <h1>Waiter edit : ${waiter.firstName} ${waiter.lastName}</h1>
-</header>
+<ul class="breadcrumb">
+    <li>
+        <a href="/restaurants">Restaurants</a> <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="/restaurants">${restaurant.city}</a> <span class="divider">/</span>
+    </li>
+    <li>
+        Waiters<span class="divider">/</span>
+    </li>
+    <li class="active">Edition</li>
+</ul>
 
-<div class="span12">
-    #{form @saveEdit(waiter.id)}
-        #{field 'firstName'}
-            <p>
-                <label>First name</label>
-                <input type="text" name="firstName" id="firstName" value="${waiter.firstName}"/>
-            </p> 
-        #{/field}
-        #{field 'lastName'}
-            <p>
-                <label>Last name</label>
-                <input type="text" name="lastName" id="lastName" value="${waiter.lastName}"/>
-            </p> 
-        #{/field}
-        <p class="buttons">
-            <input type="submit" value="Save"> <a href="@{index()}">Cancel</a>    
-        </p>
-    #{/form}
+<h1>Waiter edition : ${waiter.firstName} ${waiter.lastName}</h1>
+<hr/>
+
+<div class="row">
+    <div class="span6">
+        #{form @saveEdit(waiter.id)}
+            <fieldset>
+                #{field 'firstName'}
+                    <div class="control-group">
+                        <label class="control-label" for="firstName">First name</label>
+                        <div class="controls">
+                            <input type="text" class="input" id="firstName" name="firstName" value="${waiter.firstName}" />
+                        </div>
+                    </div>
+                #{/field}
+                #{field 'lastName'}
+                    <div class="control-group">
+                        <label class="control-label" for="city">Last name</label>
+                        <div class="controls">
+                            <input type="text" class="input" id="lastName" name="lastName" value="${waiter.lastName}" />
+                        </div>
+                    </div>
+                #{/field}
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-large btn-primary">Save</button>
+                    <button class="btn btn-large" href="@{Restaurants.show(restaurant.id)}">Cancel</button>
+                </div>
+            </fieldset>
+        #{/form}
+   </div>
 </div>
 
 

@@ -27,7 +27,6 @@ DELETE  /restaurants/category/{category_id}                                 Cate
 # Item
 
 GET     /restaurants/category/{category_id}                                 Items.index
-GET     /restaurants/category/{category_id}/item/create                     Items.create
 POST    /restaurants/category/{category_id}/item/create                     Items.saveCreate
 GET     /restaurants/category/{category_id}/item/{item_id}/edit             Items.edit
 POST    /restaurants/category/{category_id}/item/{item_id}                  Items.saveEdit
@@ -37,7 +36,6 @@ DELETE  /restaurants/category/{category_id}/item/{item_id}                  Item
 
 GET     /restaurants/menus                                                  Menus.index
 GET     /restaurants/menu/{menu_id}                                         Menus.show
-GET     /restaurants/menu/create                                            Menus.create
 POST    /restaurants/menu/create                                            Menus.saveCreate
 GET     /restaurants/menu/{menu_id}/edit                                    Menus.edit
 POST    /restaurants/menu/{menu_id}                                         Menus.saveEdit
@@ -49,7 +47,6 @@ DELETE  /restaurants/menu/{menu_id}                                         Menu
 # Table
 
 GET     /restaurant/{restaurant_id}/table                                                             Tables.index
-GET     /restaurant/{restaurant_id}/table/create                                                      Tables.create
 POST    /restaurant/{restaurant_id}/table/create                                                      Tables.saveCreate
 GET     /restaurant/{restaurant_id}/waiter/tables/status/editIsAvailable/{table_id}                   Tables.editIsAvailable
 GET     /restaurant/{restaurant_id}/waiter/tables/status/editNeedHelp/{table_id}                      Tables.editNeedHelp
@@ -63,7 +60,6 @@ GET     /restaurant/{restaurant_id}/waiter/orders                           Wait
 GET     /restaurant/{restaurant_id}/waiter/orders/old                       Waiters.showPreviousOrders
 GET     /restaurant/{restaurant_id}/waiter/order/{order_id}                 Waiters.showCurrentOrderDetailed
 GET     /restaurant/{restaurant_id}/waiter/tables/status                    Waiters.showStatusTables
-GET     /restaurant/{restaurant_id}/waiter/create                           Waiters.create
 POST    /restaurant/{restaurant_id}/waiter/create                           Waiters.saveCreate
 GET     /restaurant/{restaurant_id}/waiter/{waiter_id}/edit                 Waiters.edit
 POST    /restaurant/{restaurant_id}/waiter/{waiter_id}                      Waiters.saveEdit

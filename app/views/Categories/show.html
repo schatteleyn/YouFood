@@ -16,13 +16,15 @@
         <h3>Description</h3>${category.description}
     </div>
     <div style="float: right;">
-        <a class="btn btn-large btn-info" href="@{edit(category.id)}">Edition</a>
-        #{if items.isEmpty()}
-            #{a @destroy(category.id)}Delete#{/a}
-        #{/if}
-        #{else}
-            <a class="btn btn-large btn-danger disabled" disabled="disabled">Delete this Category</a>
-        #{/else}
+        <div class="btn-group">
+            <a class="btn btn-large btn-info" href="@{edit(category.id)}">Edition</a>
+            #{if items.isEmpty()}
+                #{a @destroy(category.id)}Delete#{/a}
+            #{/if}
+            #{else}
+                <a class="btn btn-large btn-danger disabled" disabled="disabled">Delete this Category</a>
+            #{/else}
+        </div>
     </div>
 </div>
 <br/>

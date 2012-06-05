@@ -85,10 +85,12 @@ public class Waiters extends Controller {
         index(restaurant.id);
     }
     
-    public static void edit(Long waiter_id) {
+    public static void edit(Long restaurant_id, Long waiter_id) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
         Waiter waiter = Waiter.findById(waiter_id);
-        render(waiter);
+        render(restaurant,waiter);
     }
+    
     public static void saveEdit(@Required Long waiter_id, @Required String firstName, @Required String lastName) {
         Waiter waiter = Waiter.findById(waiter_id);
         waiter.firstName = firstName;

@@ -12,7 +12,7 @@
         Nulla eget felis eros, nec posuere felis.</p>
     <a href="@{menu(restaurant.id,table.id)}" data-theme="b" value="Menu" data-role="button">MENU</a>
     #{if table.needHelp == true}
-        <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-theme="e" value="Menu" data-role="button" data-icon="info" data-iconpos="top">ASK FOR HELP</a>
+        <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-theme="e" value="Menu" data-role="button" data-icon="info" data-iconpos="top">ASK SEND</a>
     #{/if}
     #{else}
         <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-theme="d" value="Menu" data-role="button" data-icon="info" data-iconpos="top">ASK FOR HELP</a>
