@@ -6,11 +6,14 @@
 </header>
 
 <div style="float: right;">
-    <a class="btn btn-large btn-success" href="@{create()}">Add Restaurant</a>
+    <a class="btn btn-large btn-success" href="@{create()}">
+        <i class="icon-plus icon-white"></i>
+        Add Restaurant
+    </a>
 </div>
 
-<section id="restaurantList">
-    <div class="row">
+<div class="row">
+    <div class="span10">
         #{if !restaurants.isEmpty() }
             #{list restaurants, as:'restaurant'}
                 <a href="@{show(restaurant.id)}">
@@ -26,4 +29,5 @@
             #{/list}
         #{/if}
     </div>
-</section>
+</div>
+

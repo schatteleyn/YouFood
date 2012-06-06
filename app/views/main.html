@@ -37,10 +37,9 @@
           <a class="brand" href="/restaurants">YouFood</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li #{if restaurants != null
-                    || restaurant != null} class="active" #{/if} ><a href="/restaurants">Restaurants</a></li>
-              <li #{if menus != null} class="active" #{/if} ><a href="/restaurants/menus">Menus</a></li>
-              <li #{if categories != null} class="active" #{/if} ><a href="/restaurants/categories">Categories</a></li>
+              <li #{if restaurants != null || restaurant != null} class="active" #{/if} ><a href="/restaurants">Restaurants</a></li>
+              <li #{if menus != null || menu != null} class="active" #{/if} ><a href="/restaurants/menus">Menus</a></li>
+              <li #{if categories != null || category != null} class="active" #{/if} ><a href="/restaurants/categories">Categories</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -50,13 +49,23 @@
     <div class="container" style="margin-top: 50px;">
 
         #{doLayout /}
-
+        
+        <footer class="footer">
+            <hr>
+            <p class="pull-right">
+                <span class="label label-success">YOUFOOD</span>
+            </p>
+            <p>
+                Designed and built by EatThemALL.
+            </p>
+        </footer>
     </div> <!-- /container -->
-
+    
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="@{'/public/javascripts/bootstrap/bootstrap.js'}"></script>
+    <script src="@{'/public/javascripts/bootstrap/files/bootstrap-popover.js'}"></script>
+    <script src="@{'/public/javascripts/application.js'}"></script>
 
   </body>
 </html>

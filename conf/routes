@@ -90,8 +90,9 @@ GET    /restaurant/{restaurant_id}/table/{table_id}/client/clearCard/{card_id}  
 
 # Kitchen
 
-GET     /restaurant/{restaurant_id}/kitchen                                 Kitchens.index
-GET     /restaurant/{restaurant_id}/kitchen/item/{item_id}                  Kitchens.removeItem
+GET     /restaurant/{restaurant_id}/kitchen/ToDo                                            Kitchens.itemToDo
+GET     /restaurant/{restaurant_id}/kitchen/Done                                            Kitchens.itemDone
+GET     /restaurant/{restaurant_id}/kitchen/item/{item_id}                                  Kitchens.removeItem
 
 # Ignore favicon requests
 GET     /favicon.ico                                                        404

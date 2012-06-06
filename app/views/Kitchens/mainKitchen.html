@@ -28,7 +28,12 @@
 
   <body>
         <div data-role="page">
-
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="@{Kitchens.itemToDo(restaurant.id)}" #{if page == 1} class="ui-btn-active" #{/if}>Items To Do</a></li>
+                    <li><a href="@{Kitchens.itemDone(restaurant.id)}" #{if page == 2} class="ui-btn-active" #{/if}>Items Done</a></li>
+                </ul>
+            </div>
             #{doLayout /}
 
         </div><!-- /page -->

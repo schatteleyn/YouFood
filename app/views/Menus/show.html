@@ -7,32 +7,39 @@
     </li>
     <li class="active">${menu.name}</li>
 </ul>
-
+<div class="well">
 <h1>Name : ${menu.name}</h1>
 <hr>
 
-<div class="row">
-    <div class="span3">
-        <h3>Creation Date</h3> ${menu.creationDate}
-    </div>
-    <div style="float: right;">
-        <div class="btn-group">
-            <a class="btn btn-large btn-info" href="@{edit(menu.id)}">Edition</a>
-            <a class="btn btn-large btn-danger" href="@{destroy(menu.id)}">Delete this menu</a>
+
+    <div class="row">
+        <div class="span3">
+            <h3>Creation Date</h3> ${menu.creationDate}
+        </div>
+        <div style="float: right;">
+            <div class="btn-group">
+                <a class="btn btn-large btn-info" href="@{edit(menu.id)}">
+                    <i class="icon-edit icon-white"></i>
+                    Edition
+                </a>
+                <a class="btn btn-large btn-danger" href="@{destroy(menu.id)}">
+                    <i class="icon-remove icon-white"></i>
+                    Delete this menu
+                </a>
+            </div>
         </div>
     </div>
 </div>
-<br/>
-<br/>
 
 <div class="row">
     <div class="span3">
         <h2>List items</h2>
     </div>
     <div style="float: right;">
-
-            <a class="btn btn-large btn-success" href="@{editListItem(menu.id)}">Edition Item list</a>
-       
+        <a class="btn btn-large btn-success" href="@{editListItem(menu.id)}">
+            <i class="icon-edit icon-white"></i>
+            Edition Item list
+        </a>
     </div>
 </div>
 <br/>

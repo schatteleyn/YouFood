@@ -8,11 +8,20 @@ import play.mvc.Controller;
 
 public class Kitchens extends Controller {
 
-    public static void index(Long restaurant_id) {
+    public static void itemToDo(Long restaurant_id) {
+        Restaurant restaurant = Restaurant.findById(restaurant_id);
+        Kitchen kitchen = restaurant.kitchen;        
+        
+        int page = 1;
+        render(restaurant, kitchen, page);
+    }
+    
+    public static void itemDone(Long restaurant_id) {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
         Kitchen kitchen = restaurant.kitchen;        
 
-        render(restaurant, kitchen);
+        int page = 2;
+        render(restaurant, kitchen, page);
     }
 
     public static void removeItem(Long restaurant_id, Long item_id) {
@@ -27,6 +36,6 @@ public class Kitchens extends Controller {
             }
         }
 
-        index(restaurant.id);
+        itemToDo(restaurant.id);
     }
 }

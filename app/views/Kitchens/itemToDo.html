@@ -1,0 +1,31 @@
+#{extends 'Kitchens/mainKitchen.html' /}
+#{set title:'Restaurant' /}
+
+<div class="span12">
+    <header class="page-header">
+        <h1>Items To Do</h1>
+    </header>
+    <ul data-role="listview" data-inset="true" data-theme="c" data-divider-theme="e">
+        <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">To do</li>
+        #{if !kitchen.listItems.isEmpty()}
+            #{list kitchen.listItems, as:'itemToCook'}
+                #{if itemToCook.finishCookDate == null}
+                    <li data-icon="plus">
+                        <a href="@{Kitchens.removeItem(restaurant.id,itemToCook.item.id)}">
+                            <div class="span3">
+                                Name : ${itemToCook.item.name}
+                            </div>
+                            <div class="span7">
+                                Time : ${itemToCook.creationDate}
+                            </div>
+                                Table :  ${itemToCook.order.table.numTable}
+                        </a>
+                    </li>
+                #{/if}
+            #{/list}
+        #{/if}
+        #{else}
+            <li>No Items</li>
+        #{/else}
+    </ol>
+</div>

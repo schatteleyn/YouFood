@@ -7,26 +7,47 @@
     </li>
     <li class="active">${restaurant.city}</li>
 </ul>
+<div class="well">
+    <h1>${restaurant.city}</h1>
+    <hr>
 
-<h1>${restaurant.city}</h1>
-<hr>
-
-<div class="row">
-    <div class="span3">
-        <h3>Address</h3> ${restaurant.address}</br>
-    </div>
-    <div class="span3">
-        <h3>Country</h3> ${restaurant.country}</br>
-    </div>
-    <div style="float: right;">
-        <div class="btn-group">
-            <a class="btn btn-large btn-info" href="@{edit(restaurant.id)}">Edition</a>
-            <a class="btn btn-large btn-danger" href="@{destroy(restaurant.id)}">Delete this restaurant</a>
+    <div class="row">
+        <div class="span3">
+            <h3>Address</h3> ${restaurant.address}</br>
+        </div>
+        <div class="span3">
+            <h3>Country</h3> ${restaurant.country}</br>
+        </div>
+        <div style="float: right;">
+            <div class="btn-group">
+                <a class="btn btn-large btn-info" href="@{edit(restaurant.id)}">
+                    <i class="icon-edit icon-white"></i>
+                    Edition
+                </a>
+                <a class="btn btn-large btn-danger" href="@{destroy(restaurant.id)}">
+                    <i class="icon-remove icon-white"></i>
+                    Delete this restaurant
+                </a>
+            </div>
         </div>
     </div>
 </div>
-<br/>
-<br/>
+
+<div class="offset1">
+    <a class="btn btn-large btn-primary" href="@{Clients.config(restaurant.id)}">
+        <i class="icon-shopping-cart icon-white"></i>
+        Interface Client
+    </a>
+    <a class="btn btn-large btn-primary" href="@{Kitchens.itemToDo(restaurant.id)}">
+        <i class="icon-fire icon-white"></i>
+        Interface Kitchen
+    </a>
+    <a class="btn btn-large btn-primary" href="@{Waiters.showCurrentOrders(restaurant.id)}">
+        <i class="icon-eye-open icon-white"></i>
+        Interface Waiter
+    </a>
+</div>
+
 <div class="row">
     <div class="span8">
         <div class="page-header">
@@ -80,19 +101,19 @@
             </h1>
         </div>
         <div class="row">
-            <div class ="offset1">
+            <div style="float: right;">
                 <div class="btn-group">
-                    <a class="btn btn-large btn-success" href="@{Tables.create(restaurant.id)}">Add Table</a>
-                    <a class="btn btn-large btn-danger" href="@{Tables.destroy(restaurant.id)}">Delete Table</a>
+                    <a class="btn btn-large btn-success" href="@{Tables.create(restaurant.id)}">
+                        <i class="icon-plus icon-white"></i>
+                        Add Table
+                    </a>
+                    <a class="btn btn-large btn-danger" href="@{Tables.destroy(restaurant.id)}">
+                        <i class="icon-minus icon-white"></i>
+                        Delete Table
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br/>
-<br/>
-<a class="btn btn-large btn-primary" href="@{Clients.config(restaurant.id)}">Interface Client test</a>
-<a class="btn btn-large btn-primary" href="@{Kitchens.index(restaurant.id)}">Interface Kitchen</a>
-<a class="btn btn-large btn-primary" href="@{Waiters.showCurrentOrders(restaurant.id)}">Interface Waiter</a>
-
 

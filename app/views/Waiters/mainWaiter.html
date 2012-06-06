@@ -31,7 +31,7 @@
         <div data-role="page">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="@{Waiters.showStatusTables(restaurant.id)}" #{if listTables != null} class="ui-btn-active" #{/if}>Status Tables</a></li>
+                    <li><a href="@{Waiters.showStatusTables(restaurant.id)}" #{if listTables != null} class="ui-btn-active" #{/if}>Tables Status</a></li>
                     <li><a href="@{Waiters.showCurrentOrders(restaurant.id)}" #{if listCurrentOrders != null} class="ui-btn-active" #{/if}>Current Order</a></li>
                     <li><a href="@{Waiters.showPreviousOrders(restaurant.id)}" #{if listOldOrders != null} class="ui-btn-active" #{/if}>Previous Order Day</a></li>
                 </ul>
