@@ -28,11 +28,12 @@ public class Kitchens extends Controller {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
         Kitchen kitchen = restaurant.kitchen;
         Item item = Item.findById(item_id);
-
+ 
         for(int i=0; i<kitchen.listItems.size(); i++){
-            if(kitchen.listItems.get(i).item.id == item.id){
+            if(kitchen.listItems.get(i).item.id == item.id && kitchen.listItems.get(i).finishCookDate == null){
                 kitchen.listItems.get(i).finishCookDate = new Date();
                 kitchen.listItems.get(i).save();
+                break;
             }
         }
 

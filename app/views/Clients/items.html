@@ -51,7 +51,12 @@
                 #{list card.listItems, as:'item'}
                     <li data-icon="minus">
                         <a href="@{Cards.deleteItem(restaurant.id,table.id,item.id)}">
-                            <h3>${item.name} - ${item.price} $ </h3>
+                            <h3>
+                                <div class="span2">
+                                    ${item.name}
+                                </div>
+                            ${item.price} $
+                            </h3>
                         </a>
                     </li>
                 #{/list}
@@ -73,7 +78,6 @@
 
 <div class="span12">
     <div data-role="controlgroup" data-type="horizontal">
-        <br/>
         <a href="@{Clients.menu(restaurant.id,table.id)}" data-role="button" data-icon="back">BACK</a>
     </div>
 </div>

@@ -22,7 +22,12 @@
                 #{list card.listItems, as:'item'}
                     <li>
                         <a href="@{Clients.items(restaurant.id,table.id,item.category.id)}">
-                            <h3>${item.name} - ${item.price} $ </h3>
+                            <h3>
+                                <div class="span2">
+                                    ${item.name}
+                                </div>
+                            ${item.price} $
+                            </h3>
                         </a>
                     </li>
                 #{/list}
