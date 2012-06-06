@@ -63,12 +63,6 @@ public class Waiters extends Controller {
         render(waiter);
     }
     
-    public static void create(Long id) {
-        Restaurant restaurant = Restaurant.findById(id);
-        
-        render(restaurant);
-    }
-    
     public static void saveCreate(@Required Long restaurant_id, @Required String firstName, @Required String lastName) {
         if (validation.hasErrors()) {
             validation.keep();

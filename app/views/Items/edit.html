@@ -11,7 +11,7 @@
     <li class="active">${item.name}</li>
 </ul>
 
-<h2>Item edition</h2>
+<h1>Item edition : ${item.name}</h1>
 <hr>
 
 <div class="row">
@@ -43,8 +43,8 @@
                     </div>
                 #{/field}
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button class="btn" href="@{index(category.id)}">Cancel</button>
+                        <button type="submit" class="btn btn-large btn-primary">Save</button>
+                        <button class="btn btn-large" href="@{index(category.id)}">Cancel</button>
                     </div>
             </fieldset>
         #{/form}

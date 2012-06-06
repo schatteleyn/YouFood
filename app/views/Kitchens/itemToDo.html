@@ -12,11 +12,11 @@
                 #{if itemToCook.finishCookDate == null}
                     <li data-icon="plus">
                         <a href="@{Kitchens.removeItem(restaurant.id,itemToCook.item.id)}">
-                            <div class="span3">
+                            <div class="span5">
                                 ${itemToCook.item.name}
                             </div>
-                            <div class="span7">
-                                Time : ${itemToCook.creationDate}
+                            <div class="span4">
+                                ${itemToCook.creationDate.format('HH:mm')}
                             </div>
                                 Table :  ${itemToCook.order.table.numTable}
                         </a>

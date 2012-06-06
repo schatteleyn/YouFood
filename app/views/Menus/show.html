@@ -7,14 +7,13 @@
     </li>
     <li class="active">${menu.name}</li>
 </ul>
+
 <div class="well">
-<h1>Name : ${menu.name}</h1>
-<hr>
-
-
+    <h1>Name : ${menu.name}</h1>
+    <hr>
     <div class="row">
         <div class="span3">
-            <h3>Creation Date</h3> ${menu.creationDate}
+            <h3>Creation Date</h3> ${menu.creationDate.format('dd MMMM yyyy')}
         </div>
         <div style="float: right;">
             <div class="btn-group">

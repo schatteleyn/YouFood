@@ -12,11 +12,6 @@ public class Items extends Controller {
     public static void index(Long category_id) {
         Categories.show(category_id);
     }
-    
-    public static void create(Long category_id) {
-        Category category = Category.findById(category_id);
-        render(category);
-    }
 
     public static void saveCreate(@Required Long category_id, @Required String name, @Required String description, @Required Float price) {
         if (validation.hasErrors()) {

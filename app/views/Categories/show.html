@@ -8,33 +8,32 @@
     <li class="active">${category.name}</li>
 </ul>
 
-<h1>Name : ${category.name}</h1>
-<hr>
-
-<div class="row">
-    <div class="span8">
-        <h3>Description</h3>${category.description}
-    </div>
-    <div style="float: right;">
-        <div class="btn-group">
-            <a class="btn btn-large btn-info" href="@{edit(category.id)}">
-                <i class="icon-edit icon-white"></i>
-                Edition
-            </a>
-            #{if items.isEmpty()}
-                #{a @destroy(category.id)}Delete#{/a}
-            #{/if}
-            #{else}
-                <a class="btn btn-large btn-danger disabled" disabled="disabled">
-                    <i class="icon-remove icon-white"></i>
-                    Delete this Category
+<div class="well">
+    <h1>Name : ${category.name}</h1>
+    <hr>
+    <div class="row">
+        <div class="span7">
+            <h3>Description</h3>${category.description}
+        </div>
+        <div style="float: right;">
+            <div class="btn-group">
+                <a class="btn btn-large btn-info" href="@{edit(category.id)}">
+                    <i class="icon-edit icon-white"></i>
+                    Edition
                 </a>
-            #{/else}
+                #{if items.isEmpty()}
+                    #{a @destroy(category.id)}Delete#{/a}
+                #{/if}
+                #{else}
+                    <a class="btn btn-large btn-danger disabled" disabled="disabled">
+                        <i class="icon-remove icon-white"></i>
+                        Delete this Category
+                    </a>
+                #{/else}
+            </div>
         </div>
     </div>
 </div>
-<br/>
-<br/>
 
 <h2>Items list in this category</h2>
 <br/>

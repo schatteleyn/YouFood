@@ -12,7 +12,12 @@
                     <li data-role="list-divider">Table #${order.table.numTable}</li>
                     <li data-icon="gear">
                         <a href="@{Waiters.showCurrentOrderDetailed(restaurant.id,order.id)}">
-                            <h3>Time :  ${order.date}</h3>
+                            <div class="row">
+                                <div class="span3">
+                                    <h3>Date :  ${order.date.format('dd MMMM yyyy')}</h3>
+                                </div>
+                                <h3>Time :  ${order.date.format('HH:mm')}</h3>
+                            </div>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>

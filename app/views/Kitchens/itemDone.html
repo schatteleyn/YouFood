@@ -15,10 +15,10 @@
                             ${itemToCook.item.name}
                         </div>
                         <div class="span3">
-                            Time : ${itemToCook.creationDate}
+                            Order at : ${itemToCook.creationDate.format('HH:mm')}
                         </div>
                         <div class="span4">
-                            Finish at : ${itemToCook.finishCookDate}
+                            Finish at : ${itemToCook.finishCookDate.format('HH:mm')}
                         </div>
                             Table :  ${itemToCook.order.table.numTable}
                     </li>
