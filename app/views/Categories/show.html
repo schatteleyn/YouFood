@@ -21,12 +21,15 @@
                     <i class="icon-edit icon-white"></i>
                     Edition
                 </a>
-                #{if items.isEmpty()}
-                    #{a @destroy(category.id)}Delete#{/a}
+                #{if !items.isEmpty()}
+                    <span class="btn btn-large btn-danger disabled" rel="popover" data-content="Remove all items before removing this category." data-original-title="Remove">
+                        <i class="icon-trash icon-white"></i>
+                        Delete this Category
+                    </span>
                 #{/if}
                 #{else}
-                    <a class="btn btn-large btn-danger disabled" disabled="disabled">
-                        <i class="icon-remove icon-white"></i>
+                    <a class="btn btn-large btn-danger" href="@{destroy(category.id)}">
+                        <i class="icon-trash icon-white"></i>
                         Delete this Category
                     </a>
                 #{/else}
@@ -54,9 +57,12 @@
                 <td>${item.price} $</td>
                 <td>${item.description}</td>
                 <td>
-                    <a href="@{Items.destroy(item.id)}"><span class="label label-important">
+                    <a href="@{Items.destroy(item.id)}">
+                        <span class="label label-important">
                             <i class="icon-remove icon-white"></i>
-                            Delete</span></a>
+                            Remove
+                        </span>
+                    </a>
                 </td>
             </tr>
         #{/list}

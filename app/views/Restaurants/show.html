@@ -7,6 +7,9 @@
     </li>
     <li class="active">${restaurant.city}</li>
 </ul>
+
+
+
 <div class="well">
     <h1>${restaurant.city}</h1>
     <hr>
@@ -24,10 +27,18 @@
                     <i class="icon-edit icon-white"></i>
                     Edition
                 </a>
-                <a class="btn btn-large btn-danger" href="@{destroy(restaurant.id)}">
-                    <i class="icon-remove icon-white"></i>
-                    Delete this restaurant
-                </a>
+                #{if !waiters.isEmpty()}
+                    <span class="btn btn-large btn-danger disabled" rel="popover" data-content="Remove all waiters before the restaurant" data-original-title="Delete">
+                        <i class="icon-trash icon-white"></i>
+                        Delete this restaurant
+                    </span>
+                #{/if}
+                #{else}
+                    <a class="btn btn-large btn-danger" href="@{destroy(restaurant.id)}">
+                        <i class="icon-trash icon-white"></i>
+                        Delete this restaurant
+                    </a>
+                #{/else}
             </div>
         </div>
     </div>
@@ -91,7 +102,7 @@
         <form id="post" action="@{Waiters.saveCreate(restaurant.id)}" method="POST" class="form-horizontal">
             <input type="text" name="firstName" id="firstName" placeholder="First name"/>
             <input type="text" name="lastName" id="lastName" placeholder="Last name"/>
-            <input type="submit" value="+" id="postWaiter" />
+            <input class="btn-primary" type="submit" value="+" id="postWaiter" />
         </form>
     </div>
     <div class="span4">
@@ -107,10 +118,18 @@
                         <i class="icon-plus icon-white"></i>
                         Add Table
                     </a>
-                    <a class="btn btn-large btn-danger" href="@{Tables.destroy(restaurant.id)}">
-                        <i class="icon-minus icon-white"></i>
-                        Delete Table
-                    </a>
+                    #{if tables.size == 0}
+                        <a class="btn btn-large btn-danger disabled">
+                            <i class="icon-minus icon-white"></i>
+                            Delete Table
+                        </a>
+                    #{/if}
+                    #{else}
+                        <a class="btn btn-large btn-danger" href="@{Tables.destroy(restaurant.id)}">
+                            <i class="icon-minus icon-white"></i>
+                            Delete Table
+                        </a>
+                    #{/else}
                 </div>
             </div>
         </div>

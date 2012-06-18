@@ -8,10 +8,9 @@ import play.mvc.Controller;
 
 public class Clients extends Controller{
     
-    public static void index(Long restaurant_id, Long table_id) {
+    public static void index(@Required Long restaurant_id, @Required Long table_id) {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
         TableRest table = TableRest.findById(table_id);
-        
         render(restaurant, table);
     }
     

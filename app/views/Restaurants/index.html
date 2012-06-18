@@ -5,6 +5,9 @@
     <h1>Restaurants</h1>
 </header>
 
+<span class="label label-info" rel="popover" data-content="Create, manage your restaurant and access to the client, kitchen and waiter interface." data-original-title="Informations">Informations</span>
+<br><br>
+
 <div style="float: right;">
     <a class="btn btn-large btn-success" href="@{create()}">
         <i class="icon-plus icon-white"></i>
@@ -28,6 +31,11 @@
                 </a>
             #{/list}
         #{/if}
+        #{else}
+            <div class="span10">
+                No restaurant created
+            </div>
+        #{/else}
     </div>
 </div>
 

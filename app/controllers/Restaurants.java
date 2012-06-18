@@ -76,12 +76,15 @@ public class Restaurants extends Controller {
     
     public static void destroy(Long restaurant_id) {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
-
+        
         Kitchen kitchen = restaurant.kitchen;
         if(kitchen != null){
             kitchen.listItems.clear();
+            restaurant.kitchen = null;
+            restaurant.save();
             kitchen.delete();
         }
+        
         
         restaurant.delete();
         index();

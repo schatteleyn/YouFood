@@ -106,7 +106,7 @@ public class Waiters extends Controller {
         Restaurant restaurant = Restaurant.findById(restaurant_id);
         
         for(int i=0; i<restaurant.listWaiters.size(); i++){
-            if(i == waiter.id-1){
+            if(restaurant.listWaiters.get(i).id == waiter.id){
                 restaurant.listWaiters.remove(i);
                 restaurant.save();
                 waiter.delete();

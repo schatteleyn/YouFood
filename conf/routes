@@ -13,7 +13,7 @@ GET     /restaurants/create                                                 Rest
 POST    /restaurants/create                                                 Restaurants.saveCreate
 GET     /restaurant/{restaurant_id}/edit                                    Restaurants.edit
 POST    /restaurant/{restaurant_id}                                         Restaurants.saveEdit
-DELETE  /restaurant/{restaurant_id}                                         Restaurants.destroy 
+GET     /restaurant/{restaurant_id}/delete                                  Restaurants.destroy 
 
 # Category
 
@@ -22,7 +22,7 @@ GET     /restaurants/category/{category_id}                                 Cate
 POST    /restaurants/categories/create                                      Categories.saveCreate
 GET     /restaurants/category/{category_id}/edit                            Categories.edit
 POST    /restaurants/category/{category_id}                                 Categories.saveEdit
-DELETE  /restaurants/category/{category_id}                                 Categories.destroy
+GET     /restaurants/category/{category_id}/delete                          Categories.destroy
 
 # Item
 
@@ -42,7 +42,8 @@ POST    /restaurants/menu/{menu_id}                                         Menu
 GET     /restaurants/currentMenu/{menu_id}                                  Menus.saveEditMenu
 GET     /restaurants/menu/{menu_id}/editListItem                            Menus.editListItem
 POST    /restaurants/menu/{menu_id}/editListItem                            Menus.saveEditListItem
-DELETE  /restaurants/menu/{menu_id}                                         Menus.destroy
+GET     /restaurants/menu/{menu_id}/removeAllItems                          Menus.removeAllItems
+GET     /restaurants/menu/{menu_id}/delete                                  Menus.destroy
 
 # Table
 
@@ -63,7 +64,7 @@ GET     /restaurant/{restaurant_id}/waiter/tables/status                    Wait
 POST    /restaurant/{restaurant_id}/waiter/create                           Waiters.saveCreate
 GET     /restaurant/{restaurant_id}/waiter/{waiter_id}/edit                 Waiters.edit
 POST    /restaurant/{restaurant_id}/waiter/{waiter_id}                      Waiters.saveEdit
-DELETE  /restaurant/{restaurant_id}/waiter/{waiter_id}                      Waiters.destroy
+GET     /restaurant/{restaurant_id}/waiter/{waiter_id}/delete               Waiters.destroy
 
 # Client
 

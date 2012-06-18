@@ -8,17 +8,13 @@
 
     #{if !listTables.isEmpty()}
     <form id="post" action="@{Clients.saveConfig(restaurant.id)}" method="POST">
-        <p>
-            <label>Choose your n°table :</label>
-            <select class="span1" name="table_id">
-                #{list listTables, as:'table'}
-                    <option values="${table.id}">${table.id}</option>
-                #{/list}
-            </select>
-        </p>
-        <p>
-            <button type="submit" data-theme="b">Menu</button>
-        </p>
+        <label>Choose your n°table :</label>
+        <select name="table_id">
+            #{list listTables, as:'table'}
+                <option value="${table.id}">${table.numTable}</option>
+            #{/list}
+        </select>
+        <button type="submit" data-theme="b">Menu</button>        
     </form>
     #{/if}
     #{else}

@@ -11,10 +11,10 @@
     <li class="active">Edition Item list</li>
 </ul>
 
-<h1>Menu List Item Edition</h1>
+<h1>Menu item list edition</h1>
 <hr>
 
-<div class="span12">
+#{if !categories.isEmpty()}
     #{form @saveEditListItem(menu.id)}
         <div class="row">
             #{list categories, as:'category'}
@@ -46,7 +46,12 @@
                 #{/if}
             #{/list}
         </div>
-        <button type="submit" class="btn btn-large btn-primary">Save</button>
-        <button class="btn btn-large" href="@{show(menu.id)}">Cancel</button>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-large btn-primary">Save</button>
+            <button class="btn btn-large" href="@{show(menu.id)}">Cancel</button>
+        </div>
     #{/form}
-</div>
+#{/if}
+#{else}
+    No category created
+#{/else}

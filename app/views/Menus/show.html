@@ -21,10 +21,18 @@
                     <i class="icon-edit icon-white"></i>
                     Edition
                 </a>
-                <a class="btn btn-large btn-danger" href="@{destroy(menu.id)}">
-                    <i class="icon-remove icon-white"></i>
-                    Delete this menu
-                </a>
+                #{if !menu.listItems.isEmpty()}
+                    <span class="btn btn-large btn-danger disabled" rel="popover" data-content="Remove all items before removing this menu." data-original-title="Remove">
+                        <i class="icon-trash icon-white"></i>
+                        Delete this menu
+                    </span>
+                #{/if}
+                #{else}
+                    <a class="btn btn-large btn-danger" href="@{destroy(menu.id)}">
+                        <i class="icon-trash icon-white"></i>
+                        Delete this menu
+                    </a>
+                #{/else}
             </div>
         </div>
     </div>
@@ -35,10 +43,24 @@
         <h2>List items</h2>
     </div>
     <div style="float: right;">
-        <a class="btn btn-large btn-success" href="@{editListItem(menu.id)}">
-            <i class="icon-edit icon-white"></i>
-            Edition Item list
-        </a>
+        <div class="btn-group">
+            #{if !categories.isEmpty()}
+                <a class="btn btn-large btn-success" href="@{editListItem(menu.id)}">
+                    <i class="icon-edit icon-white"></i>
+                    Edition Item list
+                </a>
+            #{/if}
+            #{else}
+                <span class="btn btn-large btn-danger disabled" rel="popover" data-content="You need to create a category item before editing this list" data-original-title="Edition">
+                    <i class="icon-edit icon-white"></i>
+                    Edition Item list
+                </span>
+            #{/else}
+            <a class="btn btn-large btn-danger" href="@{removeAllItems(menu.id)}">
+                <i class="icon-remove icon-white"></i>
+                Remove all items
+            </a>
+        </div>
     </div>
 </div>
 <br/>

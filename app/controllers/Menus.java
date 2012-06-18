@@ -17,7 +17,8 @@ public class Menus extends Controller {
     
     public static void show(Long menu_id){
         Menu menu = Menu.findById(menu_id);
-        render(menu);
+        List<Category> categories = Category.findAll();
+        render(menu, categories);
     }
     
     public static void saveCreate(@Required String name, List<Item> items) {
@@ -132,27 +133,46 @@ public class Menus extends Controller {
         }
     }
     
+    public static void removeAllItems(Long menu_id){
+        Menu menu = Menu.findById(menu_id);
+        menu.listItems.clear();
+        
+        menu.save();
+        show(menu_id);
+    }
+    
     public static void destroy(Long menu_id) {
         List<Restaurant> restaurants = Restaurant.find("byCurrentMenu_id", menu_id).fetch();
         List<Menu> menus = Menu.findAll();
+        Menu menu = Menu.findById(menu_id);
         
-        for(int i=0; i<restaurants.size(); i++){
-            if(menus.isEmpty()){
-               restaurants.get(i).currentMenu = null;
+        if(menu.currentMenu == true){
+            if(menus.size() == 1){
+                for(int i=0; i<restaurants.size(); i++){
+                    restaurants.get(i).currentMenu = null;
+                    restaurants.get(i).save();
+                }
             }else{
-               restaurants.get(i).currentMenu = menus.get(0); 
-            }
-            
-            validation.valid(restaurants.get(i));
-            if(validation.hasErrors()) {
-                // Message errors to test in views
-            } else {
-                restaurants.get(i).save();
+                if(menu.id == menus.get(0).id){
+                    for(int i=0; i<restaurants.size(); i++){
+                        restaurants.get(i).currentMenu = menus.get(1);
+                        menus.get(1).currentMenu = true;
+                        restaurants.get(i).save();
+                        menus.get(1).save();
+                    }
+                }else{
+                    for(int i=0; i<restaurants.size(); i++){
+                        restaurants.get(i).currentMenu = menus.get(0);
+                        restaurants.get(i).save();
+                        menus.get(0).currentMenu = true;
+                        restaurants.get(i).save();
+                        menus.get(0).save();
+                    }
+                }
             }
         }
 
-        Menu menu = Menu.findById(menu_id);
-        menu.delete();
+        menu.delete();        
         index();
     }
 }
