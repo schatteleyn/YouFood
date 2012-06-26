@@ -76,7 +76,7 @@ public class Clients extends Controller{
                 card = listCard.get(i);
             }
         }
-        
+
         if(card != null){
            render(restaurant, table, card);
         }else{

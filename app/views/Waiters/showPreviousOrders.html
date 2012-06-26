@@ -15,7 +15,7 @@
                             <div class="span3">
                                 <h3>Date :  ${order.date.format('dd MMMM yyyy')}</h3>
                             </div>
-                            <h3>Time :  ${order.date.format('HH:mm')}</h3>
+                            <h3>Order at :  ${order.date.format('HH:mm')}</h3>
                         </div>
                         <table class="table table-bordered">
                             <thead>
@@ -33,7 +33,7 @@
                                 #{/list}
                             </tbody>
                         </table>
-                        <h3>Subtotal : ${order.totalPrice} $</h3>
+                        <h3>Subtotal HT: ${order.totalPriceHT} $</h3>
                     </li>
                 </ul>
             </div>

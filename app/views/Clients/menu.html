@@ -5,7 +5,7 @@
     <div data-role="controlgroup" data-type="horizontal">
         <a href="@{Clients.index(restaurant.id,table.id)}" data-role="button" data-icon="home">HOME</a>
         #{if table.needHelp == true}
-            <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="e">ASK SEND</a>
+            <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="e">REQUEST SENT</a>
         #{/if}
         #{else}
             <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="d">ASK FOR HELP</a>
@@ -20,7 +20,7 @@
     <header class="page-header">
         <h1>Menu</h1>
     </header>
-    <ul data-role="listview" data-inset="true" data-theme="d">
+    <ul data-role="listview" data-inset="true" data-theme="c">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">Select your category and pick which item you want</li>
         #{list categories, as:'category'}
             <li>
@@ -43,29 +43,33 @@
     </header>  
     <ul data-role="listview" data-inset="true" data-theme="d">
         <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-corner-top">List items</li>
-            #{if card != null}
-                #{list card.listItems, as:'item'}
-                    <li data-icon="minus">
-                        <a href="@{Cards.deleteItem(restaurant.id,table.id,item.id)}">
-                            <h3>
-                                <div class="span2">
-                                    ${item.name}
-                                </div>
-                            ${item.price} $
-                            </h3>
-                        </a>
-                    </li>
-                #{/list}
-            #{/if}
-            #{else}
-                <li>
-                    No Items
+        #{if card != null}
+            #{list card.listItems, as:'item'}
+                <li data-icon="minus">
+                    <a href="@{Cards.deleteItem(restaurant.id,table.id,item.id)}">
+                        <h3>
+                            <div class="span2">
+                                ${item.name}
+                            </div>
+                        ${item.price} $
+                        </h3>
+                    </a>
                 </li>
-            #{/else}
-
+            #{/list}
+            <li data-theme="e" data-corners="false" data-shadow="false">
+                <h3>
+                    <div class="span2">Subtotal HT: </div> 
+                    ${card.totalPriceHT} $
+                </h3>
+            </li>
+        #{/if}
+        #{else}
+            <li>
+                No Items
+            </li>
+        #{/else}
     </ul>
     <br/>
-    <h3>Subtotal : #{if card != null}${card.totalPrice} $#{/if}#{else}0 $#{/else}</h3><br/>
     #{if card != null}
         <a href="@{card(restaurant.id,table.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">COMPLETE</a>
     #{/if}

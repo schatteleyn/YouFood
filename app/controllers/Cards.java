@@ -9,7 +9,7 @@ import play.data.validation.Required;
 import play.mvc.Controller;
 
 public class Cards extends Controller{
-    
+
     public static void index(Long restaurant_id, Long table_id, Long category_id) {
         Clients.items(restaurant_id, table_id, category_id);
     }
@@ -27,26 +27,20 @@ public class Cards extends Controller{
         }
 
         card.listItems.add(item);
-
-        card.totalPrice = card.totalPrice+item.price;
-        
-        item.save();
+        card.totalPriceHT = card.totalPriceHT+item.price;
+            
         card.save();
         index(restaurant_id, table_id, item.category.id);
     }
     
     public static void deleteItem(@Required Long restaurant_id, @Required Long table_id, @Required Long item_id) {
         TableRest table = TableRest.findById(table_id);
-        Restaurant restaurant = Restaurant.findById(restaurant_id);
         Item item = Item.findById(item_id);
         
         Card card = Card.find("byTable_id", table_id).first();
         
         card.listItems.remove(item);
-        
-        card.totalPrice = card.totalPrice-item.price;
-        
-        item.save();
+        card.totalPriceHT = card.totalPriceHT-item.price;
         
         if(!card.listItems.isEmpty()){
             card.save();

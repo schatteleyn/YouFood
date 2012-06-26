@@ -6,7 +6,6 @@
         <h1>Configuration Card</h1>
     </header>
 
-    #{if !listTables.isEmpty()}
     <form id="post" action="@{Clients.saveConfig(restaurant.id)}" method="POST">
         <label>Choose your n°table :</label>
         <select name="table_id">
@@ -16,11 +15,6 @@
         </select>
         <button type="submit" data-theme="b">Menu</button>        
     </form>
-    #{/if}
-    #{else}
-        <p>No table created</p>
-        <a href="@{Restaurants.show(restaurant.id)}" data-role="button">Back to ${restaurant.city}</a>
-    #{/else}
 </div>
 
 

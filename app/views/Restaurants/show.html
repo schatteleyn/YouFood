@@ -8,8 +8,6 @@
     <li class="active">${restaurant.city}</li>
 </ul>
 
-
-
 <div class="well">
     <h1>${restaurant.city}</h1>
     <hr>
@@ -44,20 +42,52 @@
     </div>
 </div>
 
-<div class="offset1">
-    <a class="btn btn-large btn-primary" href="@{Clients.config(restaurant.id)}">
-        <i class="icon-shopping-cart icon-white"></i>
-        Interface Client
-    </a>
-    <a class="btn btn-large btn-primary" href="@{Kitchens.itemToDo(restaurant.id)}">
-        <i class="icon-fire icon-white"></i>
-        Interface Kitchen
-    </a>
-    <a class="btn btn-large btn-primary" href="@{Waiters.showCurrentOrders(restaurant.id)}">
-        <i class="icon-eye-open icon-white"></i>
-        Interface Waiter
-    </a>
-</div>
+#{if tables.size == 0}
+    <div class="alert alert">
+        <strong>Heads up!</strong>
+        You need to add the tables of your restaurant before having access to Client, Kitchen & Waiter interfaces.
+    </div>
+#{/if}
+
+#{if restaurant.currentMenu == null}
+    <div class="alert alert">
+        <strong>Heads up!</strong>
+        You need to #{a @Menus.index()}create a current menu#{/a} before having access to Client, Kitchen & Waiter interfaces.
+    </div>
+#{/if}
+
+#{ifnot  restaurant.currentMenu == null || tables.size == 0}
+    <div class="offset1">
+        <a class="btn btn-large btn-primary" href="@{Clients.config(restaurant.id)}">
+            <i class="icon-shopping-cart icon-white"></i>
+            Client Interface
+        </a>
+        <a class="btn btn-large btn-primary" href="@{Kitchens.itemToDo(restaurant.id)}">
+            <i class="icon-fire icon-white"></i>
+            Kitchen Interface
+        </a>
+        <a class="btn btn-large btn-primary" href="@{Waiters.showCurrentOrders(restaurant.id)}">
+            <i class="icon-eye-open icon-white"></i>
+            Waiter Interface
+        </a>
+    </div>
+#{/ifnot}
+#{else}
+    <div class="offset1">
+        <a class="btn btn-large btn-primary disabled">
+            <i class="icon-shopping-cart icon-white"></i>
+            Client Interface
+        </a>
+        <a class="btn btn-large btn-primary disabled">
+            <i class="icon-fire icon-white"></i>
+            Kitchen Interface
+        </a>
+        <a class="btn btn-large btn-primary disabled">
+            <i class="icon-eye-open icon-white"></i>
+            Waiter Interface
+        </a>
+    </div>
+#{/else}
 
 <div class="row">
     <div class="span8">
@@ -108,7 +138,7 @@
     <div class="span4">
         <div class="page-header">
             <h1>
-                Number of table : ${tables.size}
+                Number of tables : ${tables.size}
             </h1>
         </div>
         <div class="row">
@@ -135,4 +165,3 @@
         </div>
     </div>
 </div>
-

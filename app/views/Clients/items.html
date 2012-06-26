@@ -5,7 +5,7 @@
     <div data-role="controlgroup" data-type="horizontal">
         <a href="@{Clients.menu(restaurant.id,table.id)}" data-role="button" data-icon="back">BACK TO MENU</a>
         #{if table.needHelp == true}
-            <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="e">ASK SEND</a>
+            <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="e">REQUEST SENT</a>
         #{/if}
         #{else}
             <a href="@{Tables.editNeedHelpClient(restaurant.id,table.id)}" data-role="button" data-icon="info" data-theme="d">ASK FOR HELP</a>
@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div class="span4">
+<div class="span5">
     <header class="page-header">
         <h1>Card</h1>
     </header>  
@@ -56,7 +56,7 @@
                 <li data-icon="minus">
                     <a href="@{Cards.deleteItem(restaurant.id,table.id,item.id)}">
                         <h3>
-                            <div class="span2">
+                            <div class="span3">
                                 ${item.name}
                             </div>
                         ${item.price} $
@@ -64,6 +64,12 @@
                     </a>
                 </li>
             #{/list}
+            <li data-theme="e" data-corners="false" data-shadow="false">
+                <h3>
+                    <div class="span2">Subtotal HT: </div>
+                    ${card.totalPriceHT} $
+                </h3>
+            </li>
         #{/if}
         #{else}
             <li>
@@ -71,8 +77,6 @@
             </li>
         #{/else}
     </ul>
-    <br/>
-    <h3>Subtotal : #{if card != null}${card.totalPrice} $#{/if}#{else}0 $#{/else}</h3><br/>
     #{if card != null}
         <a href="@{card(restaurant.id,table.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">COMPLETE</a>
     #{/if}

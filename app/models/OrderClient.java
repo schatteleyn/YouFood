@@ -11,9 +11,11 @@ import play.db.jpa.Model;
 public class OrderClient extends Model {
     
     public Date date;
-    public Float totalPrice;
+    
+    public Float totalPriceHT;
+    
     public Boolean inProgress = true;
-            
+          
     @ManyToMany
     public List<Item> listItems;
     

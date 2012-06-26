@@ -1,8 +1,6 @@
 #{extends 'Clients/mainClient.html' /}
 #{set title:'YouFood - Clients' /}
 
-
-
 <div class="span12">
     <div data-role="controlgroup" data-type="horizontal">
         <a href="@{Clients.menu(restaurant.id,table.id)}" data-role="button" data-icon="back">BACK TO MENU</a>
@@ -21,14 +19,10 @@
             #{if card != null}
                 #{list card.listItems, as:'item'}
                     <li>
-                        <a href="@{Clients.items(restaurant.id,table.id,item.category.id)}">
-                            <h3>
-                                <div class="span2">
-                                    ${item.name}
-                                </div>
-                            ${item.price} $
-                            </h3>
-                        </a>
+                        <div class="span4">
+                            ${item.name}
+                        </div>
+                        ${item.price} $
                     </li>
                 #{/list}
             #{/if}
@@ -37,13 +31,33 @@
                     No Items
                 </li>
             #{/else}
+            <li data-theme="e" data-corners="false" data-shadow="false">
+                <h3>
+                    <div class="span4">Subtotal HT: </div> 
+                    ${card.totalPriceHT} $
+                </h3>
+            </li>
     </ul>
     <br/>
-    <h3>Subtotal : #{if card != null}${card.totalPrice} $#{/if}#{else}0 $#{/else}</h3>
+
 </div>
 
 <div class="span4">
     <a href="@{Clients.menu(restaurant.id,table.id)}" data-role="button" data-icon="plus" data-theme="b">ADD ITEM</a>
     <a href="@{Cards.clear(restaurant.id,table.id,card.id)}" data-role="button" data-icon="home" data-theme="a">CLEAR CARD</a>
-    <a href="@{Orders.saveCreate(restaurant.id,table.id,card.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">CHECKOUT & ORDER</a>
+    <a href="@{Orders.saveCreate(restaurant.id,table.id,card.id)}" data-role="button" data-iconpos="top" data-icon="check" data-theme="e">CHECKOUT</a>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="youfood@youfood.com">
+        <input type="hidden" name="lc" value="FR">
+        <input type="hidden" name="item_name" value="Youfood">
+        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="amount" value="${card.totalPriceHT}">
+        <input type="hidden" name="currency_code" value="CAD">
+        <input type="hidden" name="button_subtype" value="services">
+        <input type="hidden" name="no_note" value="0">
+        <input type="hidden" name="tax_rate" value="14.5">
+        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+        <button type="submit" data-icon="check" data-theme="e" name="submit" value="submit-value" class="ui-btn-hidden" aria-disabled="false">Checkout with Paypal</button>
+    </form>
 </div>

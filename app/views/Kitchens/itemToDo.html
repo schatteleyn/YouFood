@@ -10,7 +10,7 @@
         #{if !kitchen.listItems.isEmpty()}
             #{list kitchen.listItems, as:'itemToCook'}
                 #{if itemToCook.finishCookDate == null}
-                    <li data-icon="plus">
+                    <li data-icon="minus">
                         <a href="@{Kitchens.removeItem(restaurant.id,itemToCook.item.id)}">
                             <div class="span5">
                                 ${itemToCook.item.name}
